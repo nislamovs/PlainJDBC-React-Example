@@ -1,0 +1,3 @@
+#Number of open connections:
+
+show processlist;

@@ -1,0 +1,91 @@
+-- Create all tables                                                        OK
+-- Create all services                                                      OK
+-- Create all dao's                                                         OK
+-- Create all dto's                                                         OK
+-- Create all controlers (pupils, teachers, marks, classes, subjects)       OK
+
+
+-- Add DAO validation                                                       OK
+-- Add DTO validation                                                       OK
+
+-- Exception handler                                                        --
+
+                                                                      controllers      services       dto's/dao's
+
+    -- list all pupils                                                      OK           OK             OK
+    -- add new pupil                                                        OK           OK             OK
+    -- edit pupil data                                                      OK           OK             OK
+    -- delete pupil                                                         OK           OK             OK
+    -- pupil page                                                           OK           OK             OK
+    -- get pupil by id                                                      OK           OK             OK
+
+    -- list all teachers                                                    OK           OK             OK
+    -- add new teacher                                                      OK           OK             OK
+    -- edit teacher data                                                    OK           OK             OK
+    -- delete teacher                                                       OK           OK             OK
+    -- teachers page                                                        OK           OK             OK
+    -- get teacher by id                                                    OK           OK             OK
+
+    -- list all subjects                                                    OK           OK             OK
+    -- add new subject                                                      OK           OK             OK
+    -- edit subject data                                                    OK           OK             OK
+    -- delete subject                                                       OK           OK             OK
+    -- subjects page                                                        OK           OK             OK
+    -- get subject by id                                                    OK           OK             OK
+
+    -- list all classes                                                     OK           OK             OK
+    -- add new class                                                        OK           OK             OK
+    -- edit class data                                                      OK           OK             OK
+    -- delete class                                                         OK           OK             OK
+    -- class page                                                           OK           OK             OK
+    -- get class by id                                                      OK           OK             OK
+
+    -- list all marks                                                       OK           OK             OK
+    -- marks page                                                           OK           OK             OK
+    -- add new mark                                                         OK           OK             OK
+    -- edit mark data                                                       OK           OK             OK
+    -- delete mark                                                          OK           OK             OK
+    -- retrieve marks by pupil id                                           OK           OK             OK
+
+    -- search for pupil by name and surname                                 OK           OK             OK
+    -- search for pupil or teacher by email  (find person by email)         OK           OK             OK
+    -- search for marks by date interval                                    OK           OK             OK
+
+    -- create statistics controller                                         OK           --             --
+    -- add some methods there
+
+    -- Generate data and load into db                                       OK
+
+
+    -- Make wrapper for DB operations as it is done in spring data - create interface, implement methods --
+    -- Use db operations:
+    -- grouping                                                             --
+    -- transaction                                                          --
+
+    -- limits                                                               OK
+    -- Sorting (order by)                                                   OK
+
+    -- Join                                                                 --
+    -- Like                                                                 --
+    -- Stored procedure launch                                              --
+    -- connection pools                                                     --
+    -- trigger                                                              --
+
+-- create connection pool select via interface (dbcp, hikaricp, c3op)       --
+
+        -- dbcp                                                             --
+        -- hikaricp                                                         --
+        -- c3op                                                             --
+
+-- Create docker image for app                                              OK
+-- Create docker image for mysql                                            OK
+-- Use docker compose                                                       OK
+
+-- Check lombok annotation for automatic connection closeup                 OK
+
+-- Update README                                                            --
+
+
+Use spock for unit tests
+Use react for FE
+Use jsonDoc for docs

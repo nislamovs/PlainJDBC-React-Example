@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  db:
+    container_name: "mysql"
+    image: mysql:5.7.22
+    command: --default-authentication-plugin=mysql_native_password
+    hostname: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=school
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+    volumes:
+      - ./jdbcexample/volumes/mysql-dump:/docker-entrypoint-initdb.d
+    restart: always
+    ports:
+      - "3306:3306"
+
+#  app:
+#    container_name: "jdbcexample"
+#    hostname: localhost
+#    build:
+#      context: ./jdbcexample/
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8080:8080"
+#      - "8000:8000"     # debugging
+#    depends_on:
+#      - db
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8081:8080"
