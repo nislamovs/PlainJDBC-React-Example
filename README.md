@@ -7,3 +7,7 @@
 * React
 * jsonDoc
 * Docker-compose, adminer, mysql
+
+#### Build:
+* Go to jdbcexample folder: `cd jdbcexample`
+* Run command : `./gradlew clean build docker`
