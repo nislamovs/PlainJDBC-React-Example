@@ -1,6 +1,6 @@
 package com.example.jdbcexample.controllers;
 
-import com.example.jdbcexample.dto.SubjectDTO;
+import com.example.jdbcexample.domain.dto.SubjectDTO;
 import com.example.jdbcexample.services.SubjectsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

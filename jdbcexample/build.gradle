@@ -54,6 +54,10 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+
+	implementation 'org.jsondoc:spring-boot-starter-jsondoc:1.2.22'
+	implementation 'org.jsondoc:jsondoc-ui-webjar:1.2.22'
+
 }
 
 test {

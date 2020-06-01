@@ -1,4 +1,4 @@
-package com.example.jdbcexample.dto;
+package com.example.jdbcexample.domain.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;

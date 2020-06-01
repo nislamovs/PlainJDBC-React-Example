@@ -1,9 +1,8 @@
-package com.example.jdbcexample.dto;
+package com.example.jdbcexample.domain.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;

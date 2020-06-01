@@ -1,12 +1,10 @@
-package com.example.jdbcexample.dao;
+package com.example.jdbcexample.domain.dao;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Data

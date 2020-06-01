@@ -1,11 +1,9 @@
 package com.example.jdbcexample.services;
 
-import com.example.jdbcexample.dao.SubjectMarkDAO;
-import com.example.jdbcexample.dto.AbstractDTO;
-import com.example.jdbcexample.dto.PupilDTO;
-import com.example.jdbcexample.dto.SubjectMarkDTO;
+import com.example.jdbcexample.domain.dao.SubjectMarkDAO;
+import com.example.jdbcexample.domain.dto.AbstractDTO;
+import com.example.jdbcexample.domain.dto.SubjectMarkDTO;
 import com.example.jdbcexample.mappers.MarkMapper;
-import com.example.jdbcexample.mappers.PupilMapper;
 import lombok.Cleanup;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -106,7 +104,7 @@ public class MarksService {
         stmt.setRowId(i++, null);
         stmt.setLong(i++, parseLong(mark.getSubject_id()));
         stmt.setLong(i++, parseLong(mark.getPupil_id()));
-        stmt.setDate(i++, (Date) mark.getDate());
+        stmt.setDate(i++, Date.valueOf(mark.getDate()));
         stmt.setInt(i++, mark.getValue());
 
         System.out.println(">>>   "+stmt.toString());
@@ -126,7 +124,7 @@ public class MarksService {
         stmt.setLong(i++, parseLong(mark.getId()));
         stmt.setLong(i++, parseLong(mark.getSubject_id()));
         stmt.setLong(i++, parseLong(mark.getPupil_id()));
-        stmt.setDate(i++, (Date) mark.getDate());
+        stmt.setDate(i++, Date.valueOf(mark.getDate()));
         stmt.setInt(i++, mark.getValue());
 
         System.out.println(">>>   "+stmt.toString());

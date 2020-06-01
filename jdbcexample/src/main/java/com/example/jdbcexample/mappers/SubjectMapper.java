@@ -1,7 +1,7 @@
 package com.example.jdbcexample.mappers;
 
-import com.example.jdbcexample.dao.SubjectDAO;
-import com.example.jdbcexample.dto.SubjectDTO;
+import com.example.jdbcexample.domain.dao.SubjectDAO;
+import com.example.jdbcexample.domain.dto.SubjectDTO;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

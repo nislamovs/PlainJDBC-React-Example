@@ -1,7 +1,7 @@
 package com.example.jdbcexample.services;
 
-import com.example.jdbcexample.dao.PersonDAO;
-import com.example.jdbcexample.dto.PersonDTO;
+import com.example.jdbcexample.domain.dao.PersonDAO;
+import com.example.jdbcexample.domain.dto.PersonDTO;
 import com.example.jdbcexample.mappers.PersonMapper;
 import lombok.Cleanup;
 import lombok.RequiredArgsConstructor;

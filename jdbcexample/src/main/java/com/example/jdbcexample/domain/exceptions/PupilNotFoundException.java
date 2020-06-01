@@ -1,4 +1,4 @@
-package com.example.jdbcexample.exceptions;
+package com.example.jdbcexample.domain.exceptions;
 
 public class PupilNotFoundException extends RuntimeException {
 

@@ -1,4 +1,4 @@
-package com.example.jdbcexample.dao;
+package com.example.jdbcexample.domain.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package com.example.jdbcexample.dto;
+package com.example.jdbcexample.domain.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -6,14 +6,14 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @EqualsAndHashCode(callSuper = true)
+@SuperBuilder
+//@SuperBuilder(toBuilder = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@SuperBuilder(toBuilder = true)
-public class PupilDTO extends PersonDTO {
+public class SubjectDTO extends AbstractDTO {
 
-    private Long class_id;
-    private Long class_head_id;
-
+    private Long teacher_id;
+    private String name;
 }

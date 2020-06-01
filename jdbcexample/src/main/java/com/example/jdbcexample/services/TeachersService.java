@@ -1,9 +1,8 @@
 package com.example.jdbcexample.services;
 
-import com.example.jdbcexample.dao.TeacherDAO;
-import com.example.jdbcexample.dto.AbstractDTO;
-import com.example.jdbcexample.dto.PupilDTO;
-import com.example.jdbcexample.dto.TeacherDTO;
+import com.example.jdbcexample.domain.dao.TeacherDAO;
+import com.example.jdbcexample.domain.dto.AbstractDTO;
+import com.example.jdbcexample.domain.dto.TeacherDTO;
 import com.example.jdbcexample.mappers.TeacherMapper;
 import lombok.Cleanup;
 import lombok.RequiredArgsConstructor;

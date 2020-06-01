@@ -1,7 +1,6 @@
 package com.example.jdbcexample.controllers;
 
-import com.example.jdbcexample.dao.PupilDAO;
-import com.example.jdbcexample.dto.PupilDTO;
+import com.example.jdbcexample.domain.dto.PupilDTO;
 import com.example.jdbcexample.services.PupilsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,10 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
-import java.util.List;
 
-import static org.springframework.http.ResponseEntity.created;
 import static org.springframework.http.ResponseEntity.ok;
 
 

@@ -11,3 +11,6 @@
 #### Build:
 * Go to jdbcexample folder: `cd jdbcexample`
 * Run command : `./gradlew clean build docker`
+
+### Documentation:
+* Visit http://localhost:8080/jsondoc to see apiDoc JSON.

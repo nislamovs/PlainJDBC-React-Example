@@ -88,7 +88,11 @@
 -- Update README                                                            --
 -- Mention profiles                                                         --
 
+-- Add CORS workaround                                                      OK
+-- Add redirect for jsonDoc                                                 OK
+-- Use jsonDoc for docs                                                     OK
+-- Mark all classes with jsonDoc annotations                                --
 
 Use spock for unit tests
 Use react for FE
-Use jsonDoc for docs
+
