@@ -53,25 +53,39 @@
     -- search for pupil or teacher by email  (find person by email)         OK           OK             OK
     -- search for marks by date interval                                    OK           OK             OK
 
+    -- create fake data controller                                          OK           --             --
     -- create statistics controller                                         OK           --             --
     -- add some methods there
 
     -- Generate data and load into db                                       OK
 
 
-    -- Make wrapper for DB operations as it is done in spring data - create interface, implement methods --
+    -- Make wrapper for DB operations as it is done in spring data - create interface, implement methods          --
+
+
     -- Use db operations:
-    -- grouping                                                             --
-    -- transaction                                                          --
+                                                                          In DB         On Backend
 
-    -- limits                                                               OK
-    -- Sorting (order by)                                                   OK
+    -- grouping                                                             --            --
+    -- transaction                                                          --            --
 
-    -- Join                                                                 --
-    -- Like                                                                 --
-    -- Stored procedure launch                                              --
-    -- connection pools                                                     --
-    -- trigger                                                              --
+    -- limits                                                               OK            --
+    -- Sorting (order by)                                                   OK            --
+
+    -- Joins                                                                --            --
+    -- Like                                                                 --            --
+    -- Stored procedure call                                                --            --
+            -- Create new class                                             OK            --
+    -- Function call                                                        --            --
+            -- TOP 5 per class
+            -- TOP 5 per school
+            -- pupil average marks rate
+
+    -- trigger
+            -- (changelog table - audit)                                    --            --
+            -- (createdBy, modifiedBy)                                      --            --
+
+    -- connection pools                                                     --            --
 
 -- create connection pool select via interface (dbcp, hikaricp, c3op)       --
 
@@ -93,6 +107,6 @@
 -- Use jsonDoc for docs                                                     OK
 -- Mark all classes with jsonDoc annotations                                --
 
-Use spock for unit tests
-Use react for FE
+Use spock for unit tests                                                    --
+Use react for FE                                                            --
 

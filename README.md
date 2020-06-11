@@ -14,3 +14,4 @@
 
 ### Documentation:
 * Visit http://localhost:8080/jsondoc to see apiDoc JSON.
+* Visit http://localhost:8080 to see apiDoc UI.

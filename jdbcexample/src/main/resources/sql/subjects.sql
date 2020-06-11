@@ -6,6 +6,7 @@ create table subjects (
 	teacher_id INT,
 	name VARCHAR(10)
 );
+
 insert into subjects (id, teacher_id, name) values (1, 1, 'Math');
 insert into subjects (id, teacher_id, name) values (2, 2, 'Literature');
 insert into subjects (id, teacher_id, name) values (3, 3, 'Sport');
