@@ -89,7 +89,7 @@
     -- COALESCE                                                             --            --
     -- group by + HAVING                                                    --            --
     -- Create table with primary keys and mention engine                    OK
-    -- Create audit table with revisions                                    --
+    -- Create audit table with revisions                                    OK
     -- Create foreign keys                                                  --
 
     -- Running root sql and move all other sql files in folders             ok
@@ -107,7 +107,7 @@
             -- pupil average marks rate                                     --
 
     -- trigger
-            -- (changelog table - audit)                                    --            --
+            -- (changelog table - audit)                                    OK
             -- (createdBy, modifiedBy, createdAt, modifiedAt)               OK
 
 ---------------------------------------------------------------------------------------------------------------------
