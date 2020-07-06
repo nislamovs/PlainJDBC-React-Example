@@ -1,13 +1,3 @@
-CREATE DATABASE IF NOT EXISTS school ;
-use school ;
-
-create table marks (
-	id INT,
-	subject_id INT,
-	pupil_id INT,
-	date DATE,
-	value INT
-);
 insert into marks (id, subject_id, pupil_id, date, value) values (1, 10, 80, STR_TO_DATE('02/10/2020', '%m/%d/%Y'), 3);
 insert into marks (id, subject_id, pupil_id, date, value) values (2, 8, 137, STR_TO_DATE('07/28/2019', '%m/%d/%Y'), 5);
 insert into marks (id, subject_id, pupil_id, date, value) values (3, 9, 46, STR_TO_DATE('07/10/2019', '%m/%d/%Y'), 9);

@@ -11,6 +11,8 @@ create table pupils (
 	class_id INT,
 	class_head_id INT
 );
+
+
 insert into pupils (id, firstname, lastname, email, gender, birthdate, class_id, class_head_id) values (1, 'Gert', 'Bilbrook', 'gbilbrook0@nature.com', 'Female',  STR_TO_DATE('02/16/2019',  '%m/%d/%Y'), 3, 2);
 insert into pupils (id, firstname, lastname, email, gender, birthdate, class_id, class_head_id) values (2, 'Jamil', 'Vonasek', 'jvonasek1@howstuffworks.com', 'Male',  STR_TO_DATE('06/04/2004',  '%m/%d/%Y'), 2, 2);
 insert into pupils (id, firstname, lastname, email, gender, birthdate, class_id, class_head_id) values (3, 'Nevsa', 'Esberger', 'nesberger2@bluehost.com', 'Female',  STR_TO_DATE('08/06/2008',  '%m/%d/%Y'), 4, 1);
@@ -161,3 +163,28 @@ insert into pupils (id, firstname, lastname, email, gender, birthdate, class_id,
 insert into pupils (id, firstname, lastname, email, gender, birthdate, class_id, class_head_id) values (148, 'Reuben', 'Bubeer', 'rbubeer43@free.fr', 'Male',  STR_TO_DATE('11/22/2012',  '%m/%d/%Y'), 5, 1);
 insert into pupils (id, firstname, lastname, email, gender, birthdate, class_id, class_head_id) values (149, 'Stacey', 'Galero', 'sgalero44@bluehost.com', 'Female',  STR_TO_DATE('11/03/2011',  '%m/%d/%Y'), 5, 2);
 insert into pupils (id, firstname, lastname, email, gender, birthdate, class_id, class_head_id) values (150, 'Melany', 'Wakeling', 'mwakeling45@telegraph.co.uk', 'Female',  STR_TO_DATE('09/07/2008',  '%m/%d/%Y'), 4, 1);
+
+DELIMITER $$
+
+DROP TRIGGER IF EXISTS pupil_created;
+CREATE TRIGGER pupil_created BEFORE INSERT ON pupils
+FOR EACH ROW
+    BEGIN
+       IF    NEW.id <> OLD.id
+          || NEW.firstname <> OLD.firstname
+          || NEW.lastname <> OLD.lastname
+          || NEW.email <> OLD.email
+          || NEW.gender <> OLD.gender
+          || NEW.birthdate <> OLD.birthdate
+          || NEW.class_id <> OLD.class_id
+          || NEW.class_head_id <> OLD.class_head_id
+          || NEW.birthdate <> OLD.birthdate
+          || NEW.modifiedDate <> OLD.modifiedDate
+       THEN
+            SET NEW.createdDate = now()
+            SET NEW.modifiedDate = now();
+       END IF;
+    END;
+$$
+
+DELIMITER ;

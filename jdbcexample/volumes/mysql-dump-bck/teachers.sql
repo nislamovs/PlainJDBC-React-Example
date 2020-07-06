@@ -9,9 +9,11 @@ create table teachers (
 	birthdate DATE,
 	class_id INT,
 	subject_id INT,
-	is_head boolean
+	is_head VARCHAR(50)
 );
-insert into teachers (id, firstname, lastname, email, birthdate, class_id, subject_id, is_head) values (1, 'Marshall', 'Dalmon', 'mdalmon0@arizona.edu', STR_TO_DATE('09/24/1982', '%m/%d/%Y'), 1, 1, true);
+
+
+insert into teachers (id, firstname, lastname, email, birthdate, class_id, subject_id, is_head) values (1, 'Marshall', 'Dalmons', 'mdalmon0@arizona.edu', STR_TO_DATE('09/24/1982', '%m/%d/%Y'), 1, 1, true);
 insert into teachers (id, firstname, lastname, email, birthdate, class_id, subject_id, is_head) values (2, 'Malvina', 'Woodworth', 'mwoodworth1@jalbum.net', STR_TO_DATE('05/03/1970', '%m/%d/%Y'), 2, 2, true);
 insert into teachers (id, firstname, lastname, email, birthdate, class_id, subject_id, is_head) values (3, 'Ludovika', 'Dagon', 'ldagon2@cdbaby.com', STR_TO_DATE('02/25/1963', '%m/%d/%Y'), 3, 3, true);
 insert into teachers (id, firstname, lastname, email, birthdate, class_id, subject_id, is_head) values (4, 'Jameson', 'Ludlom', 'jludlom3@rambler.ru', STR_TO_DATE('02/14/1979', '%m/%d/%Y'), 4, 4, true);

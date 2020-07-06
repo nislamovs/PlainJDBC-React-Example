@@ -1,0 +1,16 @@
+CREATE DATABASE IF NOT EXISTS school ;
+use school ;
+
+CREATE TABLE IF NOT EXISTS marks (
+	id INTEGER AUTO_INCREMENT PRIMARY KEY,
+	subject_id INTEGER,
+	pupil_id INTEGER,
+	date DATE,
+	value INTEGER,
+
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ 	created_by varchar(50) DEFAULT "Admin",
+	modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ 	modified_by varchar(50) DEFAULT "Admin"
+
+) ENGINE = InnoDB DEFAULT CHARSET = UTF8;

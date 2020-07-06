@@ -8,11 +8,13 @@ services:
     hostname: mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=school
       - MYSQL_USER=admin
       - MYSQL_PASSWORD=admin
+      - MYSQL_DATABASE=school
     volumes:
-      - ./jdbcexample/volumes/mysql-dump:/docker-entrypoint-initdb.d
+      - "/etc/timezone:/etc/timezone:ro"                    # fix docker container date/time
+      - "/etc/localtime:/etc/localtime:ro"
+      - ./jdbcexample/volumes/mysql-dump:/docker-entrypoint-initdb.d:rw
     restart: always
     ports:
       - "3306:3306"

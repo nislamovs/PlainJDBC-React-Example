@@ -55,7 +55,7 @@
 
     -- create fake data controller                                          OK           --             --
     -- create statistics controller                                         OK           --             --
-    -- add some methods there
+        -- add some methods there
 
     -- Generate data and load into db                                       OK
 
@@ -70,20 +70,47 @@
     -- transaction                                                          --            --
 
     -- limits                                                               OK            --
+    -- offset                                                               --            --
     -- Sorting (order by)                                                   OK            --
 
     -- Joins                                                                --            --
+        -- Cross join                                                       --
+        -- Self join                                                        --
+        -- Inner join                                                       --
+        -- Left outer join                                                  --
+        -- full Outer join                                                  --
+
+    -- Create foreign keys                                                  --
+    -- Create table constrains                                              --
+
     -- Like                                                                 --            --
+    -- AVG                                                                  --            --
+    -- SUM                                                                  --            --
+    -- COALESCE                                                             --            --
+    -- group by + HAVING                                                    --            --
+    -- Create table with primary keys and mention engine                    OK
+    -- Create audit table with revisions                                    --
+    -- Create foreign keys                                                  --
+
+    -- Running root sql and move all other sql files in folders             ok
+
+    -- weekly reports , cronjob, stored proc                                --
+    -- statistics : email provider user's count                             --
+            -- use case, when, then,else, end                               --
+
     -- Stored procedure call                                                --            --
-            -- Create new class                                             OK            --
+            -- Create new school class                                      OK            --
+
     -- Function call                                                        --            --
-            -- TOP 5 per class
-            -- TOP 5 per school
-            -- pupil average marks rate
+            -- TOP 5 per class                                              --
+            -- TOP 5 per school                                             --
+            -- pupil average marks rate                                     --
 
     -- trigger
             -- (changelog table - audit)                                    --            --
-            -- (createdBy, modifiedBy)                                      --            --
+            -- (createdBy, modifiedBy, createdAt, modifiedAt)               OK
+
+---------------------------------------------------------------------------------------------------------------------
 
     -- connection pools                                                     --            --
 
