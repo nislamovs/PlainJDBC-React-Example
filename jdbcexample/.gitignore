@@ -22,6 +22,8 @@ build/
 *.ipr
 out/
 
+**/volumes/**
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
