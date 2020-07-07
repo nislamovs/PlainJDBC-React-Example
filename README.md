@@ -1,7 +1,7 @@
 # PlainJDBC-React-Example
 
 ### Stack:
-* Java, Springboot, Lombok
+* Java8, Springboot, Lombok
 * Plain JDBC, various connectionPools (hikariCP, dbcp, c3op) 
 * Stored procedures, functions, triggers, etc.
 * Spock
