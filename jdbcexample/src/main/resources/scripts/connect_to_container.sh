@@ -3,4 +3,4 @@
 docker container exec -it mysql /bin/bash
 
 #Connect  to db
-#mysql -h localhost -P 3306 -u admin -p
+#mysql -h 127.0.0.1 -P 3306 -u admin -p

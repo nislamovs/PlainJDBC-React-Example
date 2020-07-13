@@ -1,12 +1,12 @@
 DELIMITER $$
 
-CREATE TRIGGER pupils_insert_trigger AFTER INSERT ON pupils
+CREATE TRIGGER parents_insert_trigger AFTER INSERT ON parents
 FOR EACH ROW
     BEGIN
         SET @recordid = NEW.id;
         SET @auditaction='INSERT';
         SET @username=SESSION_USER();
-        SET @tablename='pupils';
+        SET @tablename='parents';
         SET @oldvalue='<EMPTY>';
 
         SET @fieldlist=(SELECT GROUP_CONCAT(COLUMN_NAME) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = @tablename);
@@ -15,12 +15,11 @@ FOR EACH ROW
         ' ', NEW.firstname,
         ' ', NEW.lastname,
         ' ', NEW.email,
-        ' ', NEW.gender,
+        ' ', NEW.parentType,
+        ' ', NEW.parentInfo,
         ' ', NEW.birthdate,
-        ' ', NEW.class_id,
-        ' ', NEW.class_head_id,
-        ' ', NEW.has_brother_sister,
-        ' ', NEW.brother_sister_id,
+        ' ', NEW.address,
+        ' ', NEW.phonenumber,
         ' ', NEW.familyId,
         ' ', NEW.created_at,
         ' ', NEW.created_by,
@@ -31,18 +30,18 @@ FOR EACH ROW
         INSERT INTO audit_generic(done_by, auditAction, tableName, recordId, fieldName, oldValue, newValue)
         VALUES (@username, @auditaction, @tablename, @recordid, @fieldlist, @oldvalue, @newvalue);
 
-        INSERT INTO audit_pupils(done_by, auditAction, recordid, fieldName, oldValue, newValue)
+        INSERT INTO audit_parents(done_by, auditAction, recordid, fieldName, oldValue, newValue)
         VALUES (@username, @auditaction, @recordid, @fieldlist, @oldvalue, @newvalue);
     END;
 $$
 
-CREATE TRIGGER pupils_update_trigger AFTER UPDATE ON pupils
+CREATE TRIGGER parents_update_trigger AFTER UPDATE ON parents
 FOR EACH ROW
     BEGIN
         SET @recordid = NEW.id;
         SET @auditaction='UPDATE';
         SET @username=SESSION_USER();
-        SET @tablename='pupils';
+        SET @tablename='parents';
 
         SET @fieldlist=' ';
         SET @oldvalue=' ';
@@ -66,40 +65,34 @@ FOR EACH ROW
             SET @newvalue=(CONCAT(@newvalue, ',', NEW.email));
         END IF;
 
-        IF (NEW.gender <> OLD.gender) THEN
-            SET @fieldlist=(CONCAT(@fieldlist, ',', 'gender'));
-            SET @oldvalue=(CONCAT(@oldvalue, ',', OLD.gender));
-            SET @newvalue=(CONCAT(@newvalue, ',', NEW.gender));
+        IF (NEW.parentType <> OLD.parentType) THEN
+            SET @fieldlist=(CONCAT(@fieldlist, ',', 'parentType'));
+            SET @oldvalue=(CONCAT(@oldvalue, ',', OLD.parentType));
+            SET @newvalue=(CONCAT(@newvalue, ',', NEW.parentType));
         END IF;
 
-        IF (NEW.lastname <> OLD.lastname) THEN
-            SET @fieldlist=(CONCAT(@fieldlist, ',', 'lastname'));
-            SET @oldvalue=(CONCAT(@oldvalue, ',', OLD.lastname));
-            SET @newvalue=(CONCAT(@newvalue, ',', NEW.lastname));
+        IF (NEW.parentInfo <> OLD.parentInfo) THEN
+            SET @fieldlist=(CONCAT(@fieldlist, ',', 'parentInfo'));
+            SET @oldvalue=(CONCAT(@oldvalue, ',', OLD.parentInfo));
+            SET @newvalue=(CONCAT(@newvalue, ',', NEW.parentInfo));
         END IF;
 
-        IF (NEW.class_id <> OLD.class_id) THEN
-            SET @fieldlist=(CONCAT(@fieldlist, ',', 'class_id'));
-            SET @oldvalue=(CONCAT(@oldvalue, ',', OLD.class_id));
-            SET @newvalue=(CONCAT(@newvalue, ',', NEW.class_id));
+        IF (NEW.birthdate <> OLD.birthdate) THEN
+            SET @fieldlist=(CONCAT(@fieldlist, ',', 'birthdate'));
+            SET @oldvalue=(CONCAT(@oldvalue, ',', OLD.birthdate));
+            SET @newvalue=(CONCAT(@newvalue, ',', NEW.birthdate));
         END IF;
 
-        IF (NEW.class_head_id <> OLD.class_head_id) THEN
-            SET @fieldlist=(CONCAT(@fieldlist, ',', 'class_head_id'));
-            SET @oldvalue=(CONCAT(@oldvalue, ',', OLD.class_head_id));
-            SET @newvalue=(CONCAT(@newvalue, ',', NEW.class_head_id));
+        IF (NEW.address <> OLD.address) THEN
+            SET @fieldlist=(CONCAT(@fieldlist, ',', 'address'));
+            SET @oldvalue=(CONCAT(@oldvalue, ',', OLD.address));
+            SET @newvalue=(CONCAT(@newvalue, ',', NEW.address));
         END IF;
 
-          IF (NEW.has_brother_sister <> OLD.has_brother_sister) THEN
-            SET @fieldlist=(CONCAT(@fieldlist, ',', 'has_brother_sister'));
-            SET @oldvalue=(CONCAT(@oldvalue, ',', OLD.has_brother_sister));
-            SET @newvalue=(CONCAT(@newvalue, ',', NEW.has_brother_sister));
-        END IF;
-
-        IF (NEW.brother_sister_id <> OLD.brother_sister_id) THEN
-            SET @fieldlist=(CONCAT(@fieldlist, ',', 'brother_sister_id'));
-            SET @oldvalue=(CONCAT(@oldvalue, ',', OLD.brother_sister_id));
-            SET @newvalue=(CONCAT(@newvalue, ',', NEW.brother_sister_id));
+        IF (NEW.phonenumber <> OLD.phonenumber) THEN
+            SET @fieldlist=(CONCAT(@fieldlist, ',', 'phonenumber'));
+            SET @oldvalue=(CONCAT(@oldvalue, ',', OLD.phonenumber));
+            SET @newvalue=(CONCAT(@newvalue, ',', NEW.phonenumber));
         END IF;
 
         IF (NEW.familyId <> OLD.familyId) THEN
@@ -120,19 +113,19 @@ FOR EACH ROW
             INSERT INTO audit_generic(done_by, auditAction, tableName, recordId, fieldName, oldValue, newValue)
             VALUES (@username, @auditaction, @tablename, @recordid, @fieldlist, @oldvalue, @newvalue);
 
-            INSERT INTO audit_pupils(done_by, auditAction, recordid, fieldName, oldValue, newValue)
+            INSERT INTO audit_parents(done_by, auditAction, recordid, fieldName, oldValue, newValue)
             VALUES (@username, @auditaction, @recordid, @fieldlist, @oldvalue, @newvalue);
         END IF;
     END;
 $$
 
-CREATE TRIGGER pupils_delete_trigger BEFORE DELETE ON pupils
+CREATE TRIGGER parents_delete_trigger BEFORE DELETE ON parents
 FOR EACH ROW
     BEGIN
         SET @recordid = OLD.id;
         SET @auditaction='DELETE';
         SET @username=SESSION_USER();
-        SET @tablename='pupils';
+        SET @tablename='parents';
         SET @newvalue='<EMPTY>';
 
         SET @fieldlist=(SELECT GROUP_CONCAT(COLUMN_NAME) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = @tablename);
@@ -141,10 +134,12 @@ FOR EACH ROW
         ' ', OLD.firstname,
         ' ', OLD.lastname,
         ' ', OLD.email,
-        ' ', OLD.gender,
+        ' ', OLD.parentType,
+        ' ', OLD.parentInfo,
         ' ', OLD.birthdate,
-        ' ', OLD.class_id,
-        ' ', OLD.class_head_id,
+        ' ', OLD.address,
+        ' ', OLD.phonenumber,
+        ' ', OLD.familyId,
         ' ', OLD.created_at,
         ' ', OLD.created_by,
         ' ', OLD.modified_at,
@@ -154,7 +149,7 @@ FOR EACH ROW
         INSERT INTO audit_generic(done_by, auditAction, tableName, recordId, fieldName, oldValue, newValue)
         VALUES (@username, @auditaction, @tablename, @recordid, @fieldlist, @oldvalue, @newvalue);
 
-        INSERT INTO audit_pupils(done_by, auditAction, recordid, fieldName, oldValue, newValue)
+        INSERT INTO audit_parents(done_by, auditAction, recordid, fieldName, oldValue, newValue)
         VALUES (@username, @auditaction, @recordid, @fieldlist, @oldvalue, @newvalue);
     END;
 $$

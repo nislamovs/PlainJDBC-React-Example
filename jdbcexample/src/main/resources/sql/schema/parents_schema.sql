@@ -1,19 +1,18 @@
 CREATE DATABASE IF NOT EXISTS school ;
 use school ;
 
-CREATE TABLE IF NOT EXISTS pupils (
+CREATE TABLE IF NOT EXISTS parents (
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	firstname VARCHAR(50),
 	lastname VARCHAR(50),
-	email VARCHAR(50) UNIQUE,
-	gender ENUM('MALE', 'FEMALE') NOT NULL,
-	birthdate DATE,
-	class_id INTEGER,
-	class_head_id INTEGER,
+	email VARCHAR(50),
+	parentType ENUM('MOTHER', 'FATHER', 'GRANDFATHER', 'GRANDMOTHER', 'GUARDIAN', 'OTHER') NOT NULL,
+	parentInfo longtext,
+	birthdate DATE NOT NULL,
+	address VARCHAR(50) NOT NULL,
+	phonenumber VARCHAR(20),
+	familyId VARCHAR(50),
 
-	has_brother_sister boolean DEFAULT false,
-	brother_sister_id INTEGER DEFAULT NULL,
-	familyId varchar(50),
 
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
  	created_by varchar(50) DEFAULT "Admin",

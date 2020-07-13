@@ -4,7 +4,7 @@ services:
   db:
     container_name: "mysql"
     image: mysql:5.7.22
-    command: --default-authentication-plugin=mysql_native_password
+    command: --default-authentication-plugin=mysql_native_password --max_allowed_packet=30M
     hostname: mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root
@@ -14,7 +14,9 @@ services:
     volumes:
       - "/etc/timezone:/etc/timezone:ro"                    # fix docker container date/time
       - "/etc/localtime:/etc/localtime:ro"
-      - ./jdbcexample/volumes/mysql-dump:/docker-entrypoint-initdb.d:rw
+      - "./jdbcexample/volumes/mysql_plugins:/usr/lib/mysql/plugin:rw"
+      - "./jdbcexample/volumes/mysql_files:/var/lib/mysql-files:rw"
+      - "./jdbcexample/volumes/mysql-dump:/docker-entrypoint-initdb.d:rw"
     restart: always
     ports:
       - "3306:3306"

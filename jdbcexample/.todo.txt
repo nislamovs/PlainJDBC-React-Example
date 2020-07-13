@@ -72,15 +72,17 @@
     -- offset                                                               --            --
     -- Sorting (order by)                                                   OK            --
 
+    -- Add to pupil's table additional data
+
     -- Joins                                                                --            --
         -- Cross join                                                       --
         -- Self join                                                        --
         -- Inner join                                                       --
-        -- Left outer join                                                  --
+        -- left join                                                        --
         -- full Outer join                                                  --
 
     -- Create foreign keys                                                  --
-    -- Create table constrains                                              --
+    -- Create table constrains                                              OK
 
     -- Like                                                                 --            --
     -- AVG                                                                  --            --
@@ -93,11 +95,33 @@
 
     -- Running root sql and move all other sql files in folders             ok
 
-    -- weekly reports , cronjob, stored proc                                --
+    -- weekly reports , cronjob, stored proc, email                         --
+    -- for teacher (class-head) about pupils in its class                   --
+    -- for parents about their child                                        --
+
+    -- Create view - family list                                            --
+
+    -- Modify pupils table - for self join                                  OK
+        -- has brothers/sisters boolean default false
+        -- brother_sister_id
+        -- parents_id
+
+        -- set brothers/sisters
+            change familyid and brother-sister id                           --
+
+    -- add table parents                                                    OK
+        id, parent_type, parent_info, email,
+         address, phonenumber, profession
+
+         -- create phonenumber constraints                                  --
+
+    -- modify create_new_class stored proc - add parents workaround         --
+
+
     -- statistics : email provider user's count                             --
             -- use case, when, then,else, end                               --
 
-    -- Stored procedure call                                                --            --
+    -- Stored procedure call
             -- Create new school class                                      OK            --
 
     -- Function call                                                        --            --
