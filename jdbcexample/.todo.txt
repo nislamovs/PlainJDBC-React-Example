@@ -72,7 +72,7 @@
     -- offset                                                               --            --
     -- Sorting (order by)                                                   OK            --
 
-    -- Add to pupil's table additional data
+    -- Add to pupil's table additional data                                 OK
 
     -- Joins                                                                --            --
         -- Cross join                                                       --
