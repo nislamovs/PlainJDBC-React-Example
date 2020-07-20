@@ -1,74 +1,82 @@
 package com.example.jdbcexample.services;
 
-import com.example.jdbcexample.domain.dao.PersonDAO;
-import com.example.jdbcexample.domain.dto.PersonDTO;
+import com.example.jdbcexample.domain.dao.ParentDAO;
+import com.example.jdbcexample.domain.dto.AbstractDTO;
+import com.example.jdbcexample.domain.dto.ParentDTO;
+import com.example.jdbcexample.mappers.ParentMapper;
 import com.example.jdbcexample.mappers.PersonMapper;
-import lombok.Cleanup;
+import com.example.jdbcexample.repository.ParentsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.stereotype.Service;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static java.lang.Integer.parseInt;
+import static java.lang.String.valueOf;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class ParentsService {
 
-    private final BasicDataSource dataSource;
-    private final PersonMapper mapper;
-
-    private final String PERSONS_RETRIEVAL_QUERY = "select *  from parents where email = ?\n" +
-                                                   "union all\n" +
-                                                   "select *  from teachers where email = ?";
+    private final ParentsRepository parentsRepository;
+    private final ParentMapper mapper;
 
     @SneakyThrows
-    public List<PersonDTO> findPersonByEmail(String email) {
-        @Cleanup Connection conn = getConnection();
-        @Cleanup PreparedStatement stmt = conn.prepareStatement(PERSONS_RETRIEVAL_QUERY);
-
-        System.out.println(">>>   " + stmt.toString());
-
-        int i = 1;
-        stmt.setString(i++, email);
-        stmt.setString(i++, email);
-
-        return executeQuery(stmt).stream().map(mapper::toDTO).collect(Collectors.toList());
+    public List<ParentDTO> getAllParents() {
+        return parentsRepository.findAll().stream().map(mapper::toDTO).collect(Collectors.toList());
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////
+    @SneakyThrows
+    public List<ParentDTO> getParentsByFirstnameLastname(String firstname, String lastname) {
 
-    private Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
+        return parentsRepository.getParentsByFirstnameLastname(firstname, lastname).stream()
+                .map(mapper::toDTO).collect(Collectors.toList());
     }
 
-    private List<PersonDAO> executeQuery(PreparedStatement stmt) {
-        List<PersonDAO> persons = new ArrayList<>();
-        try {
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                PersonDAO person = PersonDAO.builder()
-                        .id(rs.getLong("id"))
-                        .firstname(rs.getString("firstname"))
-                        .lastname(rs.getString("lastname"))
-                        .email(rs.getString("email"))
-                        .birthdate(rs.getDate("birthdate"))
-                        .build();
+    @SneakyThrows
+    public List<ParentDTO> getParentsPage(String pagenum, String pagesize, String sort, String group) {
 
-                persons.add(person);
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
+        return parentsRepository.getPage(pagenum, pagesize, sort, group).stream()
+                .map(mapper::toDTO).collect(Collectors.toList());
+    }
 
-        return persons;
+    @SneakyThrows
+    public ParentDTO getParentById(String parentId) {
+
+        return mapper.toDTO(parentsRepository.findById(parseInt(parentId)));
+    }
+
+    @SneakyThrows
+    public AbstractDTO addNewParent(ParentDTO parent) {
+
+        ParentDAO newParent = parentsRepository.create(mapper.toDAO(parent));
+
+        return AbstractDTO.builder()
+                .id(String.valueOf(newParent.getId()))
+                .dateTime(LocalDateTime.now()).build();
+    }
+
+    @SneakyThrows
+    public AbstractDTO editParentData(ParentDTO parent) {
+
+        ParentDAO updatedParent = parentsRepository.update(mapper.toDAO(parent));
+
+        return AbstractDTO.builder()
+                .id(valueOf(updatedParent.getId()))
+                .dateTime(LocalDateTime.now()).build();
+    }
+
+    @SneakyThrows
+    public AbstractDTO deleteParent(String parentId) {
+        ParentDAO deletedParent = parentsRepository.delete(parseInt(parentId));
+
+        return AbstractDTO.builder()
+                .id(valueOf(deletedParent.getId()))
+                .dateTime(LocalDateTime.now()).build();
     }
 }

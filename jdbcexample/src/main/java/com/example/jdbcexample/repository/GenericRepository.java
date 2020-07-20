@@ -1,7 +1,10 @@
 package com.example.jdbcexample.repository;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
+@Repository
 public interface GenericRepository<T> {
 
     public T create(T t);

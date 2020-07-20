@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -23,6 +24,7 @@ import static java.lang.String.valueOf;
 
 @RequiredArgsConstructor
 @Slf4j
+@Component
 public class PupilsRepositoryImpl implements PupilsRepository {
 
     private final BasicDataSource dataSource;
@@ -39,7 +41,7 @@ public class PupilsRepositoryImpl implements PupilsRepository {
     @Override
     @SneakyThrows
     public PupilDAO create(PupilDAO newPupil) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PUPILS_NEW_PUPIL_ADD_QUERY);
 
         int i = 1;
@@ -62,7 +64,7 @@ public class PupilsRepositoryImpl implements PupilsRepository {
     @Override
     @SneakyThrows
     public List<PupilDAO> getPupilsByFirstnameLastname(String firstname, String lastname) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PUPILS_GET_BY_FIRSTNAME_LASTNAME_RETRIEVAL_QUERY);
 
         int i = 1;
@@ -77,7 +79,7 @@ public class PupilsRepositoryImpl implements PupilsRepository {
     @Override
     @SneakyThrows
     public PupilDAO findById(Integer pupilId) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PUPILS_GET_BY_ID_RETRIEVAL_QUERY);
 
         int i = 1;
@@ -91,7 +93,7 @@ public class PupilsRepositoryImpl implements PupilsRepository {
     @Override
     @SneakyThrows
     public PupilDAO update(PupilDAO pupil) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PUPILS_EXISTING_PUPIL_UPDATE_QUERY);
 
         int i = 1;
@@ -114,7 +116,7 @@ public class PupilsRepositoryImpl implements PupilsRepository {
     @Override
     @SneakyThrows
     public PupilDAO delete(Integer pupilId) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PUPILS_EXISTING_PUPIL_DELETE_QUERY);
 
         int i = 1;
@@ -128,7 +130,7 @@ public class PupilsRepositoryImpl implements PupilsRepository {
     @Override
     @SneakyThrows
     public List<PupilDAO> findAll() {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PUPILS_RETRIEVAL_QUERY);
 
         System.out.println(">>>   "+stmt.toString());
@@ -139,7 +141,7 @@ public class PupilsRepositoryImpl implements PupilsRepository {
     @Override
     @SneakyThrows
     public List<PupilDAO> getPage(String pagenum, String pagesize, String sort, String group) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PUPILS_PAGE_RETRIEVAL_QUERY);
 
         int i = 1;
@@ -154,10 +156,6 @@ public class PupilsRepositoryImpl implements PupilsRepository {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
-    private Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
-    }
 
     private List<PupilDAO> executeQuery(PreparedStatement stmt) {
         List<PupilDAO> pupils = new ArrayList<>();

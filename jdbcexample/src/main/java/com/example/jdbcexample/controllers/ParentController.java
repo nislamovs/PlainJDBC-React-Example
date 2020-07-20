@@ -4,6 +4,7 @@ import com.example.jdbcexample.domain.dto.ParentDTO;
 import com.example.jdbcexample.services.ParentsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jsondoc.core.annotation.Api;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ import static org.springframework.http.ResponseEntity.ok;
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
 @Slf4j
+@Api(description = "The parents controller", name = "Parents services")
 public class ParentController {
 
     private final ParentsService parentsService;

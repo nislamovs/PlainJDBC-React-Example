@@ -5,18 +5,18 @@ CREATE TABLE IF NOT EXISTS parents (
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	firstname VARCHAR(50),
 	lastname VARCHAR(50),
-	email VARCHAR(50),
+	email VARCHAR(50) UNIQUE,
+	birthdate DATE NOT NULL,
 	parentType ENUM('MOTHER', 'FATHER', 'GRANDFATHER', 'GRANDMOTHER', 'GUARDIAN', 'OTHER') NOT NULL,
 	parentInfo longtext,
-	birthdate DATE NOT NULL,
 	address VARCHAR(50) NOT NULL,
 	phonenumber VARCHAR(20),
 	familyId VARCHAR(50),
 
 
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
- 	created_by varchar(50) DEFAULT "Admin",
+ 	created_by VARCHAR(50) DEFAULT "Admin",
 	modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
- 	modified_by varchar(50) DEFAULT "Admin"
+ 	modified_by VARCHAR(50) DEFAULT "Admin"
 
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8;

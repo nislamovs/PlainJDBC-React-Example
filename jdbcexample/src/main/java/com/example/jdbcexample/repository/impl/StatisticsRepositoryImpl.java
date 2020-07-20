@@ -5,11 +5,13 @@ import com.example.jdbcexample.repository.StatisticsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @RequiredArgsConstructor
 @Slf4j
+@Component
 public class StatisticsRepositoryImpl implements StatisticsRepository {
 
     private final BasicDataSource dataSource;

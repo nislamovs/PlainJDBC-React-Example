@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,6 +21,7 @@ import static java.lang.Integer.parseInt;
 
 @RequiredArgsConstructor
 @Slf4j
+@Component
 public class ClassesRepositoryImpl implements ClassesRepository {
 
     private final BasicDataSource dataSource;
@@ -34,7 +36,7 @@ public class ClassesRepositoryImpl implements ClassesRepository {
     @Override
     @SneakyThrows
     public SchoolClassDAO create(SchoolClassDAO schoolClass) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(CLASSES_NEW_CLASS_ADD_QUERY);
 
         int i = 1;
@@ -51,7 +53,7 @@ public class ClassesRepositoryImpl implements ClassesRepository {
     @Override
     @SneakyThrows
     public SchoolClassDAO findById(Integer id) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(CLASSES_GET_BY_ID_RETRIEVAL_QUERY);
 
         int i = 1;
@@ -65,7 +67,7 @@ public class ClassesRepositoryImpl implements ClassesRepository {
     @Override
     @SneakyThrows
     public SchoolClassDAO update(SchoolClassDAO schoolClass) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(CLASSES_EXISTING_CLASS_UPDATE_QUERY);
 
         int i = 1;
@@ -82,7 +84,7 @@ public class ClassesRepositoryImpl implements ClassesRepository {
     @Override
     @SneakyThrows
     public SchoolClassDAO delete(Integer id) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(CLASSES_EXISTING_CLASS_DELETE_QUERY);
 
         int i = 1;
@@ -95,7 +97,7 @@ public class ClassesRepositoryImpl implements ClassesRepository {
     @Override
     @SneakyThrows
     public List<SchoolClassDAO> findAll() {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(CLASSES_RETRIEVAL_QUERY);
 
         System.out.println(">>>   "+stmt.toString());
@@ -105,7 +107,7 @@ public class ClassesRepositoryImpl implements ClassesRepository {
     @Override
     @SneakyThrows
     public List<SchoolClassDAO> getPage(String pagenum, String pagesize, String sort, String group) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(CLASSES_PAGE_RETRIEVAL_QUERY);
 
         int i = 1;
@@ -120,10 +122,6 @@ public class ClassesRepositoryImpl implements ClassesRepository {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
-    private Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
-    }
 
     private List<SchoolClassDAO> executeQuery(PreparedStatement stmt) {
         List<SchoolClassDAO> classes = new ArrayList<>();

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import static java.lang.Integer.parseInt;
 
 @RequiredArgsConstructor
 @Slf4j
+@Component
 public class MarksRepositoryImpl implements MarksRepository {
 
     private final BasicDataSource dataSource;
@@ -34,7 +36,7 @@ public class MarksRepositoryImpl implements MarksRepository {
     @Override
     @SneakyThrows
     public SubjectMarkDAO create(SubjectMarkDAO mark) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(MARKS_NEW_MARK_ADD_QUERY);
 
         int i = 1;
@@ -54,7 +56,7 @@ public class MarksRepositoryImpl implements MarksRepository {
     @Override
     @SneakyThrows
     public List<SubjectMarkDAO> retrieveMarksByPupilId(String pupilId) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(MARKS_GET_BY_PUPIL_ID_RETRIEVAL_QUERY);
 
         int i = 1;
@@ -68,7 +70,7 @@ public class MarksRepositoryImpl implements MarksRepository {
     @Override
     @SneakyThrows
     public List<SubjectMarkDAO> getMarksByDateInterval(String startDate, String endDate) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(MARKS_GET_BY_DATE_RETRIEVAL_QUERY);
 
         int i = 1;
@@ -83,7 +85,7 @@ public class MarksRepositoryImpl implements MarksRepository {
     @Override
     @SneakyThrows
     public SubjectMarkDAO findById(Integer markId) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(MARKS_GET_BY_ID_RETRIEVAL_QUERY);
 
         int i = 1;
@@ -97,7 +99,7 @@ public class MarksRepositoryImpl implements MarksRepository {
     @Override
     @SneakyThrows
     public SubjectMarkDAO update(SubjectMarkDAO mark) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(MARKS_EXISTING_MARK_UPDATE_QUERY);
 
         int i = 1;
@@ -117,7 +119,7 @@ public class MarksRepositoryImpl implements MarksRepository {
     @Override
     @SneakyThrows
     public SubjectMarkDAO delete(Integer markId) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(MARKS_EXISTING_MARK_DELETE_QUERY);
 
         int i = 1;
@@ -131,7 +133,7 @@ public class MarksRepositoryImpl implements MarksRepository {
     @Override
     @SneakyThrows
     public List<SubjectMarkDAO> findAll() {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(MARKS_RETRIEVAL_QUERY);
 
         System.out.println(">>>   " + stmt.toString());
@@ -142,7 +144,7 @@ public class MarksRepositoryImpl implements MarksRepository {
     @Override
     @SneakyThrows
     public List<SubjectMarkDAO> getPage(String pagenum, String pagesize, String sort, String group) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(MARKS_PAGE_RETRIEVAL_QUERY);
 
         int i = 1;
@@ -158,10 +160,6 @@ public class MarksRepositoryImpl implements MarksRepository {
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
-    private Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
-    }
 
     private List<SubjectMarkDAO> executeQuery(PreparedStatement stmt) {
         List<SubjectMarkDAO> marks = new ArrayList<>();

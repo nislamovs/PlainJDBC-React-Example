@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,6 +28,7 @@ import static java.lang.String.valueOf;
 
 @RequiredArgsConstructor
 @Slf4j
+@Component
 public class SubjectsRepositoryImpl implements SubjectsRepository {
 
     private final BasicDataSource dataSource;
@@ -41,7 +43,7 @@ public class SubjectsRepositoryImpl implements SubjectsRepository {
     @Override
     @SneakyThrows
     public SubjectDAO create(SubjectDAO newSubject) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(SUBJECTS_NEW_SUBJECT_ADD_QUERY);
 
         int i = 1;
@@ -59,7 +61,7 @@ public class SubjectsRepositoryImpl implements SubjectsRepository {
     @Override
     @SneakyThrows
     public SubjectDAO findById(Integer subjectId) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(SUBJECTS_GET_BY_ID_RETRIEVAL_QUERY);
 
         int i = 1;
@@ -73,7 +75,7 @@ public class SubjectsRepositoryImpl implements SubjectsRepository {
     @Override
     @SneakyThrows
     public SubjectDAO update(SubjectDAO subject) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(SUBJECTS_EXISTING_SUBJECT_UPDATE_QUERY);
 
         int i = 1;
@@ -92,7 +94,7 @@ public class SubjectsRepositoryImpl implements SubjectsRepository {
     @Override
     @SneakyThrows
     public SubjectDAO delete(Integer subjectId) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(SUBJECTS_EXISTING_SUBJECT_DELETE_QUERY);
 
         int i = 1;
@@ -106,7 +108,7 @@ public class SubjectsRepositoryImpl implements SubjectsRepository {
     @Override
     @SneakyThrows
     public List<SubjectDAO> findAll() {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(SUBJECTS_RETRIEVAL_QUERY);
 
         System.out.println(">>>   "+stmt.toString());
@@ -117,7 +119,7 @@ public class SubjectsRepositoryImpl implements SubjectsRepository {
     @Override
     @SneakyThrows
     public List<SubjectDAO> getPage(String pagenum, String pagesize, String sort, String group) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(SUBJECTS_PAGE_RETRIEVAL_QUERY);
 
         int i = 1;
@@ -132,10 +134,6 @@ public class SubjectsRepositoryImpl implements SubjectsRepository {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
-    private Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
-    }
 
     private List<SubjectDAO> executeQuery(PreparedStatement stmt) {
         List<SubjectDAO> subjects = new ArrayList<>();

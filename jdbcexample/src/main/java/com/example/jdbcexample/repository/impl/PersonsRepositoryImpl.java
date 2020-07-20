@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,6 +24,7 @@ import static java.lang.Integer.parseInt;
 
 @RequiredArgsConstructor
 @Slf4j
+@Component
 public class PersonsRepositoryImpl implements PersonsRepository {
 
     private final BasicDataSource dataSource;
@@ -34,7 +36,7 @@ public class PersonsRepositoryImpl implements PersonsRepository {
     @Override
     @SneakyThrows
     public List<PersonDAO> findPersonByEmail(String email) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PERSONS_RETRIEVAL_QUERY);
 
         System.out.println(">>>   " + stmt.toString());
@@ -47,10 +49,6 @@ public class PersonsRepositoryImpl implements PersonsRepository {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
-    private Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
-    }
 
     private List<PersonDAO> executeQuery(PreparedStatement stmt) {
         List<PersonDAO> persons = new ArrayList<>();

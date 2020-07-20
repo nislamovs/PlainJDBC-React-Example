@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import static java.lang.Long.parseLong;
 
 @RequiredArgsConstructor
 @Slf4j
+@Component
 public class TeachersRepositoryImpl implements TeachersRepository {
 
     private final BasicDataSource dataSource;
@@ -31,7 +33,7 @@ public class TeachersRepositoryImpl implements TeachersRepository {
     @Override
     @SneakyThrows
     public TeacherDAO create(TeacherDAO newTeacher) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(TEACHERS_NEW_TEACHER_ADD_QUERY);
 
         int i = 1;
@@ -54,7 +56,7 @@ public class TeachersRepositoryImpl implements TeachersRepository {
     @Override
     @SneakyThrows
     public TeacherDAO findById(Integer id) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(TEACHERS_GET_BY_ID_RETRIEVAL_QUERY);
 
         int i = 1;
@@ -69,7 +71,7 @@ public class TeachersRepositoryImpl implements TeachersRepository {
     @SneakyThrows
     public TeacherDAO update(TeacherDAO teacher) {
 
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(TEACHERS_EXISTING_TEACHER_UPDATE_QUERY);
 
         int i = 1;
@@ -92,7 +94,7 @@ public class TeachersRepositoryImpl implements TeachersRepository {
     @Override
     @SneakyThrows
     public TeacherDAO delete(Integer id) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(TEACHERS_EXISTING_TEACHER_DELETE_QUERY);
 
         int i = 1;
@@ -106,7 +108,7 @@ public class TeachersRepositoryImpl implements TeachersRepository {
     @Override
     @SneakyThrows
     public List<TeacherDAO> findAll() {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(TEACHERS_RETRIEVAL_QUERY);
 
         System.out.println(">>>   " + stmt.toString());
@@ -117,7 +119,7 @@ public class TeachersRepositoryImpl implements TeachersRepository {
     @Override
     @SneakyThrows
     public List<TeacherDAO> getPage(String pagenum, String pagesize, String sort, String group) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(TEACHERS_PAGE_RETRIEVAL_QUERY);
 
         int i = 1;
@@ -132,10 +134,6 @@ public class TeachersRepositoryImpl implements TeachersRepository {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
-    private Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
-    }
 
     private List<TeacherDAO> executeQuery(PreparedStatement stmt) {
         List<TeacherDAO> teachers = new ArrayList<>();

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import static java.lang.Integer.parseInt;
 
 @RequiredArgsConstructor
 @Slf4j
+@Component
 public class FakeDataRepositoryImpl implements FakeDataRepository {
 
     private final BasicDataSource dataSource;
@@ -25,7 +27,7 @@ public class FakeDataRepositoryImpl implements FakeDataRepository {
     @Override
     @SneakyThrows
     public String generateNewClass(String pupilCount) {
-        @Cleanup Connection conn = getConnection();
+        @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup CallableStatement stmt = conn.prepareCall(NEW_CLASS_GENERATION_QUERY);
 
         int i = 1;
@@ -38,10 +40,6 @@ public class FakeDataRepositoryImpl implements FakeDataRepository {
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
-
-    private Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
-    }
 
     private void executeQuery(CallableStatement stmt) {
         try {

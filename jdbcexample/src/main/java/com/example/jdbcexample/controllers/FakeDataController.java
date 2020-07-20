@@ -22,6 +22,7 @@ public class FakeDataController {
 
     @PostMapping("/generateNewClass")
     public ResponseEntity<?> generateNewClass(@RequestParam(value = "pupilCount", required = true, defaultValue = "30") String pupilCount) {
+
         return ok(fakeDataService.genNewClass(pupilCount));
     }
 }
