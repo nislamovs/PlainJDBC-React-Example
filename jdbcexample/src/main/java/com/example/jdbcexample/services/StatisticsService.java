@@ -1,6 +1,7 @@
 package com.example.jdbcexample.services;
 
 import com.example.jdbcexample.mappers.TeacherMapper;
+import com.example.jdbcexample.repository.StatisticsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class StatisticsService {
 
-    private final BasicDataSource dataSource;
+    private final StatisticsRepository statisticsRepository;
     private final TeacherMapper mapper;
 
     private final String TEACHERS_RETRIEVAL_QUERY = "select * FROM teachers";
