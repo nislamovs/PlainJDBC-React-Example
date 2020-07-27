@@ -26,9 +26,9 @@ public class ClassesRepositoryImpl implements ClassesRepository {
 
     private final BasicDataSource dataSource;
 
-    private final String CLASSES_RETRIEVAL_QUERY = "select * FROM classes";
-    private final String CLASSES_PAGE_RETRIEVAL_QUERY = "select * FROM classes WHERE id BETWEEN ? AND ? order by ? ?";
-    private final String CLASSES_GET_BY_ID_RETRIEVAL_QUERY = "select * FROM classes WHERE id = ?";
+    private final String CLASSES_RETRIEVAL_QUERY = "SELECT * FROM classes";
+    private final String CLASSES_PAGE_RETRIEVAL_QUERY = "SELECT * FROM classes WHERE id BETWEEN ? AND ? order by ? ?";
+    private final String CLASSES_GET_BY_ID_RETRIEVAL_QUERY = "SELECT * FROM classes WHERE id = ?";
     private final String CLASSES_NEW_CLASS_ADD_QUERY = "INSERT INTO classes(id, type, class_head_id, name) VALUES (?, ?, ?, ?)";
     private final String CLASSES_EXISTING_CLASS_UPDATE_QUERY = "UPDATE INTO classes(id, type, class_head_id, name) VALUES (?, ?, ?, ?)";
     private final String CLASSES_EXISTING_CLASS_DELETE_QUERY = "DELETE FROM classes where id = ?";

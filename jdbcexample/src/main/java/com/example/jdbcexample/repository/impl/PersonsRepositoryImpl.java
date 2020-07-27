@@ -29,9 +29,9 @@ public class PersonsRepositoryImpl implements PersonsRepository {
 
     private final BasicDataSource dataSource;
 
-    private final String PERSONS_RETRIEVAL_QUERY = "select *  from pupils where email = ?\n" +
+    private final String PERSONS_RETRIEVAL_QUERY = "SELECT *  from pupils where email = ?\n" +
             "union all\n" +
-            "select *  from teachers where email = ?";
+            "SELECT *  from teachers where email = ?";
 
     @Override
     @SneakyThrows

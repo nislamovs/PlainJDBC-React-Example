@@ -23,9 +23,9 @@ public class TeachersRepositoryImpl implements TeachersRepository {
 
     private final BasicDataSource dataSource;
 
-    private final String TEACHERS_RETRIEVAL_QUERY = "select * FROM teachers";
-    private final String TEACHERS_PAGE_RETRIEVAL_QUERY = "select * FROM teachers WHERE id BETWEEN ? AND ? order by ? ?";
-    private final String TEACHERS_GET_BY_ID_RETRIEVAL_QUERY = "select * FROM teachers WHERE id = ?";
+    private final String TEACHERS_RETRIEVAL_QUERY = "SELECT * FROM teachers";
+    private final String TEACHERS_PAGE_RETRIEVAL_QUERY = "SELECT * FROM teachers WHERE id BETWEEN ? AND ? order by ? ?";
+    private final String TEACHERS_GET_BY_ID_RETRIEVAL_QUERY = "SELECT * FROM teachers WHERE id = ?";
     private final String TEACHERS_NEW_TEACHER_ADD_QUERY = "INSERT INTO teachers(id, firstname, lastname, email, birthdate, class_id, subject_id, is_head) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private final String TEACHERS_EXISTING_TEACHER_UPDATE_QUERY = "UPDATE INTO teachers(id, firstname, lastname, email, birthdate, class_id, subject_id, is_head) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private final String TEACHERS_EXISTING_TEACHER_DELETE_QUERY = "DELETE FROM teachers where id = ?";

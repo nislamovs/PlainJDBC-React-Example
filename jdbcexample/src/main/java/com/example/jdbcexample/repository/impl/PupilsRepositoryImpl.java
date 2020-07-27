@@ -29,10 +29,10 @@ public class PupilsRepositoryImpl implements PupilsRepository {
 
     private final BasicDataSource dataSource;
 
-    private final String PUPILS_RETRIEVAL_QUERY = "select * FROM pupils";
-    private final String PUPILS_GET_BY_FIRSTNAME_LASTNAME_RETRIEVAL_QUERY = "select * FROM pupils WHERE firstname = ? AND LASTNAME = ?";
-    private final String PUPILS_PAGE_RETRIEVAL_QUERY = "select * FROM pupils WHERE id BETWEEN ? AND ? order by ? ?";
-    private final String PUPILS_GET_BY_ID_RETRIEVAL_QUERY = "select * FROM pupils WHERE id = ?";
+    private final String PUPILS_RETRIEVAL_QUERY = "SELECT * FROM pupils";
+    private final String PUPILS_GET_BY_FIRSTNAME_LASTNAME_RETRIEVAL_QUERY = "SELECT * FROM pupils WHERE firstname = ? AND LASTNAME = ?";
+    private final String PUPILS_PAGE_RETRIEVAL_QUERY = "SELECT * FROM pupils WHERE id BETWEEN ? AND ? order by ? ?";
+    private final String PUPILS_GET_BY_ID_RETRIEVAL_QUERY = "SELECT * FROM pupils WHERE id = ?";
     private final String PUPILS_NEW_PUPIL_ADD_QUERY = "INSERT INTO pupils(id, firstname, lastname, email, gender, birthdate, class_id, class_head_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private final String PUPILS_EXISTING_PUPIL_UPDATE_QUERY = "UPDATE INTO pupils(id, firstname, lastname, email, gender, birthdate, class_id, class_head_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private final String PUPILS_EXISTING_PUPIL_DELETE_QUERY = "DELETE FROM pupils where id = ?";

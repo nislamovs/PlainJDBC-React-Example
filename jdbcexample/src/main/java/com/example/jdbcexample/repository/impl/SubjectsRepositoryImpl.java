@@ -33,9 +33,9 @@ public class SubjectsRepositoryImpl implements SubjectsRepository {
 
     private final BasicDataSource dataSource;
 
-    private final String SUBJECTS_RETRIEVAL_QUERY = "select * FROM subjects";
-    private final String SUBJECTS_PAGE_RETRIEVAL_QUERY = "select * FROM subjects WHERE id BETWEEN ? AND ? order by ? ?";
-    private final String SUBJECTS_GET_BY_ID_RETRIEVAL_QUERY = "select * FROM subjects WHERE id = ?";
+    private final String SUBJECTS_RETRIEVAL_QUERY = "SELECT * FROM subjects";
+    private final String SUBJECTS_PAGE_RETRIEVAL_QUERY = "SELECT * FROM subjects WHERE id BETWEEN ? AND ? order by ? ?";
+    private final String SUBJECTS_GET_BY_ID_RETRIEVAL_QUERY = "SELECT * FROM subjects WHERE id = ?";
     private final String SUBJECTS_NEW_SUBJECT_ADD_QUERY = "INSERT INTO subjects(id, teacher_id, name) VALUES (?, ?, ?)";
     private final String SUBJECTS_EXISTING_SUBJECT_UPDATE_QUERY = "UPDATE INTO subjects(id, teacher_id, name) VALUES (?, ?, ?)";
     private final String SUBJECTS_EXISTING_SUBJECT_DELETE_QUERY = "DELETE FROM subjects where id = ?";

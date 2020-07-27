@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
+import org.jsondoc.core.pojo.ApiStage;
+import org.jsondoc.core.pojo.ApiVisibility;
 
 import java.time.LocalDate;
 
@@ -18,18 +20,18 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiObject
+@ApiObject(name = "Subject mark DTO", description = "Information about subject mark", visibility = ApiVisibility.PUBLIC, stage = ApiStage.GA, group = "Statistics")
 public class SubjectMarkDTO extends AbstractDTO {
 
     @ApiObjectField(description = "Subject's ID")
-    private String subject_id;
+    private String subjectId;
 
     @ApiObjectField(description = "Pupil's ID")
-    private String pupil_id;
+    private String pupilId;
 
     @ApiObjectField(description = "Mark's date")
     private LocalDate date;
 
-    @ApiObjectField(description = "Mark [value]")
+    @ApiObjectField(description = "Mark itself [value]")
     private Integer value;
 }

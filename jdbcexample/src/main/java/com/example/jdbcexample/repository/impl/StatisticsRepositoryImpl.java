@@ -16,8 +16,8 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
 
     private final BasicDataSource dataSource;
 
-    private final String TEACHERS_RETRIEVAL_QUERY = "select * FROM teachers";
-    private final String TEACHERS_PAGE_RETRIEVAL_QUERY = "select * FROM teachers WHERE id BETWEEN ? AND ? order by ? ?";
+    private final String TEACHERS_RETRIEVAL_QUERY = "SELECT * FROM teachers";
+    private final String TEACHERS_PAGE_RETRIEVAL_QUERY = "SELECT * FROM teachers WHERE id BETWEEN ? AND ? order by ? ?";
 
     @Override
     public SchoolClassStatisticsDAO create(SchoolClassStatisticsDAO schoolClassStatisticsDAO) {

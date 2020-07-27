@@ -180,7 +180,7 @@
 
     -- connection pools                                                     --            --
 
--- create connection pool select via interface (dbcp, hikaricp, c3op)       --
+-- create connection pool select via interface (dbcp, hikaricp, c3op)       --     (GENERICS, POLYMORPHISM)
 
         -- dbcp                                                             --
         -- hikaricp                                                         --
@@ -202,4 +202,9 @@
 
 Use spock for unit tests                                                    --
 Use react for FE                                                            --
+
+---------------------------------------------------------------------------------------------------------------------
+Summary:
+
+- JsonDoc is not the best tool - You cannot use Getmapping annotations, responseEntity
 
