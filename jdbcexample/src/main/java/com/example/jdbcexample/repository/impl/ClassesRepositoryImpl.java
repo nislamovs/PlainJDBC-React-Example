@@ -39,11 +39,11 @@ public class ClassesRepositoryImpl implements ClassesRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(CLASSES_NEW_CLASS_ADD_QUERY);
 
-        int i = 1;
-        stmt.setRowId(i++, null);
-        stmt.setString(i++, schoolClass.getType());
-        stmt.setLong(i++, schoolClass.getClass_head_id());
-        stmt.setString(i++, schoolClass.getName());
+        int i = 0;
+        stmt.setRowId(++i, null);
+        stmt.setString(++i, schoolClass.getType());
+        stmt.setLong(++i, schoolClass.getClass_head_id());
+        stmt.setString(++i, schoolClass.getName());
 
         System.out.println(">>>   "+stmt.toString());
 

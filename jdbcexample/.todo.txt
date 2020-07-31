@@ -137,11 +137,12 @@
 
     -- Running root sql and move all other sql files in folders             ok
 
-    -- weekly reports , cronjob, stored proc, email                         --
+    -- weekly reports, cronjob, stored proc, email                          --
     -- for teacher (class-head) about pupils in its class                   --
     -- for parents about their child                                        --
 
     -- Create view - family list                                            --
+    -- Create view - persons list                                           OK
 
     -- Modify pupils table - for self join                                  OK
         -- has brothers/sisters boolean default false
@@ -159,18 +160,17 @@
 
     -- modify create_new_class stored proc - add parents workaround         --
 
-
-    -- statistics : email provider user's count                             --
-            -- use case, when, then,else, end                               --
-
     -- Stored procedure call
             -- Create new school class                                      OK            OK
 
-    -- Function call                                                        --            --
-            -- TOP 5 per class                                              --
-            -- TOP 5 per school                                             --
-            -- TOP 5 in particular subject per school                       --
-            -- pupil average marks rate                                     --
+    -- statistics : email provider user's count                             OK            --
+            -- use case, when, then,else, end                               OK
+
+    -- Function call (statistics)                                           --            --
+            -- TOP 5 per class                                              --            --
+            -- TOP 5 per school                                             --            --
+            -- TOP 5 in particular subject per school                       --            --
+            -- pupil average marks rate                                     --            --
 
     -- trigger
             -- (changelog table - audit)                                    OK
@@ -198,10 +198,10 @@
 -- Add CORS workaround                                                      OK
 -- Add redirect for jsonDoc                                                 OK
 -- Use jsonDoc for docs                                                     OK
--- Mark all classes with jsonDoc annotations                                --
+-- Mark all classes with jsonDoc annotations                                OK
 
-Use spock for unit tests                                                    --
-Use react for FE                                                            --
+-- Use spock for unit tests                                                 --
+-- Use react for FE                                                         --
 
 ---------------------------------------------------------------------------------------------------------------------
 Summary:

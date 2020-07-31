@@ -1,3 +1,7 @@
 #Number of open connections:
 
 show processlist;
+
+#Show views:
+
+SHOW FULL TABLES WHERE table_type = 'VIEW';

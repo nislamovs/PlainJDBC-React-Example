@@ -49,6 +49,7 @@ source /docker-entrypoint-initdb.d/functions/random_data_generation_functions.sq
 
 source /docker-entrypoint-initdb.d/storedProc/GenNewClass_storedProc.sql;
 source /docker-entrypoint-initdb.d/storedProc/AuditRevision_storedProc.sql;
+source /docker-entrypoint-initdb.d/storedProc/Statistics_email_storedProc.sql;
 
 -- Load triggers
 
@@ -74,5 +75,8 @@ source /docker-entrypoint-initdb.d/triggers/validation_triggers/parents_validati
 source /docker-entrypoint-initdb.d/triggers/validation_triggers/subjects_validation_triggers.sql;
 source /docker-entrypoint-initdb.d/triggers/validation_triggers/teachers_validation_triggers.sql;
 
+-- Load views
+
+source /docker-entrypoint-initdb.d/views/AllPersons_view.sql
 
 -- Load events
