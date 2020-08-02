@@ -23,4 +23,14 @@ public class StatisticsController {
 
     private final StatisticsService statisticsService;
 
+    //TODO
+    //   1. Get email provider usage stats (pupils, teachers, parents, all_persons) #One group only  //API path ->  /stats/persons/{person_group}
+    //      returns Map<string, string>
+    //
+    //   2. Get email provider usage stats for all groups (pupils, teachers, parents, all_persons)   //API path ->  /stats/persons
+    //      returns Map<string, Map<string, string>>
+
+
+
+
 }

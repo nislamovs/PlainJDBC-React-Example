@@ -1,9 +1,7 @@
 
--- Cleanup DB
+-- Setup DB
 
-DROP DATABASE IF EXISTS school ;
-CREATE DATABASE IF NOT EXISTS school ;
-use school ;
+source /docker-entrypoint-initdb.d/db_settings/db_settings.sql;
 
 -- Load schemas
 
@@ -50,6 +48,7 @@ source /docker-entrypoint-initdb.d/functions/random_data_generation_functions.sq
 source /docker-entrypoint-initdb.d/storedProc/GenNewClass_storedProc.sql;
 source /docker-entrypoint-initdb.d/storedProc/AuditRevision_storedProc.sql;
 source /docker-entrypoint-initdb.d/storedProc/Statistics_email_storedProc.sql;
+source /docker-entrypoint-initdb.d/storedProc/Statistics_pupils_relatives.sql;
 
 -- Load triggers
 
@@ -78,5 +77,6 @@ source /docker-entrypoint-initdb.d/triggers/validation_triggers/teachers_validat
 -- Load views
 
 source /docker-entrypoint-initdb.d/views/AllPersons_view.sql
+source /docker-entrypoint-initdb.d/views/FamilyList_view.sql
 
 -- Load events

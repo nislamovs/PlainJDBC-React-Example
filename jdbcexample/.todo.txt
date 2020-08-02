@@ -93,7 +93,7 @@
 
 
 
-    -- refactor update, create, delete, find methods in repos               ok
+    -- refactor update, create, delete, find methods in repos               OK
 
     -- findById methods - some use integers,
        some long, some strings - fix it                                     --
@@ -108,7 +108,7 @@
     -- Use db operations:
                                                                           In DB         On Backend
 
-    -- transaction                                                          --            --
+    -- transaction                                                          OK            --
 
     -- limits                                                               OK            --
     -- offset                                                               --            --
@@ -117,31 +117,35 @@
     -- Add to pupil's table additional data                                 OK
 
     -- Joins                                                                --            --
-        -- Cross join                                                       --
-        -- Self join                                                        --
-        -- Inner join                                                       --
+        -- Cross join                                                       OK
+        -- Self join                                                        OK
+        -- Inner join                                                       OK
         -- left join                                                        --
         -- full Outer join                                                  --
 
     -- Create foreign keys                                                  --
     -- Create table constrains                                              OK
 
-    -- Like                                                                 --            --
-    -- AVG                                                                  --            --
-    -- SUM                                                                  --            --
+
+    -- AVG                                                                  OK            --
+    -- ROUND                                                                OK            --
+
     -- COALESCE                                                             --            --
-    -- group by + HAVING                                                    --            --
+    -- group by + HAVING                                                    OK            --
+    -- Like                                                                 --            --
+
     -- Create table with primary keys and mention engine                    OK
     -- Create audit table with revisions                                    OK
     -- Create foreign keys                                                  --
 
-    -- Running root sql and move all other sql files in folders             ok
+    -- Running root sql and move all other sql files in folders             OK
 
     -- weekly reports, cronjob, stored proc, email                          --
     -- for teacher (class-head) about pupils in its class                   --
     -- for parents about their child                                        --
+        -- reports (csv or pdf files) should be saved to special table      --
 
-    -- Create view - family list                                            --
+    -- Create view - family list                                            OK
     -- Create view - persons list                                           OK
 
     -- Modify pupils table - for self join                                  OK
@@ -166,15 +170,28 @@
     -- statistics : email provider user's count                             OK            --
             -- use case, when, then,else, end                               OK
 
-    -- Function call (statistics)                                           --            --
-            -- TOP 5 per class                                              --            --
-            -- TOP 5 per school                                             --            --
-            -- TOP 5 in particular subject per school                       --            --
-            -- pupil average marks rate                                     --            --
+    -- Function call (statistics)
+            -- TOP 5 per class                                              OK            --
+            -- TOP 5 per school                                             OK            --
+            -- TOP 5 in particular subject per school                       OK            --
+            -- TOP above average mark is 7 per school                       OK
+            -- pupil average marks rate per school                          OK            --
 
     -- trigger
             -- (changelog table - audit)                                    OK
             -- (createdBy, modifiedBy, createdAt, modifiedAt)               OK
+
+
+    -- Requests
+
+        -- all marks per class                                              OK
+            --showing:
+                record id
+                class name
+                pupil name, surname, email, phone number;
+                class head name, surname, email, phone number;
+                subject name, mark value, mark date
+
 
 ---------------------------------------------------------------------------------------------------------------------
 
