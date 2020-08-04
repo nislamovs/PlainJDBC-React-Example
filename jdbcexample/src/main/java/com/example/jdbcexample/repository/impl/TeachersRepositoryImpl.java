@@ -24,7 +24,8 @@ public class TeachersRepositoryImpl implements TeachersRepository {
     private final BasicDataSource dataSource;
 
     private final String TEACHERS_RETRIEVAL_QUERY = "SELECT * FROM teachers";
-    private final String TEACHERS_PAGE_RETRIEVAL_QUERY = "SELECT * FROM teachers WHERE id BETWEEN ? AND ? order by ? ?";
+//    private final String TEACHERS_PAGE_RETRIEVAL_QUERY = "SELECT * FROM teachers WHERE id BETWEEN ? AND ? order by ? ?";
+    private final String TEACHERS_PAGE_RETRIEVAL_QUERY = "SELECT * FROM teachers ORDER BY ? ? LIMIT ? OFFSET ?";
     private final String TEACHERS_GET_BY_ID_RETRIEVAL_QUERY = "SELECT * FROM teachers WHERE id = ?";
     private final String TEACHERS_NEW_TEACHER_ADD_QUERY = "INSERT INTO teachers(id, firstname, lastname, email, birthdate, class_id, subject_id, is_head) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private final String TEACHERS_EXISTING_TEACHER_UPDATE_QUERY = "UPDATE INTO teachers(id, firstname, lastname, email, birthdate, class_id, subject_id, is_head) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -123,10 +124,10 @@ public class TeachersRepositoryImpl implements TeachersRepository {
         @Cleanup PreparedStatement stmt = conn.prepareStatement(TEACHERS_PAGE_RETRIEVAL_QUERY);
 
         int i = 1;
-        stmt.setInt(i++, parseInt(pagesize) * parseInt(pagenum));
-        stmt.setInt(i++, parseInt(pagesize) * parseInt(pagenum) + parseInt(pagesize));
         stmt.setString(i++, group);
         stmt.setString(i++, sort);
+        stmt.setInt(i++, parseInt(pagesize));
+        stmt.setInt(i++, parseInt(pagesize) * parseInt(pagenum));
 
         System.out.println(">>>   " + stmt.toString());
 

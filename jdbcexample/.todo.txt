@@ -110,9 +110,9 @@
 
     -- transaction                                                          OK            --
 
-    -- limits                                                               OK            --
-    -- offset                                                               --            --
-    -- Sorting (order by)                                                   OK            --
+    -- limits                                                               OK            OK
+    -- offset                                                               OK            OK
+    -- Sorting (order by)                                                   OK            OK
 
     -- Add to pupil's table additional data                                 OK
 
@@ -120,7 +120,7 @@
         -- Cross join                                                       OK
         -- Self join                                                        OK
         -- Inner join                                                       OK
-        -- left join                                                        --
+        -- left join                                                        OK
         -- full Outer join                                                  --
 
     -- Create foreign keys                                                  --
@@ -131,8 +131,8 @@
     -- ROUND                                                                OK            --
 
     -- COALESCE                                                             --            --
-    -- group by + HAVING                                                    OK            --
-    -- Like                                                                 --            --
+    -- GROUP BY + HAVING                                                    OK            --
+    -- LIKE                                                                 --            --
 
     -- Create table with primary keys and mention engine                    OK
     -- Create audit table with revisions                                    OK
@@ -168,7 +168,7 @@
             -- Create new school class                                      OK            OK
 
     -- statistics : email provider user's count                             OK            --
-            -- use case, when, then,else, end                               OK
+            -- use case, when, then, else, end                              OK
 
     -- Function call (statistics)
             -- TOP 5 per class                                              OK            --
@@ -177,12 +177,22 @@
             -- TOP above average mark is 7 per school                       OK
             -- pupil average marks rate per school                          OK            --
 
+    INFO : If we will change sql_mode value, try to use transactions in JDBC              --
+
+
     -- trigger
             -- (changelog table - audit)                                    OK
             -- (createdBy, modifiedBy, createdAt, modifiedAt)               OK
 
 
     -- Requests
+
+        -- pupils min, max, average, count for marks value per subject      OK
+            and status , - passes or not
+            concat(name surname)
+
+        -- TOP marks per school, passes or not (above 4)                    OK
+            concat(name surname)
 
         -- all marks per class                                              OK
             --showing:
