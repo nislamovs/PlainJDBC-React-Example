@@ -230,7 +230,7 @@ SELECT
    MAX(m.value) AS Mark_MAX,
    ROUND(AVG(m.value), 2) AS Mark_AVG,
    COUNT(*) AS Total_marks,
-
+   GROUP_CONCAT(m.value) as Marks,
    CONCAT(t.firstname, ' ', t.lastname) AS Teacher,
    t.email AS Teacher_email,
 
@@ -244,4 +244,4 @@ INNER JOIN subjects s ON m.subject_id = s.id
 INNER JOIN teachers t ON s.teacher_id = t.id
 -- WHERE p.email = 'wmacknight2n@jugem.jp'
 GROUP BY Subject, Pupil
-ORDER BY Id
+ORDER BY Pupil

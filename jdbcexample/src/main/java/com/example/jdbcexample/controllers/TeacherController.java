@@ -10,14 +10,11 @@ import org.jsondoc.core.pojo.ApiStage;
 import org.jsondoc.core.pojo.ApiVerb;
 import org.jsondoc.core.pojo.ApiVisibility;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 import java.util.List;
-
-import static org.springframework.http.ResponseEntity.ok;
 
 
 @RestController
