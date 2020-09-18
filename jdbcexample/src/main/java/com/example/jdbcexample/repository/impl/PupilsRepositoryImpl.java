@@ -44,7 +44,7 @@ public class PupilsRepositoryImpl implements PupilsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PUPILS_NEW_PUPIL_ADD_QUERY);
 
-        int i = 1;
+        int i = 0;
         stmt.setRowId(i++, null);
         stmt.setString(i++, newPupil.getFirstname());
         stmt.setString(i++, newPupil.getLastname());
@@ -67,7 +67,7 @@ public class PupilsRepositoryImpl implements PupilsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PUPILS_GET_BY_FIRSTNAME_LASTNAME_RETRIEVAL_QUERY);
 
-        int i = 1;
+        int i = 0;
         stmt.setString(i++, firstname);
         stmt.setString(i++, lastname);
 
@@ -82,7 +82,7 @@ public class PupilsRepositoryImpl implements PupilsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PUPILS_GET_BY_ID_RETRIEVAL_QUERY);
 
-        int i = 1;
+        int i = 0;
         stmt.setInt(i++, pupilId);
 
         System.out.println(">>>   "+stmt.toString());
@@ -96,7 +96,7 @@ public class PupilsRepositoryImpl implements PupilsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PUPILS_EXISTING_PUPIL_UPDATE_QUERY);
 
-        int i = 1;
+        int i = 0;
         stmt.setLong(i++, pupil.getId());
         stmt.setString(i++, pupil.getFirstname());
         stmt.setString(i++, pupil.getLastname());
@@ -119,8 +119,8 @@ public class PupilsRepositoryImpl implements PupilsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PUPILS_EXISTING_PUPIL_DELETE_QUERY);
 
-        int i = 1;
-        stmt.setLong(i++, pupilId);
+        int i = 0;
+        stmt.setLong(++i, pupilId);
 
         System.out.println(">>>   "+stmt.toString());
 
@@ -144,11 +144,11 @@ public class PupilsRepositoryImpl implements PupilsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PUPILS_PAGE_RETRIEVAL_QUERY);
 
-        int i = 1;
-        stmt.setInt(i++, parseInt(pagesize) * parseInt(pagenum));
-        stmt.setInt(i++, parseInt(pagesize) * parseInt(pagenum) + parseInt(pagesize));
-        stmt.setString(i++, group);
-        stmt.setString(i++, sort);
+        int i = 0;
+        stmt.setInt(++i, parseInt(pagesize) * parseInt(pagenum));
+        stmt.setInt(++i, parseInt(pagesize) * parseInt(pagenum) + parseInt(pagesize));
+        stmt.setString(++i, group);
+        stmt.setString(++i, sort);
 
         System.out.println(">>>   "+stmt.toString());
 

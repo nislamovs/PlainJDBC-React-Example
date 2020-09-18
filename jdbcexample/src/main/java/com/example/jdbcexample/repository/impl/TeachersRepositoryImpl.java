@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,19 +22,20 @@ import static java.lang.Long.parseLong;
 @Component
 public class TeachersRepositoryImpl implements TeachersRepository {
 
-    private final BasicDataSource dataSource;
+    private final DataSource dataSource;
 
     private final String TEACHERS_RETRIEVAL_QUERY = "SELECT * FROM teachers";
 //    private final String TEACHERS_PAGE_RETRIEVAL_QUERY = "SELECT * FROM teachers WHERE id BETWEEN ? AND ? order by ? ?";
     private final String TEACHERS_PAGE_RETRIEVAL_QUERY = "SELECT * FROM teachers ORDER BY ? ? LIMIT ? OFFSET ?";
     private final String TEACHERS_GET_BY_ID_RETRIEVAL_QUERY = "SELECT * FROM teachers WHERE id = ?";
-    private final String TEACHERS_NEW_TEACHER_ADD_QUERY = "INSERT INTO teachers(id, firstname, lastname, email, birthdate, class_id, subject_id, is_head) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    private final String TEACHERS_EXISTING_TEACHER_UPDATE_QUERY = "UPDATE INTO teachers(id, firstname, lastname, email, birthdate, class_id, subject_id, is_head) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String TEACHERS_NEW_TEACHER_ADD_QUERY = "INSERT INTO teachers(id, firstname, lastname, email, birthdate, class_id, subject_id, isHead) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String TEACHERS_EXISTING_TEACHER_UPDATE_QUERY = "UPDATE INTO teachers(id, firstname, lastname, email, birthdate, class_id, subject_id, isHead) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private final String TEACHERS_EXISTING_TEACHER_DELETE_QUERY = "DELETE FROM teachers where id = ?";
 
     @Override
     @SneakyThrows
     public TeacherDAO create(TeacherDAO newTeacher) {
+
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(TEACHERS_NEW_TEACHER_ADD_QUERY);
 
@@ -45,7 +47,7 @@ public class TeachersRepositoryImpl implements TeachersRepository {
         stmt.setDate(i++, (Date) newTeacher.getBirthdate());
         stmt.setLong(i++, newTeacher.getClass_id());
         stmt.setLong(i++, newTeacher.getSubject_id());
-        stmt.setBoolean(i++, newTeacher.getIs_head());
+        stmt.setBoolean(i++, newTeacher.getIsHead());
 
         System.out.println(">>>   " + stmt.toString());
 
@@ -60,8 +62,8 @@ public class TeachersRepositoryImpl implements TeachersRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(TEACHERS_GET_BY_ID_RETRIEVAL_QUERY);
 
-        int i = 1;
-        stmt.setInt(i++, id);
+        int i = 0;
+        stmt.setInt(++i, id);
 
         System.out.println(">>>   " + stmt.toString());
 
@@ -75,15 +77,15 @@ public class TeachersRepositoryImpl implements TeachersRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(TEACHERS_EXISTING_TEACHER_UPDATE_QUERY);
 
-        int i = 1;
-        stmt.setLong(i++, teacher.getId());
-        stmt.setString(i++, teacher.getFirstname());
-        stmt.setString(i++, teacher.getLastname());
-        stmt.setString(i++, teacher.getEmail());
-        stmt.setDate(i++, (Date) teacher.getBirthdate());
-        stmt.setLong(i++, teacher.getClass_id());
-        stmt.setLong(i++, teacher.getSubject_id());
-        stmt.setBoolean(i++, teacher.getIs_head());
+        int i = 0;
+        stmt.setLong(++i, teacher.getId());
+        stmt.setString(++i, teacher.getFirstname());
+        stmt.setString(++i, teacher.getLastname());
+        stmt.setString(++i, teacher.getEmail());
+        stmt.setDate(++i, (Date) teacher.getBirthdate());
+        stmt.setLong(++i, teacher.getClass_id());
+        stmt.setLong(++i, teacher.getSubject_id());
+        stmt.setBoolean(++i, teacher.getIsHead());
 
         System.out.println(">>>   " + stmt.toString());
 
@@ -98,8 +100,8 @@ public class TeachersRepositoryImpl implements TeachersRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(TEACHERS_EXISTING_TEACHER_DELETE_QUERY);
 
-        int i = 1;
-        stmt.setInt(i++, id);
+        int i = 0;
+        stmt.setInt(++i, id);
 
         System.out.println(">>>   " + stmt.toString());
 
@@ -123,11 +125,11 @@ public class TeachersRepositoryImpl implements TeachersRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(TEACHERS_PAGE_RETRIEVAL_QUERY);
 
-        int i = 1;
-        stmt.setString(i++, group);
-        stmt.setString(i++, sort);
-        stmt.setInt(i++, parseInt(pagesize));
-        stmt.setInt(i++, parseInt(pagesize) * parseInt(pagenum));
+        int i = 0;
+        stmt.setString(++i, group);
+        stmt.setString(++i, sort);
+        stmt.setInt(++i, parseInt(pagesize));
+        stmt.setInt(++i, parseInt(pagesize) * parseInt(pagenum));
 
         System.out.println(">>>   " + stmt.toString());
 
@@ -147,7 +149,7 @@ public class TeachersRepositoryImpl implements TeachersRepository {
                         .lastname(rs.getString("lastname"))
                         .email(rs.getString("email"))
                         .birthdate(rs.getDate("birthdate"))
-                        .is_head(rs.getBoolean("id_head"))
+                        .isHead(rs.getBoolean("isHead"))
                         .class_id(rs.getLong("class_id"))
                         .subject_id(rs.getLong("subject_id"))
                         .build();

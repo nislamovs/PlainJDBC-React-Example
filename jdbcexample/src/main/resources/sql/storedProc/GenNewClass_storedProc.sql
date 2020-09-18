@@ -12,7 +12,7 @@ CREATE PROCEDURE CREATE_CLASS()
     SET @class_head_id = (
                              select id from teachers
                              WHERE class_id IS NOT NULL
-                             AND is_head IS TRUE
+                             AND isHead IS TRUE
                              ORDER BY id DESC LIMIT 1
                          ) + 1;
     SET @name = GET_RANDOM_CLASS_NAME();
@@ -24,7 +24,7 @@ CREATE PROCEDURE CREATE_CLASS()
 ;;
 
 DROP PROCEDURE IF EXISTS CREATE_TEACHER;
-CREATE PROCEDURE CREATE_TEACHER(IN is_head BOOLEAN)
+CREATE PROCEDURE CREATE_TEACHER(IN isHead BOOLEAN)
 BEGIN
 
     SET @id = (select id from teachers ORDER BY id DESC LIMIT 1) + 1;
@@ -35,14 +35,14 @@ BEGIN
     SET @class_id = (
                         select class_id from teachers
                         where class_id IS NOT NULL
-                        AND is_head IS TRUE
+                        AND isHead IS TRUE
                         ORDER BY id DESC LIMIT 1
                     ) + 1;
     SET @subject_id = (SELECT FLOOR(1 + (RAND() * (select COUNT(*) FROM subjects))) );
-    SET @is_head = is_head;
+    SET @isHead = isHead;
 
-    insert into teachers (id, firstname, lastname, email, birthdate, class_id, subject_id, is_head)
-    values (@id, @firstname, @lastname, @email, @birthdate, @class_id, @subject_id, @is_head);
+    insert into teachers (id, firstname, lastname, email, birthdate, class_id, subject_id, isHead)
+    values (@id, @firstname, @lastname, @email, @birthdate, @class_id, @subject_id, @isHead);
 END;
 ;;
 
@@ -53,13 +53,13 @@ BEGIN
     SET @class_id = (
         select id from teachers
         where class_id IS NOT NULL
-          AND is_head IS TRUE
+          AND isHead IS TRUE
         ORDER BY id DESC LIMIT 1
     );
     SET @class_head_id = (
         select class_id from teachers
         where class_id IS NOT NULL
-          AND is_head IS TRUE
+          AND isHead IS TRUE
         ORDER BY id DESC LIMIT 1
     );
 

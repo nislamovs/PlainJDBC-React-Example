@@ -18,7 +18,7 @@ FOR EACH ROW
         ' ', NEW.birthdate,
         ' ', NEW.class_id,
         ' ', NEW.subject_id,
-        ' ', NEW.is_head,
+        ' ', NEW.isHead,
         ' ', NEW.created_at,
         ' ', NEW.created_by,
         ' ', NEW.modified_at,
@@ -81,10 +81,10 @@ FOR EACH ROW
             SET @newvalue=(CONCAT(@newvalue, ',', NEW.subject_id));
         END IF;
 
-        IF (NEW.is_head <> OLD.is_head) THEN
-            SET @fieldlist=(CONCAT(@fieldlist, ',', 'is_head'));
-            SET @oldvalue=(CONCAT(@oldvalue, ',', OLD.is_head));
-            SET @newvalue=(CONCAT(@newvalue, ',', NEW.is_head));
+        IF (NEW.isHead <> OLD.isHead) THEN
+            SET @fieldlist=(CONCAT(@fieldlist, ',', 'isHead'));
+            SET @oldvalue=(CONCAT(@oldvalue, ',', OLD.isHead));
+            SET @newvalue=(CONCAT(@newvalue, ',', NEW.isHead));
         END IF;
 
         IF (@oldvalue <> @newvalue) THEN
@@ -123,7 +123,7 @@ FOR EACH ROW
         ' ', OLD.birthdate,
         ' ', IFNULL(OLD.class_id, '<NULL>'),
         ' ', OLD.subject_id,
-        ' ', OLD.is_head,
+        ' ', OLD.isHead,
         ' ', OLD.created_at,
         ' ', OLD.created_by,
         ' ', OLD.modified_at,

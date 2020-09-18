@@ -40,17 +40,17 @@ public class ParentsRepositoryImpl implements ParentsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PARENTS_NEW_PARENT_ADD_QUERY);
 
-        int i = 1;
-        stmt.setRowId(i++, null);
-        stmt.setString(i++, newParent.getFirstname());
-        stmt.setString(i++, newParent.getLastname());
-        stmt.setString(i++, newParent.getEmail());
-        stmt.setDate(i++, (Date) newParent.getBirthdate());
-        stmt.setString(i++, newParent.getParentType().name());
-        stmt.setString(i++, newParent.getParentInfo());
-        stmt.setString(i++, newParent.getAddress());
-        stmt.setString(i++, newParent.getPhonenumber());
-        stmt.setString(i++, newParent.getFamilyId());
+        int i = 0;
+        stmt.setRowId(++i, null);
+        stmt.setString(++i, newParent.getFirstname());
+        stmt.setString(++i, newParent.getLastname());
+        stmt.setString(++i, newParent.getEmail());
+        stmt.setDate(++i, (Date) newParent.getBirthdate());
+        stmt.setString(++i, newParent.getParentType().name());
+        stmt.setString(++i, newParent.getParentInfo());
+        stmt.setString(++i, newParent.getAddress());
+        stmt.setString(++i, newParent.getPhonenumber());
+        stmt.setString(++i, newParent.getFamilyId());
 
         System.out.println(">>>   "+stmt.toString());
 
@@ -65,9 +65,9 @@ public class ParentsRepositoryImpl implements ParentsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PARENTS_GET_BY_FIRSTNAME_LASTNAME_RETRIEVAL_QUERY);
 
-        int i = 1;
-        stmt.setString(i++, firstname);
-        stmt.setString(i++, lastname);
+        int i = 0;
+        stmt.setString(++i, firstname);
+        stmt.setString(++i, lastname);
 
         System.out.println(">>>   "+stmt.toString());
 
@@ -80,8 +80,8 @@ public class ParentsRepositoryImpl implements ParentsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PARENTS_GET_BY_ID_RETRIEVAL_QUERY);
 
-        int i = 1;
-        stmt.setInt(i++, parentId);
+        int i = 0;
+        stmt.setInt(++i, parentId);
 
         System.out.println(">>>   "+stmt.toString());
 
@@ -94,17 +94,17 @@ public class ParentsRepositoryImpl implements ParentsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PARENTS_EXISTING_PARENT_UPDATE_QUERY);
 
-        int i = 1;
-        stmt.setLong(i++, parent.getId());
-        stmt.setString(i++, parent.getFirstname());
-        stmt.setString(i++, parent.getLastname());
-        stmt.setString(i++, parent.getEmail());
-        stmt.setDate(i++, (Date) parent.getBirthdate());
-        stmt.setString(i++, parent.getParentType().name());
-        stmt.setString(i++, parent.getParentInfo());
-        stmt.setString(i++, parent.getAddress());
-        stmt.setString(i++, parent.getPhonenumber());
-        stmt.setString(i++, parent.getFamilyId());
+        int i = 0;
+        stmt.setLong(++i, parent.getId());
+        stmt.setString(++i, parent.getFirstname());
+        stmt.setString(++i, parent.getLastname());
+        stmt.setString(++i, parent.getEmail());
+        stmt.setDate(++i, (Date) parent.getBirthdate());
+        stmt.setString(++i, parent.getParentType().name());
+        stmt.setString(++i, parent.getParentInfo());
+        stmt.setString(++i, parent.getAddress());
+        stmt.setString(++i, parent.getPhonenumber());
+        stmt.setString(++i, parent.getFamilyId());
 
         System.out.println(">>>   "+stmt.toString());
 
@@ -119,8 +119,8 @@ public class ParentsRepositoryImpl implements ParentsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PARENTS_EXISTING_PARENT_DELETE_QUERY);
 
-        int i = 1;
-        stmt.setLong(i++, parentId);
+        int i = 0;
+        stmt.setLong(++i, parentId);
 
         System.out.println(">>>   "+stmt.toString());
 
@@ -144,11 +144,11 @@ public class ParentsRepositoryImpl implements ParentsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(PARENTS_PAGE_RETRIEVAL_QUERY);
 
-        int i = 1;
-        stmt.setInt(i++, parseInt(pagesize) * parseInt(pagenum));
-        stmt.setInt(i++, parseInt(pagesize) * parseInt(pagenum) + parseInt(pagesize));
-        stmt.setString(i++, group);
-        stmt.setString(i++, sort);
+        int i = 0;
+        stmt.setInt(++i, parseInt(pagesize) * parseInt(pagenum));
+        stmt.setInt(++i, parseInt(pagesize) * parseInt(pagenum) + parseInt(pagesize));
+        stmt.setString(++i, group);
+        stmt.setString(++i, sort);
 
         System.out.println(">>>   "+stmt.toString());
 

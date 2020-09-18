@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS teachers (
 	birthdate DATE,
 	class_id INTEGER,
 	subject_id INTEGER,
-	is_head boolean,
+	isHead boolean,
 
 
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

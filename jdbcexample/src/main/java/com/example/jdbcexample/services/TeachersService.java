@@ -27,7 +27,7 @@ public class TeachersService {
 
     @SneakyThrows
     public List<TeacherDTO> getAllTeachers() {
-
+//        System.out.println(teachersRepository.findAll().get(2).getisHead());
         return teachersRepository.findAll().stream()
                 .map(mapper::toDTO).collect(Collectors.toList());
     }

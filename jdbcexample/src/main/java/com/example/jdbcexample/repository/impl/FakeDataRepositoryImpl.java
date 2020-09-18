@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ import static java.lang.Integer.parseInt;
 @Component
 public class FakeDataRepositoryImpl implements FakeDataRepository {
 
-    private final BasicDataSource dataSource;
+    private final DataSource dataSource;
 
     private final String NEW_CLASS_GENERATION_QUERY = "{CALL GENERATE_NEW_CLASS(?)}";
 
@@ -30,8 +31,8 @@ public class FakeDataRepositoryImpl implements FakeDataRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup CallableStatement stmt = conn.prepareCall(NEW_CLASS_GENERATION_QUERY);
 
-        int i = 1;
-        stmt.setInt(i++, parseInt(pupilCount));
+        int i = 0;
+        stmt.setInt(++i, parseInt(pupilCount));
 
         System.out.println(">>>   " + stmt.toString());
         executeQuery(stmt);

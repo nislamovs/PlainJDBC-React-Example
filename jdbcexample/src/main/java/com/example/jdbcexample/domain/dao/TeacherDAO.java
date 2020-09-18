@@ -12,5 +12,5 @@ public class TeacherDAO extends PersonDAO {
 
     private Long class_id;
     private Long subject_id;
-    private Boolean is_head;
+    private Boolean isHead;
 }

@@ -39,12 +39,12 @@ public class MarksRepositoryImpl implements MarksRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(MARKS_NEW_MARK_ADD_QUERY);
 
-        int i = 1;
-        stmt.setRowId(i++, null);
-        stmt.setLong(i++, mark.getSubjectId());
-        stmt.setLong(i++, mark.getPupilId());
-        stmt.setDate(i++, (Date) mark.getDate());
-        stmt.setInt(i++, mark.getValue());
+        int i = 0;
+        stmt.setRowId(++i, null);
+        stmt.setLong(++i, mark.getSubjectId());
+        stmt.setLong(++i, mark.getPupilId());
+        stmt.setDate(++i, (Date) mark.getDate());
+        stmt.setInt(++i, mark.getValue());
 
         System.out.println(">>>   " + stmt.toString());
 
@@ -59,8 +59,8 @@ public class MarksRepositoryImpl implements MarksRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(MARKS_GET_BY_PUPIL_ID_RETRIEVAL_QUERY);
 
-        int i = 1;
-        stmt.setInt(i++, parseInt(pupilId));
+        int i = 0;
+        stmt.setInt(++i, parseInt(pupilId));
 
         System.out.println(">>>   " + stmt.toString());
 
@@ -73,9 +73,9 @@ public class MarksRepositoryImpl implements MarksRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(MARKS_GET_BY_DATE_RETRIEVAL_QUERY);
 
-        int i = 1;
-        stmt.setDate(i++, Date.valueOf(startDate));
-        stmt.setDate(i++, Date.valueOf(endDate));
+        int i = 0;
+        stmt.setDate(++i, Date.valueOf(startDate));
+        stmt.setDate(++i, Date.valueOf(endDate));
 
         System.out.println(">>>   " + stmt.toString());
 
@@ -88,8 +88,8 @@ public class MarksRepositoryImpl implements MarksRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(MARKS_GET_BY_ID_RETRIEVAL_QUERY);
 
-        int i = 1;
-        stmt.setInt(i++, markId);
+        int i = 0;
+        stmt.setInt(++i, markId);
 
         System.out.println(">>>   " + stmt.toString());
 
@@ -102,12 +102,12 @@ public class MarksRepositoryImpl implements MarksRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(MARKS_EXISTING_MARK_UPDATE_QUERY);
 
-        int i = 1;
-        stmt.setLong(i++, mark.getId());
-        stmt.setLong(i++, mark.getSubjectId());
-        stmt.setLong(i++, mark.getPupilId());
-        stmt.setDate(i++, (Date) mark.getDate());
-        stmt.setInt(i++, mark.getValue());
+        int i = 0;
+        stmt.setLong(++i, mark.getId());
+        stmt.setLong(++i, mark.getSubjectId());
+        stmt.setLong(++i, mark.getPupilId());
+        stmt.setDate(++i, (Date) mark.getDate());
+        stmt.setInt(++i, mark.getValue());
 
         System.out.println(">>>   " + stmt.toString());
 
@@ -122,8 +122,8 @@ public class MarksRepositoryImpl implements MarksRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(MARKS_EXISTING_MARK_DELETE_QUERY);
 
-        int i = 1;
-        stmt.setInt(i++, markId);
+        int i = 0;
+        stmt.setInt(++i, markId);
 
         System.out.println(">>>   " + stmt.toString());
 
@@ -147,11 +147,11 @@ public class MarksRepositoryImpl implements MarksRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(MARKS_PAGE_RETRIEVAL_QUERY);
 
-        int i = 1;
-        stmt.setInt(i++, parseInt(pagesize) * parseInt(pagenum));
-        stmt.setInt(i++, parseInt(pagesize) * parseInt(pagenum) + parseInt(pagesize));
-        stmt.setString(i++, group);
-        stmt.setString(i++, sort);
+        int i = 0;
+        stmt.setInt(++i, parseInt(pagesize) * parseInt(pagenum));
+        stmt.setInt(++i, parseInt(pagesize) * parseInt(pagenum) + parseInt(pagesize));
+        stmt.setString(++i, group);
+        stmt.setString(++i, sort);
 
         System.out.println(">>>   " + stmt.toString());
 

@@ -21,17 +21,17 @@ services:
     ports:
       - "3306:3306"
 
-#  app:
-#    container_name: "jdbcexample"
-#    hostname: localhost
-#    build:
-#      context: ./jdbcexample/
-#      dockerfile: Dockerfile
-#    ports:
-#      - "8080:8080"
-#      - "8000:8000"     # debugging
-#    depends_on:
-#      - db
+  app:
+    container_name: "jdbcexample"
+    hostname: localhost
+    build:
+      context: ./jdbcexample/
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+      - "8000:8000"     # debugging
+    depends_on:
+      - db
 
   adminer:
     container_name: "adminer"
