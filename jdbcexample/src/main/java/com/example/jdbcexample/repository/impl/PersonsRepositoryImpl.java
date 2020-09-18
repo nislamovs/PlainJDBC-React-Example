@@ -41,9 +41,9 @@ public class PersonsRepositoryImpl implements PersonsRepository {
 
         System.out.println(">>>   " + stmt.toString());
 
-        int i = 0;
-        stmt.setString(++i, email);
-        stmt.setString(++i, email);
+        int i = 1;
+        stmt.setString(i++, email);
+        stmt.setString(i++, email);
 
         return executeQuery(stmt);
     }

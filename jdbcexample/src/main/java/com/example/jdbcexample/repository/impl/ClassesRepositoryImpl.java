@@ -39,7 +39,7 @@ public class ClassesRepositoryImpl implements ClassesRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(CLASSES_NEW_CLASS_ADD_QUERY);
 
-        int i = 0;
+        int i = 1;
         stmt.setRowId(++i, null);
         stmt.setString(++i, schoolClass.getType());
         stmt.setLong(++i, schoolClass.getClass_head_id());
@@ -56,7 +56,7 @@ public class ClassesRepositoryImpl implements ClassesRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(CLASSES_GET_BY_ID_RETRIEVAL_QUERY);
 
-        int i = 0;
+        int i = 1;
         stmt.setInt(++i, id);
 
         System.out.println(">>>   "+stmt.toString());
@@ -70,7 +70,7 @@ public class ClassesRepositoryImpl implements ClassesRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(CLASSES_EXISTING_CLASS_UPDATE_QUERY);
 
-        int i = 0;
+        int i = 1;
         stmt.setLong(++i, schoolClass.getId());
         stmt.setString(++i, schoolClass.getType());
         stmt.setLong(++i, schoolClass.getClass_head_id());
@@ -87,9 +87,9 @@ public class ClassesRepositoryImpl implements ClassesRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(CLASSES_EXISTING_CLASS_DELETE_QUERY);
 
-        int i = 0;
-        stmt.setInt(++i, id);
-        stmt.executeQuery();
+        int i = 1;
+        stmt.setInt(i++, id);
+        stmt.executeUpdate();
 
         return SchoolClassDAO.builder().id(Long.valueOf(id)).build();
     }
@@ -110,11 +110,11 @@ public class ClassesRepositoryImpl implements ClassesRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(CLASSES_PAGE_RETRIEVAL_QUERY);
 
-        int i = 0;
-        stmt.setInt(++i, parseInt(pagesize) * parseInt(pagenum));
-        stmt.setInt(++i, parseInt(pagesize) * parseInt(pagenum) + parseInt(pagesize));
-        stmt.setString(++i, group);
-        stmt.setString(++i, sort);
+        int i = 1;
+        stmt.setInt(i++, parseInt(pagesize) * parseInt(pagenum));
+        stmt.setInt(i++, parseInt(pagesize) * parseInt(pagenum) + parseInt(pagesize));
+        stmt.setString(i++, group);
+        stmt.setString(i++, sort);
 
         System.out.println(">>>   "+stmt.toString());
 

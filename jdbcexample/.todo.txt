@@ -100,9 +100,8 @@
 
     -- Use optional                                                         --
 
-    -- Unify getPupilsByFirstnameLastname with pupil, person, teacher, parent --
+    -- Unify getPupilsByFirstnameLastname with pupil, person, teacher, parent                                       --
 
-    -- change i++ to ++i when set params of query
     -- after calling storedProcedure - genNewClass - return some info (modify stored proc, FakeDataRepository)      --
 
     -- Use db operations:
@@ -212,6 +211,9 @@
         -- dbcp                                                             --
         -- hikaricp                                                         --
         -- c3op                                                             --
+        -- tomcat                                                           ?
+
+-- Maybe create some performance testing                                    ?
 
 -- Create docker image for app                                              OK
 -- Create docker image for mysql                                            OK
@@ -235,3 +237,10 @@ Summary:
 
 - JsonDoc is not the best tool - You cannot use Getmapping annotations, responseEntity
 
+---------------------------------------------------------------------------------------------------------------------
+Bugs:
+
+    -- change i++ to ++i when set params of query                                                                   OK
+    -- Fix bugs with mapping                                                                                        --
+    -- Write all fields which to map                                                                                --
+    -- Add validation constraints to dao/dto                                                                        --

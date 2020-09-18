@@ -46,10 +46,10 @@ public class SubjectsRepositoryImpl implements SubjectsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(SUBJECTS_NEW_SUBJECT_ADD_QUERY);
 
-        int i = 0;
-        stmt.setRowId(++i, null);
-        stmt.setLong(++i, newSubject.getTeacher_id());
-        stmt.setString(++i, newSubject.getName());
+        int i = 1;
+        stmt.setRowId(i++, null);
+        stmt.setLong(i++, newSubject.getTeacher_id());
+        stmt.setString(i++, newSubject.getName());
 
         System.out.println(">>>   "+stmt.toString());
 
@@ -64,8 +64,8 @@ public class SubjectsRepositoryImpl implements SubjectsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(SUBJECTS_GET_BY_ID_RETRIEVAL_QUERY);
 
-        int i = 0;
-        stmt.setInt(++i, subjectId);
+        int i = 1;
+        stmt.setInt(i++, subjectId);
 
         System.out.println(">>>   "+stmt.toString());
 
@@ -78,10 +78,10 @@ public class SubjectsRepositoryImpl implements SubjectsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(SUBJECTS_EXISTING_SUBJECT_UPDATE_QUERY);
 
-        int i = 0;
-        stmt.setLong(++i, subject.getId());
-        stmt.setLong(++i, subject.getTeacher_id());
-        stmt.setString(++i, subject.getName());
+        int i = 1;
+        stmt.setLong(i++, subject.getId());
+        stmt.setLong(i++, subject.getTeacher_id());
+        stmt.setString(i++, subject.getName());
 
 
         System.out.println(">>>   "+stmt.toString());
@@ -97,8 +97,9 @@ public class SubjectsRepositoryImpl implements SubjectsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(SUBJECTS_EXISTING_SUBJECT_DELETE_QUERY);
 
-        int i = 0;
-        stmt.setLong(++i, subjectId);
+        int i = 1;
+        stmt.setLong(i++, subjectId);
+        stmt.executeUpdate();
 
         System.out.println(">>>   "+stmt.toString());
 
@@ -122,11 +123,11 @@ public class SubjectsRepositoryImpl implements SubjectsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(SUBJECTS_PAGE_RETRIEVAL_QUERY);
 
-        int i = 0;
-        stmt.setInt(++i, parseInt(pagesize) * parseInt(pagenum));
-        stmt.setInt(++i, parseInt(pagesize) * parseInt(pagenum) + parseInt(pagesize));
-        stmt.setString(++i, group);
-        stmt.setString(++i, sort);
+        int i = 1;
+        stmt.setInt(i++, parseInt(pagesize) * parseInt(pagenum));
+        stmt.setInt(i++, parseInt(pagesize) * parseInt(pagenum) + parseInt(pagesize));
+        stmt.setString(i++, group);
+        stmt.setString(i++, sort);
 
         System.out.println(">>>   "+stmt.toString());
 

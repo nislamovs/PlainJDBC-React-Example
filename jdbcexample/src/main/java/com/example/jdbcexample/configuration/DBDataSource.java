@@ -31,7 +31,7 @@ public class DBDataSource {
         dataSource.setDriverClassName(driver);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
-        dataSource.setDefaultAutoCommit(false);
+        dataSource.setDefaultAutoCommit(true);
         dataSource.setMinIdle(5);
         dataSource.setMaxIdle(10);
         dataSource.setMaxOpenPreparedStatements(20);

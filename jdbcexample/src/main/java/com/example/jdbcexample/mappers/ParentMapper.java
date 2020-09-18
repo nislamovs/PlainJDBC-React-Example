@@ -4,12 +4,13 @@ import com.example.jdbcexample.domain.dao.ParentDAO;
 import com.example.jdbcexample.domain.dao.PersonDAO;
 import com.example.jdbcexample.domain.dto.ParentDTO;
 import com.example.jdbcexample.domain.dto.PersonDTO;
+import com.example.jdbcexample.mappers.specialMappers.SqlDateMapper;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 
-@Mapper( componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR )
+@Mapper( componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR, uses = SqlDateMapper.class )
 @Component
 public interface ParentMapper {
 

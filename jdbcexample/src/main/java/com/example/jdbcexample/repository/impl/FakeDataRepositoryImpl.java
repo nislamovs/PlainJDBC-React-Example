@@ -31,11 +31,11 @@ public class FakeDataRepositoryImpl implements FakeDataRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup CallableStatement stmt = conn.prepareCall(NEW_CLASS_GENERATION_QUERY);
 
-        int i = 0;
-        stmt.setInt(++i, parseInt(pupilCount));
+        int i = 1;
+        stmt.setInt(i++, parseInt(pupilCount));
+        stmt.executeQuery();
 
         System.out.println(">>>   " + stmt.toString());
-        executeQuery(stmt);
 
         return "Created successfully!";
     }
