@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ import static java.lang.Integer.parseInt;
 @Component
 public class ParentsRepositoryImpl implements ParentsRepository {
 
-    private final BasicDataSource dataSource;
+    private final DataSource dataSource;
 
     private final String PARENTS_RETRIEVAL_QUERY = "SELECT * FROM parents";
     private final String PARENTS_GET_BY_FIRSTNAME_LASTNAME_RETRIEVAL_QUERY = "SELECT * FROM parents WHERE FIRSTNAME = ? AND LASTNAME = ?";

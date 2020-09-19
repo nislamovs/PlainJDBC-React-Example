@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -14,7 +15,7 @@ import java.util.List;
 @Component
 public class StatisticsRepositoryImpl implements StatisticsRepository {
 
-    private final BasicDataSource dataSource;
+    private final DataSource dataSource;
 
     private final String TEACHERS_RETRIEVAL_QUERY = "SELECT * FROM teachers";
     private final String TEACHERS_PAGE_RETRIEVAL_QUERY = "SELECT * FROM teachers WHERE id BETWEEN ? AND ? order by ? ?";

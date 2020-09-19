@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ import static java.lang.String.valueOf;
 @Component
 public class PupilsRepositoryImpl implements PupilsRepository {
 
-    private final BasicDataSource dataSource;
+    private final DataSource dataSource;
 
     private final String PUPILS_RETRIEVAL_QUERY = "SELECT * FROM pupils";
     private final String PUPILS_GET_BY_FIRSTNAME_LASTNAME_RETRIEVAL_QUERY = "SELECT * FROM pupils WHERE firstname = ? AND LASTNAME = ?";

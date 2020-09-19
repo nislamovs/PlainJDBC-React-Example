@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ import static java.lang.Integer.parseInt;
 @Component
 public class MarksRepositoryImpl implements MarksRepository {
 
-    private final BasicDataSource dataSource;
+    private final DataSource dataSource;
 
     private final String MARKS_RETRIEVAL_QUERY = "SELECT * FROM marks";
     private final String MARKS_PAGE_RETRIEVAL_QUERY = "SELECT * FROM marks WHERE id BETWEEN ? AND ? order by ? ?";

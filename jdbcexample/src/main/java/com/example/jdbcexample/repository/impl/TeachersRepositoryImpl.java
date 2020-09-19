@@ -22,7 +22,7 @@ import static java.lang.Long.parseLong;
 @Component
 public class TeachersRepositoryImpl implements TeachersRepository {
 
-    private final BasicDataSource dataSource;
+    private final DataSource dataSource;
 
     private final String TEACHERS_RETRIEVAL_QUERY = "SELECT * FROM teachers";
 //    private final String TEACHERS_PAGE_RETRIEVAL_QUERY = "SELECT * FROM teachers WHERE id BETWEEN ? AND ? order by ? ?";

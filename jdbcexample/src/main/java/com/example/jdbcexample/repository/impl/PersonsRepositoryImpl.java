@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,7 +28,7 @@ import static java.lang.Integer.parseInt;
 @Component
 public class PersonsRepositoryImpl implements PersonsRepository {
 
-    private final BasicDataSource dataSource;
+    private final DataSource dataSource;
 
     private final String PERSONS_RETRIEVAL_QUERY = "SELECT *  from pupils where email = ?\n" +
             "union all\n" +

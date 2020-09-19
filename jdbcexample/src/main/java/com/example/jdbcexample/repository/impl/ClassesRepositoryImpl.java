@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,7 +25,7 @@ import static java.lang.Integer.parseInt;
 @Component
 public class ClassesRepositoryImpl implements ClassesRepository {
 
-    private final BasicDataSource dataSource;
+    private final DataSource dataSource;
 
     private final String CLASSES_RETRIEVAL_QUERY = "SELECT * FROM classes";
     private final String CLASSES_PAGE_RETRIEVAL_QUERY = "SELECT * FROM classes WHERE id BETWEEN ? AND ? order by ? ?";

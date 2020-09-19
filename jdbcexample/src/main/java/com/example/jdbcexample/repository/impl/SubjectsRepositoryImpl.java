@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,7 +32,7 @@ import static java.lang.String.valueOf;
 @Component
 public class SubjectsRepositoryImpl implements SubjectsRepository {
 
-    private final BasicDataSource dataSource;
+    private final DataSource dataSource;
 
     private final String SUBJECTS_RETRIEVAL_QUERY = "SELECT * FROM subjects";
     private final String SUBJECTS_PAGE_RETRIEVAL_QUERY = "SELECT * FROM subjects WHERE id BETWEEN ? AND ? order by ? ?";

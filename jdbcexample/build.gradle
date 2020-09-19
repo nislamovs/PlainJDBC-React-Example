@@ -51,6 +51,7 @@ dependencies {
 	compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
 	compile 'com.zaxxer:HikariCP:3.4.5'
 	compile 'com.mchange:c3p0:0.9.5.1'
+	compile 'org.apache.tomcat:tomcat-jdbc:9.0.10'
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -78,8 +79,7 @@ tasks.withType(JavaCompile) {
 compileJava {
 	options.compilerArgs = [
 			'-Amapstruct.suppressGeneratorTimestamp=true',
-			'-Amapstruct.suppressGeneratorVersionInfoComment=true',
-			'-Amapstruct.defaultComponentmodel=spring'
+			'-Amapstruct.suppressGeneratorVersionInfoComment=true'
 	]
 }
 

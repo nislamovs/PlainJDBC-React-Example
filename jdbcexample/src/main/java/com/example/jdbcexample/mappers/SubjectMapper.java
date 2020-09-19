@@ -5,9 +5,10 @@ import com.example.jdbcexample.domain.dto.SubjectDTO;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
 
-@Mapper( componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR )
+@Mapper( componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR, unmappedTargetPolicy = ReportingPolicy.IGNORE )
 @Component
 public interface SubjectMapper {
 
