@@ -23,13 +23,27 @@ public class StatisticsController {
 
     private final StatisticsService statisticsService;
 
-    //TODO
-    //   1. Get email provider usage stats (pupils, teachers, parents, all_persons) #One group only  //API path ->  /stats/persons/{person_group}
-    //      returns Map<string, string>
-    //
-    //   2. Get email provider usage stats for all groups (pupils, teachers, parents, all_persons)   //API path ->  /stats/persons
-    //      returns Map<string, Map<string, string>>
+/*
 
+
+TODO
+   1. Get email provider usage stats (pupils, teachers, parents) #One group only  //API path ->  /stats/email_provider/persons?person_group=
+      returns Map<string, string>
+   2. Get email provider usage stats for all groups (pupils, teachers, parents, all_persons)   //API path ->  /stats/email_provider/persons/all
+      returns Map<string, Map<string, string>>
+
+
+-- Get all marks for the pupils of definite class
+-- Get average marks for pupils by pupil id - all school
+-- Get average marks for pupils - all school, TOP 5
+-- Get average marks for pupils, whose avg mark above 7 - all school
+-- Get average marks for pupils per subject - all school, TOP 5
+-- Get average marks for pupils - by class
+-- Get parents without kids list
+-- Get pupils list with class name and class head name and status [passes, fails]
+-- Get pupils list with marks per subject (min, max, avg, count, passes or not, class name and class head)
+
+ */
 
 
 

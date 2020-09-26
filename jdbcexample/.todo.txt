@@ -67,7 +67,17 @@
             !! don't forget about parents to generate them in parents table
 
     -- create statistics controller                                         OK           --             --
-        -- add some methods there
+        -- add some methods there                                           --
+        -- create statistics services                                       --
+        -- use requests from sql/requests folder                            OK
+        -- create schedulers for sending data                               --
+        -- use jasper reports                                               --  ?
+            -- create jasper report templates                               --
+            -- save the templates to db                                     --
+            -- compile those and also save to db                            --
+            -- create csv                                                   --
+            -- create pdf                                                   --
+            -- send to email                                                --
 
     -- Generate data and load into db                                       OK
 
@@ -93,12 +103,18 @@
 
 
 
-    -- refactor update, create, delete, find methods in repos               OK
+Bugs:
+    -- Write all fields which to map                                                                                --
+    -- Add validation constraints to dao/dto                                                                        --
+
+    -- Create proper exception handling                                                                             --
+
+    -- refactor update, create, delete, find methods in repos                                                       OK
 
     -- findById methods - some use integers,
-       some long, some strings - fix it                                     --
+       some long, some strings - fix it                                                                             --
 
-    -- Use optional                                                         --
+    -- Use optional                                                                                                 --
 
     -- Unify getPupilsByFirstnameLastname with pupil, person, teacher, parent                                       --
 
@@ -139,6 +155,8 @@
 
     -- Running root sql and move all other sql files in folders             OK
 
+
+    -- Create additional stored procedures (maybe with pagination)          OK
     -- weekly reports, cronjob, stored proc, email                          --
     -- for teacher (class-head) about pupils in its class                   --
     -- for parents about their child                                        --
@@ -164,17 +182,34 @@
     -- modify create_new_class stored proc - add parents workaround         --
 
     -- Stored procedure call
-            -- Create new school class                                      OK            OK
+            -- Create new school class                                                                                    OK            OK
 
-    -- statistics : email provider user's count                             OK            --
-            -- use case, when, then, else, end                              OK
+    -- statistics : email provider user's count                                                                           OK            --
+            -- use case, when, then, else, end                                                                            OK            --
 
-    -- Function call (statistics)
-            -- TOP 5 per class                                              OK            --
-            -- TOP 5 per school                                             OK            --
-            -- TOP 5 in particular subject per school                       OK            --
-            -- TOP above average mark is 7 per school                       OK
-            -- pupil average marks rate per school                          OK            --
+    -- Get pupils - relatives                                                                                             OK            --
+
+    -- Get all marks for the pupils of definite class                                                                     OK            --
+    -- Get average marks for pupils by pupil id - all school                                                              OK            --
+    -- Get average marks for pupils - all school, TOP 5                                                                   OK            --
+    -- Get average marks for pupils, whose avg mark above 7 - all school                                                  OK            --
+    -- Get average marks for pupils per subject - all school, TOP 5                                                       OK            --
+    -- Get average marks for pupils - by class                                                                            OK            --
+    -- Get parents without kids list                                                                                      OK            --
+    -- Get pupils list with class name and class head name and status [passes, fails]                                     OK            --
+    -- Get pupils list with marks per subject (min, max, avg, count, passes or not, class name and class head)            OK            --
+    -- Get pupils list with marks per subject by email(min, max, avg, count, passes or not, class name and class head)    OK            --
+
+    -- Get all marks for the pupils of definite class                                                            [page]   OK            --
+    -- Get average marks for pupils by pupil id - all school                                                     [page]   OK            --
+    -- Get average marks for pupils - all school, TOP 5                                                          [page]   not needed , because only 5 records
+    -- Get average marks for pupils, whose avg mark above 7 - all school                                         [page]   OK            --
+    -- Get average marks for pupils per subject - all school, TOP 5                                              [page]   not needed , because only 5 records
+    -- Get average marks for pupils - by class                                                                   [page]   OK            --
+    -- Get parents without kids list                                                                             [page]   OK            --
+    -- Get pupils list with class name and class head name and status [passes, fails]                            [page]   OK            --
+    -- Get pupils list with marks per subject (min, max, avg, count, passes or not, class name and class head)   [page]   OK            --
+
 
     INFO : If we will change sql_mode value, try to use transactions in JDBC              --
 
@@ -204,14 +239,12 @@
 
 ---------------------------------------------------------------------------------------------------------------------
 
-    -- connection pools                                                     --            --
+-- create connection pool select via interface (dbcp, hikaricp, c3op)
 
--- create connection pool select via interface (dbcp, hikaricp, c3op)       --     (GENERICS, POLYMORPHISM)
-
-        -- dbcp                                                             --
-        -- hikaricp                                                         --
-        -- c3op                                                             --
-        -- tomcat                                                           ?
+        -- dbcp                                                             OK
+        -- hikaricp                                                         OK
+        -- c3op                                                             OK
+        -- tomcat                                                           OK
 
 -- Maybe create some performance testing                                    ?
 
@@ -238,9 +271,3 @@ Summary:
 - JsonDoc is not the best tool - You cannot use Getmapping annotations, responseEntity
 
 ---------------------------------------------------------------------------------------------------------------------
-Bugs:
-
-    -- change i++ to ++i when set params of query                                                                   OK
-    -- Fix bugs with mapping                                                                                        --
-    -- Write all fields which to map                                                                                --
-    -- Add validation constraints to dao/dto                                                                        --

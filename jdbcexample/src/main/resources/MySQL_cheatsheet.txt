@@ -5,3 +5,7 @@ show processlist;
 #Show views:
 
 SHOW FULL TABLES WHERE table_type = 'VIEW';
+
+# Show all procedures;
+
+SHOW PROCEDURE STATUS

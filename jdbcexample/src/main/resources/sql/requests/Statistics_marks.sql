@@ -3,7 +3,7 @@
 select
  c.name as class_name,
 
- p.id,
+ p.id as pupil_id,
  p.firstname as pupil_firstname,
  p.lastname as pupil_lastname,
  p.email as pupil_email,

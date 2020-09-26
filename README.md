@@ -2,11 +2,11 @@
 
 ### Stack:
 * Java8, Springboot, Lombok
-* Plain JDBC, various connectionPools (hikariCP, dbcp, c3op) 
+* Plain JDBC, various connectionPools (tomcat, hikariCP, dbcp, c3p0) 
 * Stored procedures, functions, triggers, etc.
 * Spock
 * React
-* jsonDoc
+* jsonDoc, jasperReports
 * Docker-compose, adminer, mysql
 
 #### Build:

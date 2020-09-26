@@ -47,8 +47,9 @@ source /docker-entrypoint-initdb.d/functions/random_data_generation_functions.sq
 
 source /docker-entrypoint-initdb.d/storedProc/GenNewClass_storedProc.sql;
 source /docker-entrypoint-initdb.d/storedProc/AuditRevision_storedProc.sql;
-source /docker-entrypoint-initdb.d/storedProc/Statistics_email_storedProc.sql;
-source /docker-entrypoint-initdb.d/storedProc/Statistics_pupils_relatives.sql;
+source /docker-entrypoint-initdb.d/storedProc/statistics/Statistics_email_storedProc.sql;
+source /docker-entrypoint-initdb.d/storedProc/statistics/Statistics_pupils_relatives.sql;
+source /docker-entrypoint-initdb.d/storedProc/statistics/Statistics_marks_storedProc.sql;
 
 -- Load triggers
 
