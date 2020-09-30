@@ -382,8 +382,8 @@ END$$
 -- ------------------------- Get average marks for pupils per subject - all school, TOP 5-------------------------------
 -- ---------------------------------------------------------------------------------------------------------------------
 
-DROP PROCEDURE IF EXISTS GET_AVG_PUPILS_MARKS_ALL_SCHOOL_PER_SUBJECT;
-CREATE PROCEDURE GET_AVG_PUPILS_MARKS_ALL_SCHOOL_PER_SUBJECT(IN SUBJ_NAME VARCHAR(20))
+DROP PROCEDURE IF EXISTS GET_AVG_PUPILS_MARKS_ALL_SCHOOL_PER_SUBJECT_TOP5;
+CREATE PROCEDURE GET_AVG_PUPILS_MARKS_ALL_SCHOOL_PER_SUBJECT_TOP5(IN SUBJ_NAME VARCHAR(20))
 NOT DETERMINISTIC
 BEGIN
   START TRANSACTION;
@@ -421,7 +421,7 @@ BEGIN
 END$$
 
 -- use school;
--- call GET_AVG_PUPILS_MARKS_ALL_SCHOOL_PER_SUBJECT('Physics');
+-- call GET_AVG_PUPILS_MARKS_ALL_SCHOOL_PER_SUBJECT_TOP5('Physics');
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- --------------------------------- Get average marks for pupils - by class  ------------------------------------------

@@ -210,8 +210,12 @@ Bugs:
     -- Get pupils list with class name and class head name and status [passes, fails]                            [page]   OK            --
     -- Get pupils list with marks per subject (min, max, avg, count, passes or not, class name and class head)   [page]   OK            --
 
+    Create DTO's for statistics                                                                                     --
+    Create DAO's for statistics                                                                                     --
 
-    INFO : If we will change sql_mode value, try to use transactions in JDBC              --
+    Add JsonDoc related stuff to statistics controller                                                              --
+
+    INFO : If we will change sql_mode value, try to use transactions in JDBC                                        --
 
 
     -- trigger

@@ -27,10 +27,10 @@ public class StatisticsController {
 
 
 TODO
-   1. Get email provider usage stats (pupils, teachers, parents) #One group only  //API path ->  /stats/email_provider/persons?person_group=
+   1. Get email provider usage stats (pupils, teachers, parents, all_persons) #One group only  //API path ->  /stats/email_provider/persons?person_group=
       returns Map<string, string>
-   2. Get email provider usage stats for all groups (pupils, teachers, parents, all_persons)   //API path ->  /stats/email_provider/persons/all
-      returns Map<string, Map<string, string>>
+
+   2. get pupils - relatives
 
 
 -- Get all marks for the pupils of definite class
