@@ -66,40 +66,44 @@
             -- class head email
             !! don't forget about parents to generate them in parents table
 
-    -- create statistics controller                                         OK           --             --
-        -- add some methods there                                           --
-        -- create statistics services                                       --
-        -- use requests from sql/requests folder                            OK
-        -- create schedulers for sending data                               --
-        -- use jasper reports                                               --  ?
-            -- create jasper report templates                               --
-            -- save the templates to db                                     --
-            -- compile those and also save to db                            --
-            -- create csv                                                   --
-            -- create pdf                                                   --
-            -- send to email                                                --
+        -- create statistics controller                                                                             OK
+        -- add some methods there                                                                                   OK
+        -- create statistics services                                                                               OK
+        -- use requests from sql/requests folder                                                                    OK
+        -- create schedulers for sending data                                                                       --
+        -- use jasper reports                                                                                       --  ?
+            -- create jasper report templates                                                                       --
+            -- save the templates to db                                                                             --
+            -- compile those and also save to db                                                                    --
+            -- create csv                                                                                           --
+            -- create pdf                                                                                           --
+            -- send to email                                                                                        --
 
-    -- Generate data and load into db                                       OK
+    -- Add endpoints/controller for uploading jasper templates                                                      --
+    -- Make scheduler for compiling jasper templates and save those into db                                         --
+
+
+    -- Generate data and load into db                                                                               OK
 
     -- Create all repositories
-        --  ClassesService/Repository                                       OK
-        --  FakeDataService/Repository                                      OK
-        --  MarksService/Repository                                         OK
-        --  PersonService/Repository                                        OK
-        --  PupilsService/Repository                                        OK
-        --  StatisticsService/Repository                                    OK
-        --  SubjectsService/Repository                                      OK
-        --  TeachersService/Repository                                      OK
+        --  ClassesService/Repository                                                                               OK
+        --  FakeDataService/Repository                                                                              OK
+        --  MarksService/Repository                                                                                 OK
+        --  PersonService/Repository                                                                                OK
+        --  PupilsService/Repository                                                                                OK
+        --  StatisticsService/Repository                                                                            OK
+        --  SubjectsService/Repository                                                                              OK
+        --  TeachersService/Repository                                                                              OK
 
-        -- create Parents repo                                              OK
-        -- create Parents controller                                        OK
-        -- create Parents service                                           OK
-            -- create Parent                                                OK
-            -- update Parent                                                OK
-            -- deleteParent                                                 OK
-            -- findById                                                     OK
-            -- findAllParents                                               OK
-            -- get Parents page                                             OK
+        -- create Parents repo                                                                                      OK
+        -- create Parents controller                                                                                OK
+        -- create Parents service                                                                                   OK
+            -- create Parent                                                                                        OK
+            -- update Parent                                                                                        OK
+            -- deleteParent                                                                                         OK
+            -- findById                                                                                             OK
+            -- findAllParents                                                                                       OK
+            -- get Parents page                                                                                     OK
 
 
 
@@ -184,36 +188,36 @@ Bugs:
     -- Stored procedure call
             -- Create new school class                                                                                    OK            OK
 
-    -- statistics : email provider user's count                                                                           OK            --
-            -- use case, when, then, else, end                                                                            OK            --
+    -- statistics : email provider user's count                                                                           OK            OK
+            -- use case, when, then, else, end                                                                            OK            OK
 
-    -- Get pupils - relatives                                                                                             OK            --
+    -- Get pupils - relatives                                                                                             OK            OK
 
-    -- Get all marks for the pupils of definite class                                                                     OK            --
-    -- Get average marks for pupils by pupil id - all school                                                              OK            --
-    -- Get average marks for pupils - all school, TOP 5                                                                   OK            --
-    -- Get average marks for pupils, whose avg mark above 7 - all school                                                  OK            --
-    -- Get average marks for pupils per subject - all school, TOP 5                                                       OK            --
-    -- Get average marks for pupils - by class                                                                            OK            --
-    -- Get parents without kids list                                                                                      OK            --
-    -- Get pupils list with class name and class head name and status [passes, fails]                                     OK            --
-    -- Get pupils list with marks per subject (min, max, avg, count, passes or not, class name and class head)            OK            --
-    -- Get pupils list with marks per subject by email(min, max, avg, count, passes or not, class name and class head)    OK            --
+    -- Get all marks for the pupils of definite class                                                                     OK            OK
+    -- Get average marks for pupils by pupil id - all school                                                              OK            OK
+    -- Get average marks for pupils - all school, TOP 5                                                                   OK            OK
+    -- Get average marks for pupils, whose avg mark above 7 - all school                                                  OK            OK
+    -- Get average marks for pupils per subject - all school, TOP 5                                                       OK            OK
+    -- Get average marks for pupils - by class                                                                            OK            OK
+    -- Get parents without kids list                                                                                      OK            OK
+    -- Get pupils list with class name and class head name and status [passes, fails]                                     OK            OK
+    -- Get pupils list with marks per subject (min, max, avg, count, passes or not, class name and class head)            OK            OK
+    -- Get pupils list with marks per subject by email(min, max, avg, count, passes or not, class name and class head)    OK            OK
 
-    -- Get all marks for the pupils of definite class                                                            [page]   OK            --
-    -- Get average marks for pupils by pupil id - all school                                                     [page]   OK            --
+    -- Get all marks for the pupils of definite class                                                            [page]   OK            OK
+    -- Get average marks for pupils by pupil id - all school                                                     [page]   OK            OK
     -- Get average marks for pupils - all school, TOP 5                                                          [page]   not needed , because only 5 records
-    -- Get average marks for pupils, whose avg mark above 7 - all school                                         [page]   OK            --
+    -- Get average marks for pupils, whose avg mark above 7 - all school                                         [page]   OK            OK
     -- Get average marks for pupils per subject - all school, TOP 5                                              [page]   not needed , because only 5 records
-    -- Get average marks for pupils - by class                                                                   [page]   OK            --
-    -- Get parents without kids list                                                                             [page]   OK            --
-    -- Get pupils list with class name and class head name and status [passes, fails]                            [page]   OK            --
-    -- Get pupils list with marks per subject (min, max, avg, count, passes or not, class name and class head)   [page]   OK            --
+    -- Get average marks for pupils - by class                                                                   [page]   OK            OK
+    -- Get parents without kids list                                                                             [page]   OK            OK
+    -- Get pupils list with class name and class head name and status [passes, fails]                            [page]   OK            OK
+    -- Get pupils list with marks per subject (min, max, avg, count, passes or not, class name and class head)   [page]   OK            OK
 
-    Create DTO's for statistics                                                                                     --
-    Create DAO's for statistics                                                                                     --
+    Create DTO's for statistics                                                                                     OK
+    Create DAO's for statistics                                                                                     OK
 
-    Add JsonDoc related stuff to statistics controller                                                              --
+    Add JsonDoc related stuff to statistics controller                                                              OK
 
     INFO : If we will change sql_mode value, try to use transactions in JDBC                                        --
 
@@ -260,6 +264,7 @@ Bugs:
 
 -- Update README                                                            --
 -- Mention profiles                                                         --
+-- Add build/test coverage icons in read.me                                 --
 
 -- Add CORS workaround                                                      OK
 -- Add redirect for jsonDoc                                                 OK

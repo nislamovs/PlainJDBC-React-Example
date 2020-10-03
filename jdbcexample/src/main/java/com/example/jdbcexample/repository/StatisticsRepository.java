@@ -32,7 +32,7 @@ public interface StatisticsRepository {
 
     List<StatsPupilAvgMarkRatedDAO> getAvgPupilsMarksByClass(String className);
 
-    List<StatsPupilAvgMarkRatedDAO> getAvgPupilsMarksByClass(String subject, int pageSize, int pageNum);
+    List<StatsPupilAvgMarkRatedDAO> getAvgPupilsMarksByClass(String className, int pageSize, int pageNum);
 
     List<StatsKidsParentsDAO> getParentsAndKidsList(int pageSize, int pageNum);
 
