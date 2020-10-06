@@ -1,6 +1,7 @@
 package com.example.jdbcexample.repository.impl;
 
 import com.example.jdbcexample.domain.dao.statistics.*;
+import com.example.jdbcexample.mappers.sqlMappers.ResultSetMapper;
 import com.example.jdbcexample.repository.StatisticsRepository;
 import lombok.Cleanup;
 import lombok.RequiredArgsConstructor;
@@ -9,13 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.*;
+import java.util.*;
 
 import static java.lang.Integer.parseInt;
 
@@ -57,12 +53,9 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup CallableStatement stmt = conn.prepareCall(GET_PUPILS_RELATIVES_LIST_QUERY);
 
-        int i = 1;
-        stmt.executeQuery();
+        ResultSetMapper<StatsPupilsRelativesDAO> mapper = new ResultSetMapper<>();
 
-        System.out.println(">>>   " + stmt.toString());
-
-        return new ArrayList<>();
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsPupilsRelativesDAO.class);
     }
 
     @Override
@@ -77,7 +70,7 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
 
         System.out.println(">>>   " + stmt.toString());
 
-        return new HashMap<>();
+        return executeQuery(new HashMap<>(), stmt);
     }
 
     @Override
@@ -90,11 +83,10 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
         stmt.setString(i++, className);
         stmt.setInt(i++, pageSize);
         stmt.setInt(i++, pageNum);
-        stmt.executeQuery();
 
-        System.out.println(">>>   " + stmt.toString());
+        ResultSetMapper<StatsPupilMarkPerClassDAO> mapper = new ResultSetMapper<>();
 
-        return new ArrayList<>();
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsPupilMarkPerClassDAO.class);
     }
 
     @Override
@@ -105,11 +97,10 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
 
         int i = 1;
         stmt.setString(i++, className);
-        stmt.executeQuery();
 
-        System.out.println(">>>   " + stmt.toString());
+        ResultSetMapper<StatsPupilMarkPerClassDAO> mapper = new ResultSetMapper<>();
 
-        return new ArrayList<>();
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsPupilMarkPerClassDAO.class);
     }
 
     @Override
@@ -123,11 +114,10 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
         stmt.setInt(i++, idEnd);
         stmt.setInt(i++, pageSize);
         stmt.setInt(i++, pageNum);
-        stmt.executeQuery();
 
-        System.out.println(">>>   " + stmt.toString());
+        ResultSetMapper<StatsPupilAvgMarkDAO> mapper = new ResultSetMapper<>();
 
-        return new ArrayList<>();
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsPupilAvgMarkDAO.class);
     }
 
     @Override
@@ -139,11 +129,10 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
         int i = 1;
         stmt.setInt(i++, idStart);
         stmt.setInt(i++, idEnd);
-        stmt.executeQuery();
 
-        System.out.println(">>>   " + stmt.toString());
+        ResultSetMapper<StatsPupilAvgMarkDAO> mapper = new ResultSetMapper<>();
 
-        return new ArrayList<>();
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsPupilAvgMarkDAO.class);
     }
 
     @Override
@@ -152,11 +141,9 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup CallableStatement stmt = conn.prepareCall(GET_AVG_PUPILS_MARKS_ALL_SCHOOL_TOP5_QUERY);
 
-        stmt.executeQuery();
+        ResultSetMapper<StatsPupilAvgMarkRatedDAO> mapper = new ResultSetMapper<>();
 
-        System.out.println(">>>   " + stmt.toString());
-
-        return new ArrayList<>();
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsPupilAvgMarkRatedDAO.class);
     }
 
     @Override
@@ -168,11 +155,10 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
         int i = 1;
         stmt.setInt(i++, pageSize);
         stmt.setInt(i++, pageNum);
-        stmt.executeQuery();
 
-        System.out.println(">>>   " + stmt.toString());
+        ResultSetMapper<StatsPupilAvgMarkRatedDAO> mapper = new ResultSetMapper<>();
 
-        return new ArrayList<>();
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsPupilAvgMarkRatedDAO.class);
     }
 
     @Override
@@ -181,11 +167,9 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup CallableStatement stmt = conn.prepareCall(GET_AVG_PUPILS_MARKS_ALL_SCHOOL_ABOVE_7_QUERY);
 
-        stmt.executeQuery();
+        ResultSetMapper<StatsPupilAvgMarkRatedDAO> mapper = new ResultSetMapper<>();
 
-        System.out.println(">>>   " + stmt.toString());
-
-        return new ArrayList<>();
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsPupilAvgMarkRatedDAO.class);
     }
 
     @Override
@@ -196,11 +180,10 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
 
         int i = 1;
         stmt.setString(i++, subject);
-        stmt.executeQuery();
 
-        System.out.println(">>>   " + stmt.toString());
+        ResultSetMapper<StatsPupilAvgMarkRatedDAO> mapper = new ResultSetMapper<>();
 
-        return new ArrayList<>();
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsPupilAvgMarkRatedDAO.class);
     }
 
     @Override
@@ -211,11 +194,10 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
 
         int i = 1;
         stmt.setString(i++, className);
-        stmt.executeQuery();
 
-        System.out.println(">>>   " + stmt.toString());
+        ResultSetMapper<StatsPupilAvgMarkRatedDAO> mapper = new ResultSetMapper<>();
 
-        return new ArrayList<>();
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsPupilAvgMarkRatedDAO.class);
     }
 
     @Override
@@ -228,11 +210,10 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
         stmt.setString(i++, className);
         stmt.setInt(i++, pageSize);
         stmt.setInt(i++, pageNum);
-        stmt.executeQuery();
 
-        System.out.println(">>>   " + stmt.toString());
+        ResultSetMapper<StatsPupilAvgMarkRatedDAO> mapper = new ResultSetMapper<>();
 
-        return new ArrayList<>();
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsPupilAvgMarkRatedDAO.class);
     }
 
     @Override
@@ -244,11 +225,10 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
         int i = 1;
         stmt.setInt(i++, pageSize);
         stmt.setInt(i++, pageNum);
-        stmt.executeQuery();
 
-        System.out.println(">>>   " + stmt.toString());
+        ResultSetMapper<StatsKidsParentsDAO> mapper = new ResultSetMapper<>();
 
-        return new ArrayList<>();
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsKidsParentsDAO.class);
     }
 
     @Override
@@ -257,11 +237,9 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup CallableStatement stmt = conn.prepareCall(GET_PARENTS_AND_KIDS_LIST_QUERY);
 
-        stmt.executeQuery();
+        ResultSetMapper<StatsKidsParentsDAO> mapper = new ResultSetMapper<>();
 
-        System.out.println(">>>   " + stmt.toString());
-
-        return new ArrayList<>();
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsKidsParentsDAO.class);
     }
 
     @Override
@@ -273,11 +251,10 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
         int i = 1;
         stmt.setInt(i++, pageSize);
         stmt.setInt(i++, pageNum);
-        stmt.executeQuery();
 
-        System.out.println(">>>   " + stmt.toString());
+        ResultSetMapper<StatsPupilReviewDAO> mapper = new ResultSetMapper<>();
 
-        return new ArrayList<>();
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsPupilReviewDAO.class);
     }
 
     @Override
@@ -286,12 +263,9 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup CallableStatement stmt = conn.prepareCall(GET_PUPILS_REVIEW_QUERY);
 
-        int i = 1;
-        stmt.executeQuery();
+        ResultSetMapper<StatsPupilReviewDAO> mapper = new ResultSetMapper<>();
 
-        System.out.println(">>>   " + stmt.toString());
-
-        return new ArrayList<>();
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsPupilReviewDAO.class);
     }
 
     @Override
@@ -303,11 +277,10 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
         int i = 1;
         stmt.setInt(i++, pageSize);
         stmt.setInt(i++, pageNum);
-        stmt.executeQuery();
 
-        System.out.println(">>>   " + stmt.toString());
+        ResultSetMapper<StatsPupilFullReviewDAO> mapper = new ResultSetMapper<>();
 
-        return new ArrayList<>();
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsPupilFullReviewDAO.class);
     }
 
     @Override
@@ -316,12 +289,9 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup CallableStatement stmt = conn.prepareCall(GET_PUPILS_FULL_REVIEW_QUERY);
 
-        int i = 1;
-        stmt.executeQuery();
+        ResultSetMapper<StatsPupilFullReviewDAO> mapper = new ResultSetMapper<>();
 
-        System.out.println(">>>   " + stmt.toString());
-
-        return new ArrayList<>();
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsPupilFullReviewDAO.class);
     }
 
     @Override
@@ -332,20 +302,28 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
 
         int i = 1;
         stmt.setString(i++, email);
-        stmt.executeQuery();
 
-        System.out.println(">>>   " + stmt.toString());
+        ResultSetMapper<StatsPupilFullReviewDAO> mapper = new ResultSetMapper<>();
 
-        return new ArrayList<>();
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsPupilFullReviewDAO.class);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
 
-    private void executeQuery(CallableStatement stmt) {
+    private Map<Integer, Map<String, Integer>> executeQuery(Map<Integer, Map<String, Integer>> emailProviders, CallableStatement stmt) {
         try {
-            stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                emailProviders.put(
+                    rs.getInt("id"),
+                    new HashMap<String, Integer>(){{ put(rs.getString("domain"), rs.getInt("count")); }}
+                );
+            }
         } catch (SQLException e) {
             System.out.println(e);
         }
+
+        return emailProviders;
     }
+
 }

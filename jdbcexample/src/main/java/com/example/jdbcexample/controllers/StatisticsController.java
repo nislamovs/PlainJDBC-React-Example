@@ -415,30 +415,11 @@ public class StatisticsController {
             responsestatuscode = "200 - OK"
     )
     @ApiResponseObject
-    public List<StatsPupilFullReviewDTO> retrievePupilsFullReviewByEmail(String email) {
+    public List<StatsPupilFullReviewDTO> retrievePupilsFullReviewByEmail(
+            @ApiQueryParam(name = "email", description = "Pupil's email.")
+            @RequestParam(name = "email", defaultValue = "afaulds2g@pinterest.com") String email) {
         return statisticsService.getPupilsFullReviewByEmail(email);
     }
 }
-//    public List<StatsPupilsRelativesDTO> getPupilsRelativesList() {
-//    public Map<Integer, Map<String, Integer>> getEmailProvidersList(String personsGroup) {
-//    public List<StatsPupilMarkPerClassDTO> getPupilsMarksPerClass(String className, int pageSize, int pageNum) {
-//    public List<StatsPupilMarkPerClassDTO> getPupilsMarksPerClass(String className) {
-//    public List<StatsPupilAvgMarkDTO> getAvgPupilsMarksByPupilIdInterval(int idStart, int idEnd, int pageSize, int pageNum) {
-//    public List<StatsPupilAvgMarkDTO> getAvgPupilsMarksByPupilIdInterval(int idStart, int idEnd) {
-//    public List<StatsPupilAvgMarkRatedDTO> getAvgPupilsMarksTop5PerSchool() {
-//    public List<StatsPupilAvgMarkRatedDTO> getAvgPupilsMarksAbove7PerSchool(int pageSize, int pageNum) {
-//    public List<StatsPupilAvgMarkRatedDTO> getAvgPupilsMarksAbove7PerSchool() {
-//    public List<StatsPupilAvgMarkRatedDTO> getAvgPupilsMarksBySubject(String subject) {
-//    public List<StatsPupilAvgMarkRatedDTO> getAvgPupilsMarksByClass(String className) {
-//    public List<StatsPupilAvgMarkRatedDTO> getAvgPupilsMarksByClass(String className, int pageSize, int pageNum) {
-//    public List<StatsKidsParentsDTO> getParentsAndKidsList(int pageSize, int pageNum) {
-//    public List<StatsKidsParentsDTO> getParentsAndKidsList() {
-//    public List<StatsPupilReviewDTO> getPupilsReview(int pageSize, int pageNum) {
-//    public List<StatsPupilReviewDTO> getPupilsReview() {
-//    public List<StatsPupilFullReviewDTO> getPupilsFullReview() {
-//    public List<StatsPupilFullReviewDTO> getPupilsFullReview(int pageSize, int pageNum) {
-//
-//
-//    public List<StatsPupilFullReviewDTO> getPupilsFullReviewByEmail(String email) {
 
 

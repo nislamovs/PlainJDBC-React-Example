@@ -3,6 +3,7 @@ package com.example.jdbcexample.domain.dto.statistics;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.jsondoc.core.annotation.ApiObject;
@@ -35,7 +36,7 @@ public class StatsKidsParentsDTO {
 
     private String pupilLastname;
 
-    private LocalDate pupilBirthdate;
+    private String pupilBirthdate;
 
     private String pupilGender;
 }

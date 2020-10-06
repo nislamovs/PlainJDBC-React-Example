@@ -10,7 +10,6 @@ import org.jsondoc.core.pojo.ApiStage;
 import org.jsondoc.core.pojo.ApiVisibility;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -21,13 +20,15 @@ import java.util.Date;
 public class StatsPupilsRelativesDTO {
 
     private Long id;
-
-    private Long parentId;
-    private String parentFirstname;
-    private String parentLastname;
     private String familyId;
+
+    private Long pupilId;
     private String pupilFirstname;
     private String pupilLastname;
-    private LocalDate pupilBirthdate;
-    private String pupilGender;
+    private String pupilEmail;
+
+    private Long pupilRelativeId;
+    private String pupilRelativeFirstname;
+    private String pupilRelativeLastname;
+    private String pupilRelativeEmail;
 }

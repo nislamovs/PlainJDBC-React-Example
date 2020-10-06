@@ -1,5 +1,6 @@
 package com.example.jdbcexample.domain.dao.statistics;
 
+import com.example.jdbcexample.mappers.sqlMappers.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,14 +14,33 @@ import java.util.Date;
 @SuperBuilder(toBuilder = true)
 public class StatsPupilsRelativesDAO {
 
+    @Column(name = "id")
     private Long id;
 
-    private Long parentId;
-    private String parentFirstname;
-    private String parentLastname;
+    @Column(name = "familyId")
     private String familyId;
+
+    @Column(name = "id1")
+    private Long pupilId;
+
+    @Column(name = "firstname1")
     private String pupilFirstname;
+
+    @Column(name = "lastname1")
     private String pupilLastname;
-    private Date pupilBirthdate;
-    private String pupilGender;
+
+    @Column(name = "email1")
+    private String pupilEmail;
+
+    @Column(name = "id2")
+    private Long pupilRelativeId;
+
+    @Column(name = "firstname2")
+    private String pupilRelativeFirstname;
+
+    @Column(name = "lastname2")
+    private String pupilRelativeLastname;
+
+    @Column(name = "email2")
+    private String pupilRelativeEmail;
 }

@@ -17,6 +17,7 @@ BEGIN
     SET @CLASSNAME=CLASS_NAME;
     SET @PAGESIZE=PAGE_SIZE;
 
+    DROP TABLE IF EXISTS `TempTable`;
     CREATE TEMPORARY TABLE TempTable
     (
        id INTEGER AUTO_INCREMENT NOT NULL,
@@ -149,6 +150,7 @@ BEGIN
     SET @ID_END=ID_END;
     SET @PAGESIZE=PAGE_SIZE;
 
+    DROP TABLE IF EXISTS `TempTable`;
     CREATE TEMPORARY TABLE TempTable
     (
        id INTEGER AUTO_INCREMENT NOT NULL,
@@ -246,9 +248,9 @@ BEGIN
 
     c.name AS class_name,
 
-    t.firstname AS teacher_firstname,
-    t.lastname AS teacher_lastname,
-    t.email AS teacher_email,
+    t.firstname AS class_head_teacher_firstname,
+    t.lastname AS class_head_teacher_lastname,
+    t.email AS class_head_teacher_email,
 
     ROUND(AVG(m.value), 2) AS average_mark
     FROM marks m
@@ -280,6 +282,7 @@ BEGIN
     SET @OFFSET_VAL=(SELECT PAGE_SIZE * PAGE_NUM);
     SET @PAGESIZE=PAGE_SIZE;
 
+    DROP TABLE IF EXISTS `TempTable`;
     CREATE TEMPORARY TABLE TempTable
     (
        id INTEGER AUTO_INCREMENT NOT NULL,
@@ -401,9 +404,9 @@ BEGIN
 
     c.name AS class_name,
 
-    t.firstname AS teacher_firstname,
-    t.lastname AS teacher_lastname,
-    t.email AS teacher_email,
+    t.firstname AS class_head_teacher_firstname,
+    t.lastname AS class_head_teacher_lastname,
+    t.email AS class_head_teacher_email,
 
     ROUND(AVG(m.value), 2) AS average_mark
     FROM marks m
@@ -436,6 +439,7 @@ BEGIN
     SET @@sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
     SET @CLASSNAME=CLASS_NAME;
 
+    DROP TABLE IF EXISTS `TempTable`;
     CREATE TEMPORARY TABLE TempTable
     (
        id INTEGER AUTO_INCREMENT NOT NULL,
@@ -444,16 +448,17 @@ BEGIN
        pupil_lastname VARCHAR(30),
        pupil_email VARCHAR(50),
        class_name VARCHAR(10),
-       teacher_firstname VARCHAR(30),
-       teacher_lastname VARCHAR(30),
-       teacher_email VARCHAR(50),
+       class_head_teacher_firstname VARCHAR(30),
+       class_head_teacher_lastname VARCHAR(30),
+       class_head_teacher_email VARCHAR(50),
        average_mark DECIMAL,
 
        primary key (id)
     ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
     SET @stats_query = CONCAT(
-    "INSERT INTO TempTable(pupil_id, pupil_firstname, pupil_lastname, pupil_email, class_name, teacher_firstname, teacher_lastname, teacher_email, average_mark)
+    "INSERT INTO TempTable(pupil_id, pupil_firstname, pupil_lastname, pupil_email, class_name, class_head_teacher_firstname,
+     class_head_teacher_lastname, class_head_teacher_email, average_mark)
     SELECT
     m.pupil_id,
     p.firstname AS pupil_firstname,
@@ -462,9 +467,9 @@ BEGIN
 
     c.name AS class_name,
 
-    t.firstname AS teacher_firstname,
-    t.lastname AS teacher_lastname,
-    t.email AS teacher_email,
+    t.firstname AS class_head_teacher_firstname,
+    t.lastname AS class_head_teacher_lastname,
+    t.email AS class_head_teacher_email,
 
     ROUND(AVG(m.value), 2) AS average_mark
     FROM marks m
@@ -505,6 +510,7 @@ BEGIN
     SET @OFFSET_VAL=(SELECT PAGE_SIZE * PAGE_NUM);
     SET @PAGESIZE=PAGE_SIZE;
 
+    DROP TABLE IF EXISTS `TempTable`;
     CREATE TEMPORARY TABLE TempTable
     (
        id INTEGER AUTO_INCREMENT NOT NULL,
@@ -513,16 +519,17 @@ BEGIN
        pupil_lastname VARCHAR(30),
        pupil_email VARCHAR(50),
        class_name VARCHAR(10),
-       teacher_firstname VARCHAR(30),
-       teacher_lastname VARCHAR(30),
-       teacher_email VARCHAR(50),
+       class_head_teacher_firstname VARCHAR(30),
+       class_head_teacher_lastname VARCHAR(30),
+       class_head_teacher_email VARCHAR(50),
        average_mark DECIMAL,
 
        primary key (id)
     ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
     SET @stats_query = CONCAT(
-    "INSERT INTO TempTable(pupil_id, pupil_firstname, pupil_lastname, pupil_email, class_name, teacher_firstname, teacher_lastname, teacher_email, average_mark)
+    "INSERT INTO TempTable(pupil_id, pupil_firstname, pupil_lastname, pupil_email, class_name, class_head_teacher_firstname,
+    class_head_teacher_lastname, class_head_teacher_email, average_mark)
     SELECT
     m.pupil_id,
     p.firstname AS pupil_firstname,
@@ -531,9 +538,9 @@ BEGIN
 
     c.name AS class_name,
 
-    t.firstname AS teacher_firstname,
-    t.lastname AS teacher_lastname,
-    t.email AS teacher_email,
+    t.firstname AS class_head_teacher_firstname,
+    t.lastname AS class_head_teacher_lastname,
+    t.email AS class_head_teacher_email,
 
     ROUND(AVG(m.value), 2) AS average_mark
     FROM marks m
@@ -578,6 +585,7 @@ BEGIN
     SET @OFFSET_VAL=(SELECT PAGE_SIZE * PAGE_NUM);
     SET @PAGESIZE=PAGE_SIZE;
 
+    DROP TABLE IF EXISTS `TempTable`;
     CREATE TEMPORARY TABLE TempTable
     (
        id INTEGER AUTO_INCREMENT NOT NULL,
@@ -684,6 +692,7 @@ BEGIN
     SET @OFFSET_VAL=(SELECT PAGE_SIZE * PAGE_NUM);
     SET @PAGESIZE=PAGE_SIZE;
 
+    DROP TABLE IF EXISTS `TempTable`;
     CREATE TEMPORARY TABLE TempTable
     (
        id INTEGER AUTO_INCREMENT NOT NULL,
@@ -806,6 +815,7 @@ BEGIN
     SET @OFFSET_VAL=(SELECT PAGE_SIZE * PAGE_NUM);
     SET @PAGESIZE=PAGE_SIZE;
 
+    DROP TABLE IF EXISTS `TempTable`;
     CREATE TEMPORARY TABLE TempTable
     (
        id INTEGER AUTO_INCREMENT NOT NULL,

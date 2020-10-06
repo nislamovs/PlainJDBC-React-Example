@@ -80,6 +80,7 @@
             -- send to email                                                                                        --
 
     -- Add endpoints/controller for uploading jasper templates                                                      --
+    -- Add services and repo for jasper templates                                                                   --
     -- Make scheduler for compiling jasper templates and save those into db                                         --
 
 
