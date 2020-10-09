@@ -12,6 +12,7 @@ source /docker-entrypoint-initdb.d/schema/pupils_schema.sql;
 source /docker-entrypoint-initdb.d/schema/parents_schema.sql;
 source /docker-entrypoint-initdb.d/schema/subjects_schema.sql;
 source /docker-entrypoint-initdb.d/schema/teachers_schema.sql;
+source /docker-entrypoint-initdb.d/schema/reportTemplates_schema.sql;
 
 -- Load audit schemas
 
@@ -34,6 +35,7 @@ source /docker-entrypoint-initdb.d/data/pupils_data.sql;
 source /docker-entrypoint-initdb.d/data/parents_data.sql;
 source /docker-entrypoint-initdb.d/data/subjects_data.sql;
 source /docker-entrypoint-initdb.d/data/teachers_data.sql;
+source /docker-entrypoint-initdb.d/data/reportTemplates_data.sql;
 
 -- Load data alterations
 

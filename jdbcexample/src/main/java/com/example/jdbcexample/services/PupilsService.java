@@ -30,7 +30,6 @@ public class PupilsService {
     private final PupilMapper mapper;
     private final PupilsRepository pupilsRepository;
 
-
     @SneakyThrows
     public List<PupilDTO> getAllPupils() {
         return pupilsRepository.findAll().stream().map(mapper::toDTO).collect(Collectors.toList());

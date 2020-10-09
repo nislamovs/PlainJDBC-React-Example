@@ -71,18 +71,20 @@
         -- create statistics services                                                                               OK
         -- use requests from sql/requests folder                                                                    OK
         -- create schedulers for sending data                                                                       --
-        -- use jasper reports                                                                                       --  ?
+        -- create email sending service                                                                             --
+        -- use jasper reports                                                                                       --
             -- create jasper report templates                                                                       --
             -- save the templates to db                                                                             --
-            -- compile those and also save to db                                                                    --
             -- create csv                                                                                           --
             -- create pdf                                                                                           --
             -- send to email                                                                                        --
 
-    -- Add endpoints/controller for uploading jasper templates                                                      --
-    -- Add services and repo for jasper templates                                                                   --
-    -- Make scheduler for compiling jasper templates and save those into db                                         --
+    -- Add endpoints/controller for uploading jasper templates                                                      OK
+    -- Add services and repo for jasper templates                                                                   OK
 
+    -- Add validation to statistics controller params                                                               --
+    -- Create one config class for all datasources                                                                  --
+    -- @Cleanup moving out of each method                                                                           --
 
     -- Generate data and load into db                                                                               OK
 
