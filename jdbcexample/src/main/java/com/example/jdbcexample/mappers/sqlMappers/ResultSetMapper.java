@@ -38,6 +38,9 @@ public class ResultSetMapper<T> {
                                 break;
                             }
                         }
+                        if (field.getName().equalsIgnoreCase("resultSet")) {
+                            BeanUtils.setProperty(bean, field.getName(), resultSet);
+                        }
                     }
                 }
                 outputList.add(bean);

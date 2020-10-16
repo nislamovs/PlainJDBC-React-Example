@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
-#Exit on failure
-set -e
-
 #Stop and remove all containers
 ./jdbcexample/src/main/resources/scripts/stop_n_remove_containers.sh ;
 
+#Exit on failure
+set -e
 
 #Copy all sql scripts
 cd ./jdbcexample/src/main/resources/scripts/ ;

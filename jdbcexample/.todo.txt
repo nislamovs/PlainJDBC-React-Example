@@ -81,13 +81,37 @@
 
     -- Add endpoints/controller for uploading jasper templates                                                      OK
     -- Add services and repo for jasper templates                                                                   OK
+    -- Add to report template controller response headers for download                                              --
 
     -- Add validation to statistics controller params                                                               --
     -- Create one config class for all datasources                                                                  --
     -- @Cleanup moving out of each method                                                                           --
 
-    -- Generate data and load into db                                                                               OK
+    -- Create report download controller                                                                            --
+    -- Create report service                                                                                        --
 
+    -- Create pupils-relatives report template                                                                      OK
+    -- Create email providers report template report template                                                       OK
+    -- Create getPupilsMarksPerClassReport report template                                                          OK
+    -- Create getAvgPupilsMarksByPupilIdIntervalReport report template                                              OK
+    -- Create getAvgPupilsMarksTop5PerSchoolReport report template                                                  OK
+    -- Create getAvgPupilsMarksAbove7PerSchoolReport report template                                                OK
+    -- Create getAvgPupilsMarksBySubjectReport report template                                                      OK
+    -- Create getAvgPupilsMarksByClassReport report template                                                        OK
+    -- Create getParentsAndKidsListReport report template                                                           Not needed
+    -- Create getPupilsReviewReport report template                                                                 OK
+    -- Create getPupilsFullReviewReport report template                                                             OK
+    -- Create getPupilsFullReviewByEmailReport report template                                                      OK
+
+    -- For reports it is necessary to show person in header to whom it was addressed.                               --
+    -- Create subreports                                                                                            --
+    -- Create graphic with data grouped by form (pupils avg marks above 2)                                          --
+    -- Build pie chart from two vars                                                                                --
+    -- Create timeseries or stacked area chart for subjects and marks (getPupilsFullReviewByEmailReport)            --
+
+    -- Use caching                                                                                                  --
+
+    -- Generate data and load into db                                                                               OK
     -- Create all repositories
         --  ClassesService/Repository                                                                               OK
         --  FakeDataService/Repository                                                                              OK

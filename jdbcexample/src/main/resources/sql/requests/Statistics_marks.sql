@@ -20,7 +20,7 @@ select
 from pupils p
 inner join classes c on p.class_id = c.id
 inner join marks m on p.id = m.pupil_id
-inner join teachers t on p.class_head_id = t.id
+inner join teachers t on c.class_head_id = t.id
 inner join subjects s on m.subject_id = s.id
 where c.name = '5A'                                                 -- <----
 order by p.id asc

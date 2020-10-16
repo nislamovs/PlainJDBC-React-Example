@@ -60,7 +60,7 @@ BEGIN
     from pupils p
     inner join classes c on p.class_id = c.id
     inner join marks m on p.id = m.pupil_id
-    inner join teachers t on p.class_head_id = t.id
+    inner join teachers t on c.class_head_id = t.id
     inner join subjects s on m.subject_id = s.id
     WHERE c.name = '",
 
@@ -121,7 +121,7 @@ BEGIN
     from pupils p
     inner join classes c on p.class_id = c.id
     inner join marks m on p.id = m.pupil_id
-    inner join teachers t on p.class_head_id = t.id
+    inner join teachers t on c.class_head_id = t.id
     inner join subjects s on m.subject_id = s.id
     WHERE c.name = CLASS_NAME
     ORDER BY p.id ASC, s.name ASC ;
@@ -190,7 +190,7 @@ BEGIN
     EXECUTE stmt;
     DEALLOCATE PREPARE stmt;
 
-    SELECT * FROM TempTable;
+    SELECT * FROM TempTable ORDER BY average_mark DESC;
     DROP TABLE TempTable;
 
   COMMIT;
@@ -220,7 +220,8 @@ BEGIN
     from marks m
     inner join pupils p on m.pupil_id = p.id
     where m.pupil_id >= ID_START and m.pupil_id <= ID_END                     -- <----
-    group by m.pupil_id ;
+    group by m.pupil_id
+    order by average_mark desc;
 
   COMMIT;
 
@@ -886,7 +887,7 @@ END$$
 -- call GET_PUPILS_FULL_REVIEW_PAGE(10, 5);
 
 -- ---------------------------------------------------------------------------------------------------------------------
--- ----Get pupils list with marks per subject (min, max, avg, count, passes or not, class name and class head)----------
+-- ----Get pupils list with marks per subject (min, max, avg, count, passes or not, class name and subject teacher)----
 -- ---------------------------------------------------------------------------------------------------------------------
 
 
@@ -930,7 +931,7 @@ END$$
 
 
 -- ---------------------------------------------------------------------------------------------------------------------
--- -Get pupils list with marks per subject by email (min, max, avg, count, passes or not, class name and class head)----
+-- -Get pupils list with marks per subject by email (min, max, avg, count, passes or not, class name and subject teacher)----
 -- ---------------------------------------------------------------------------------------------------------------------
 
 

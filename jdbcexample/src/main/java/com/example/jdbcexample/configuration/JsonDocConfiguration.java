@@ -1,6 +1,5 @@
 package com.example.jdbcexample.configuration;
 
-import org.jsondoc.core.annotation.flow.ApiFlow;
 import org.jsondoc.core.annotation.global.ApiChangelog;
 import org.jsondoc.core.annotation.global.ApiChangelogSet;
 import org.jsondoc.core.annotation.global.ApiGlobal;
@@ -11,10 +10,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @ApiGlobal(
-      sections = {
-              @ApiGlobalSection(title = "Stack", paragraphs = {"Java8", "Spring", "Plain JDBC", "Triggers, storedProcedures, functions, cronJobs", "React", "Spock"}),
-              @ApiGlobalSection(title = "About", paragraphs = {"Author : Nizami Islamovs", "Email : nizami.islamovs@gmail.com"})
-      }
+        sections = {
+                @ApiGlobalSection(title = "Stack", paragraphs = {"Java8", "Spring", "Plain JDBC", "Triggers, storedProcedures, functions, cronJobs", "React", "Spock"}),
+                @ApiGlobalSection(title = "About", paragraphs = {"Author : Nizami Islamovs", "Email : nizami.islamovs@gmail.com"})
+        }
 )
 @ApiChangelogSet(
         changlogs = {

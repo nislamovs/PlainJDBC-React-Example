@@ -21,7 +21,7 @@ BEGIN
         (
            id INTEGER AUTO_INCREMENT NOT NULL,
            domain VARCHAR(20),
-           count VARCHAR(20),
+           count INTEGER,
            primary key (id)
         ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

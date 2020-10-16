@@ -1,23 +1,20 @@
 package com.example.jdbcexample.repository.impl;
 
-import com.example.jdbcexample.domain.dao.PupilDAO;
 import com.example.jdbcexample.domain.dao.ReportTemplateDAO;
-import com.example.jdbcexample.repository.GenericRepository;
 import com.example.jdbcexample.repository.ReportTemplateRepository;
 import lombok.Cleanup;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.lang.Long.parseLong;
-import static java.lang.String.valueOf;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -42,7 +39,7 @@ public class ReportTemplateRepositoryImpl implements ReportTemplateRepository {
         int i = 1;
         stmt.setString(i++, templateName);
 
-        System.out.println(">>>   "+stmt.toString());
+        System.out.println(">>>   " + stmt.toString());
 
         return executeQuery(stmt);
     }
@@ -60,7 +57,7 @@ public class ReportTemplateRepositoryImpl implements ReportTemplateRepository {
         stmt.setString(i++, reportTemplateDAO.getFilename());
         stmt.setBytes(i++, reportTemplateDAO.getTemplate());
 
-        System.out.println(">>>   "+stmt.toString());
+        System.out.println(">>>   " + stmt.toString());
 
         Long templateId = executeInsert(stmt);
 
@@ -76,7 +73,7 @@ public class ReportTemplateRepositoryImpl implements ReportTemplateRepository {
         int i = 1;
         stmt.setLong(i++, id);
 
-        System.out.println(">>>   "+stmt.toString());
+        System.out.println(">>>   " + stmt.toString());
 
         return executeQuery(stmt).get(0);
     }
@@ -94,7 +91,7 @@ public class ReportTemplateRepositoryImpl implements ReportTemplateRepository {
         stmt.setString(i++, reportTemplateDAO.getFilename());
         stmt.setBytes(i++, reportTemplateDAO.getTemplate());
 
-        System.out.println(">>>   "+stmt.toString());
+        System.out.println(">>>   " + stmt.toString());
 
         Long templateId = executeUpdate(stmt);
 
@@ -111,7 +108,7 @@ public class ReportTemplateRepositoryImpl implements ReportTemplateRepository {
         stmt.setLong(i++, templateId);
         executeQuery(stmt);
 
-        System.out.println(">>>   "+stmt.toString());
+        System.out.println(">>>   " + stmt.toString());
 
         return ReportTemplateDAO.builder().id(Long.valueOf(templateId)).build();
     }
@@ -122,15 +119,9 @@ public class ReportTemplateRepositoryImpl implements ReportTemplateRepository {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(REPORT_TEMPLATES_RETRIEVAL_QUERY);
 
-        System.out.println(">>>   "+stmt.toString());
+        System.out.println(">>>   " + stmt.toString());
 
         return executeQuery(stmt);
-    }
-
-    @Override
-    @SneakyThrows
-    public List<ReportTemplateDAO> getPage(String pagenum, String pagesize, String sort, String group) {
-        return null;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////

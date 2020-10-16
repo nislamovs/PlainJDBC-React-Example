@@ -66,7 +66,6 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
 
         int i = 1;
         stmt.setString(i++, personsGroup);
-        stmt.executeQuery();
 
         System.out.println(">>>   " + stmt.toString());
 
