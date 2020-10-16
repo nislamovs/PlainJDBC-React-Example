@@ -3,9 +3,9 @@ use school ;
 
 CREATE TABLE IF NOT EXISTS reportTemplates (
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
-	templateName VARCHAR(50),
+	templateName VARCHAR(300),
 	description VARCHAR(300),
-	template blob,
+	template LONGBLOB,
 
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
  	created_by varchar(50) DEFAULT "Admin",

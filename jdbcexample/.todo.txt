@@ -64,7 +64,7 @@
             -- creation date
             -- class head name, surname
             -- class head email
-            !! don't forget about parents to generate them in parents table
+            !! don't forget about parents to generate them in parents table                                         --
 
         -- create statistics controller                                                                             OK
         -- add some methods there                                                                                   OK
@@ -72,8 +72,8 @@
         -- use requests from sql/requests folder                                                                    OK
         -- create schedulers for sending data                                                                       --
         -- create email sending service                                                                             --
-        -- use jasper reports                                                                                       --
-            -- create jasper report templates                                                                       --
+        -- use jasper reports                                                                                       OK
+            -- create jasper report templates                                                                       OK
             -- save the templates to db                                                                             --
             -- create csv                                                                                           --
             -- create pdf                                                                                           --
@@ -173,12 +173,12 @@ Bugs:
     -- Create table constrains                                              OK
 
 
-    -- AVG                                                                  OK            --
-    -- ROUND                                                                OK            --
+    -- AVG                                                                  OK            OK
+    -- ROUND                                                                OK            OK
 
     -- COALESCE                                                             --            --
-    -- GROUP BY + HAVING                                                    OK            --
-    -- LIKE                                                                 --            --
+    -- GROUP BY + HAVING                                                    OK            OK
+    -- LIKE                                                                 OK            OK
 
     -- Create table with primary keys and mention engine                    OK
     -- Create audit table with revisions                                    OK
