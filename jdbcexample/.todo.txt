@@ -74,14 +74,15 @@
         -- create email sending service                                                                             --
         -- use jasper reports                                                                                       OK
             -- create jasper report templates                                                                       OK
-            -- save the templates to db                                                                             --
+            -- save the templates to db                                                                             OK
             -- create csv                                                                                           --
             -- create pdf                                                                                           --
             -- send to email                                                                                        --
+        -- Create bash script for testing report template upload                                                    --
 
     -- Add endpoints/controller for uploading jasper templates                                                      OK
     -- Add services and repo for jasper templates                                                                   OK
-    -- Add to report template controller response headers for download                                              --
+    -- Add to report template controller response headers for download                                              OK
 
     -- Add validation to statistics controller params                                                               --
     -- Create one config class for all datasources                                                                  --
@@ -135,6 +136,9 @@
 
 
 Bugs:
+
+    -- Fix update / set query routines                                                                              --
+
     -- Write all fields which to map                                                                                --
     -- Add validation constraints to dao/dto                                                                        --
 
@@ -252,7 +256,6 @@ Bugs:
     -- trigger
             -- (changelog table - audit)                                    OK
             -- (createdBy, modifiedBy, createdAt, modifiedAt)               OK
-
 
     -- Requests
 

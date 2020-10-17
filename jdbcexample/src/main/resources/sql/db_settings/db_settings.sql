@@ -6,5 +6,5 @@ DROP DATABASE IF EXISTS school ;
 CREATE DATABASE IF NOT EXISTS school ;
 use school ;
 
-grant file ON *.*  to 'admin'@'%';
-flush privileges;
+-- grant file ON *.*  to 'admin'@'%';
+-- flush privileges;

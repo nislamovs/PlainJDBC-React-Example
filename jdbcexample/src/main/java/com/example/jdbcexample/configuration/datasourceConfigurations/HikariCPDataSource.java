@@ -30,7 +30,7 @@ public class HikariCPDataSource {
         dataSource.setUsername(username);
         dataSource.setPassword(password);
 
-        dataSource.setAutoCommit(false);
+        dataSource.setAutoCommit(true);
         dataSource.setMinimumIdle(5);
         dataSource.setIdleTimeout(10000);
         dataSource.setMaximumPoolSize(20);

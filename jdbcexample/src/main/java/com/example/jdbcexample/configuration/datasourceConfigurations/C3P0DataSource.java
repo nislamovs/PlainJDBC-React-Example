@@ -31,7 +31,7 @@ public class C3P0DataSource {
         dataSource.setDriverClass(driver);
         dataSource.setUser(username);
         dataSource.setPassword(password);
-        dataSource.setAutoCommitOnClose(false);
+        dataSource.setAutoCommitOnClose(true);
         dataSource.setMaxIdleTime(10);
         dataSource.setMaxStatements(20);
 

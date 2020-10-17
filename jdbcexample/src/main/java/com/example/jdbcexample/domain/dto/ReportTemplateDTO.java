@@ -27,9 +27,6 @@ public class ReportTemplateDTO extends AbstractDTO {
     @ApiObjectField(description = "Report template name")
     private String templateName;
 
-    @ApiObjectField(description = "Report template filename")
-    private String filename;
-
     @ApiObjectField(description = "Report template file")
     private byte[] template;
 

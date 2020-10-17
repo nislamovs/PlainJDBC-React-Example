@@ -12,6 +12,7 @@ import org.jsondoc.core.pojo.ApiStage;
 import org.jsondoc.core.pojo.ApiVisibility;
 
 import javax.validation.constraints.FutureOrPresent;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -28,18 +29,17 @@ public class AbstractDTO {
     @ApiObjectField(description = "Record/data status")
     private String status;
 
-    @FutureOrPresent
     @ApiObjectField(description = "Changes date/time")
     private LocalDateTime dateTime;
 
     @ApiObjectField(description = "Record creation date/time")
-    private LocalDateTime createdAt;
+    private LocalDate createdAt;
 
     @ApiObjectField(description = "Who created record")
     private String createdBy;
 
     @ApiObjectField(description = "Record modification date/time")
-    private LocalDateTime modifiedAt;
+    private LocalDate modifiedAt;
 
     @ApiObjectField(description = "Who modified record")
     private String modifiedBy;

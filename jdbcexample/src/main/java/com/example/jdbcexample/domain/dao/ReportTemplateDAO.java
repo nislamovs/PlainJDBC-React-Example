@@ -10,19 +10,16 @@ import org.jsondoc.core.annotation.ApiObjectField;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder(toBuilder = true)
-public class ReportTemplateDAO {
-
-    private Long id;
+public class ReportTemplateDAO extends AbstractDAO {
 
     private String description;
 
     private String templateName;
-
-    private String filename;
 
     private byte[] template;
 

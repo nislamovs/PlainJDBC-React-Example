@@ -23,11 +23,11 @@ public class ReportTemplateRepositoryImpl implements ReportTemplateRepository {
 
     private final DataSource dataSource;
 
-    private final String REPORT_TEMPLATES_RETRIEVAL_QUERY = "SELECT * FROM reportTemplates";
-    private final String REPORT_TEMPLATES_GET_BY_NAME_RETRIEVAL_QUERY = "SELECT * FROM reportTemplates WHERE name ilike ?";
+    private final String REPORT_TEMPLATES_RETRIEVAL_QUERY = "SELECT id, null as template, templateName, description, created_at, created_by, modified_at, modified_by  FROM reportTemplates";
+    private final String REPORT_TEMPLATES_GET_BY_NAME_RETRIEVAL_QUERY = "SELECT * FROM reportTemplates WHERE templateName LIKE ?";
     private final String REPORT_TEMPLATES_GET_BY_ID_RETRIEVAL_QUERY = "SELECT * FROM reportTemplates WHERE id = ?";
-    private final String REPORT_TEMPLATES_NEW_TEMPLATE_ADD_QUERY = "INSERT INTO reportTemplates(id, description, templateName, filename, template) VALUES (?, ?, ?, ?, ?)";
-    private final String REPORT_TEMPLATES_EXISTING_TEMPLATE_UPDATE_QUERY = "UPDATE reportTemplates SET(id = ?, description = ?, templateName = ?, filename = ?, template = ?)";
+    private final String REPORT_TEMPLATES_NEW_TEMPLATE_ADD_QUERY = "INSERT INTO reportTemplates(description, templateName, template) VALUES (?, ?, ?)";
+    private final String REPORT_TEMPLATES_EXISTING_TEMPLATE_UPDATE_QUERY = "UPDATE reportTemplates SET(id = ?, description = ?, templateName = ?, template = ?)";
     private final String REPORT_TEMPLATES_EXISTING_TEMPLATE_DELETE_QUERY = "DELETE FROM reportTemplates where id = ?";
 
     @Override
@@ -37,7 +37,7 @@ public class ReportTemplateRepositoryImpl implements ReportTemplateRepository {
         @Cleanup PreparedStatement stmt = conn.prepareStatement(REPORT_TEMPLATES_GET_BY_NAME_RETRIEVAL_QUERY);
 
         int i = 1;
-        stmt.setString(i++, templateName);
+        stmt.setString(i++, "%" + templateName + "%");
 
         System.out.println(">>>   " + stmt.toString());
 
@@ -51,10 +51,8 @@ public class ReportTemplateRepositoryImpl implements ReportTemplateRepository {
         @Cleanup PreparedStatement stmt = conn.prepareStatement(REPORT_TEMPLATES_NEW_TEMPLATE_ADD_QUERY);
 
         int i = 1;
-        stmt.setRowId(i++, null);
         stmt.setString(i++, reportTemplateDAO.getDescription());
         stmt.setString(i++, reportTemplateDAO.getTemplateName());
-        stmt.setString(i++, reportTemplateDAO.getFilename());
         stmt.setBytes(i++, reportTemplateDAO.getTemplate());
 
         System.out.println(">>>   " + stmt.toString());
@@ -88,7 +86,6 @@ public class ReportTemplateRepositoryImpl implements ReportTemplateRepository {
         stmt.setLong(i++, reportTemplateDAO.getId());
         stmt.setString(i++, reportTemplateDAO.getDescription());
         stmt.setString(i++, reportTemplateDAO.getTemplateName());
-        stmt.setString(i++, reportTemplateDAO.getFilename());
         stmt.setBytes(i++, reportTemplateDAO.getTemplate());
 
         System.out.println(">>>   " + stmt.toString());
@@ -105,10 +102,10 @@ public class ReportTemplateRepositoryImpl implements ReportTemplateRepository {
         @Cleanup PreparedStatement stmt = conn.prepareStatement(REPORT_TEMPLATES_EXISTING_TEMPLATE_DELETE_QUERY);
 
         int i = 1;
-        stmt.setLong(i++, templateId);
-        executeQuery(stmt);
+        stmt.setInt(i++, templateId);
+        stmt.executeUpdate();
 
-        System.out.println(">>>   " + stmt.toString());
+        System.out.println(">>>aaaa   " + stmt.toString());
 
         return ReportTemplateDAO.builder().id(Long.valueOf(templateId)).build();
     }
@@ -135,8 +132,11 @@ public class ReportTemplateRepositoryImpl implements ReportTemplateRepository {
                     .id(rs.getLong("id"))
                     .description(rs.getString("description"))
                     .templateName(rs.getString("templateName"))
-                    .filename(rs.getString("filename"))
                     .template(rs.getBytes("template"))
+                    .createdAt(rs.getDate("created_at"))
+                    .createdBy(rs.getString("created_by"))
+                    .modifiedAt(rs.getDate("modified_at"))
+                    .modifiedBy(rs.getString("modified_by"))
                     .build();
 
                 templates.add(template);

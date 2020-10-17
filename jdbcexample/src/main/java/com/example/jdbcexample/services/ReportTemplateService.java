@@ -32,10 +32,10 @@ public class ReportTemplateService {
     }
 
     @SneakyThrows
-    public List<ReportTemplateDTO> getTemplateByName(String templateName) {
+    public ReportTemplateDTO getTemplateByName(String templateName) {
 
         return reportTemplateRepository.getTemplateByName(templateName).stream()
-                .map(mapper::toDTO).collect(Collectors.toList());
+                .map(mapper::toDTO).collect(Collectors.toList()).get(0);
     }
 
     @SneakyThrows

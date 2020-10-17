@@ -1,5 +1,6 @@
 package com.example.jdbcexample.controllers;
 
+import com.example.jdbcexample.domain.dao.ReportTemplateDAO;
 import com.example.jdbcexample.domain.dto.AbstractDTO;
 import com.example.jdbcexample.domain.dto.PupilDTO;
 import com.example.jdbcexample.domain.dto.ReportTemplateDTO;
@@ -11,11 +12,16 @@ import org.jsondoc.core.annotation.*;
 import org.jsondoc.core.pojo.ApiStage;
 import org.jsondoc.core.pojo.ApiVerb;
 import org.jsondoc.core.pojo.ApiVisibility;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+
+import static javax.servlet.http.HttpServletResponse.SC_OK;
 
 @RestController
 @RequestMapping(value = "/api/v1")
@@ -57,10 +63,16 @@ public class ReportTemplateController {
             stage = ApiStage.GA,
             responsestatuscode = "200 - OK"
     )
-    @ApiResponseObject
-    public ReportTemplateDTO getTemplateById(@ApiPathParam(name="id", description="Report template id")
-                                             @PathVariable("id") String id) {
-        return reportTemplateService.getTemplateById(id);
+    public @ApiResponseObject ResponseEntity<byte[]> getTemplateById(
+            @ApiPathParam(name="id", description="Report template id")
+            @PathVariable("id") String id) {
+
+        ReportTemplateDTO template = reportTemplateService.getTemplateById(id);
+
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("Content-Disposition", "attachment; filename=" + template.getTemplateName());
+
+        return new ResponseEntity<byte[]>(template.getTemplate(), responseHeaders, HttpStatus.valueOf(SC_OK));
     }
 
     @RequestMapping(value = "/report", method = RequestMethod.GET)
@@ -75,10 +87,16 @@ public class ReportTemplateController {
             stage = ApiStage.GA,
             responsestatuscode = "200 - OK"
     )
-    @ApiResponseObject
-    public List<ReportTemplateDTO> getTemplateByName(@ApiQueryParam(name="name", description="Report template's name")
-                                                     @RequestParam(name = "name", required = true) String templateName) {
-        return reportTemplateService.getTemplateByName(templateName);
+    public @ApiResponseObject ResponseEntity<byte[]> getTemplateByName(
+            @ApiQueryParam(name="name", description="Report template's name")
+            @RequestParam(name = "name", required = true) String templateName) {
+
+        ReportTemplateDTO template = reportTemplateService.getTemplateByName(templateName);
+
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("Content-Disposition", "attachment; filename=" + template.getTemplateName());
+
+        return new ResponseEntity<byte[]>(template.getTemplate(), responseHeaders, HttpStatus.valueOf(SC_OK));
     }
 
     @RequestMapping(value = "/report", method = RequestMethod.POST)
