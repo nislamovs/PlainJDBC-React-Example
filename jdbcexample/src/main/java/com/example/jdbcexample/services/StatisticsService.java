@@ -23,10 +23,9 @@ public class StatisticsService {
         return statisticsRepository.getPupilsRelativesList().stream().map(mapper::toDTO).collect(Collectors.toList());
     }
 
-    public Map<Integer, Map<String, Integer>> getEmailProvidersList(String personsGroup) {
-        return statisticsRepository.getEmailProvidersList(personsGroup);
+    public List<StatsEmailProvidersDTO> getEmailProvidersList(String personsGroup) {
+        return statisticsRepository.getEmailProvidersList(personsGroup).stream().map(mapper::toDTO).collect(Collectors.toList());
     }
-
 
     public List<StatsPupilMarkPerClassDTO> getPupilsMarksPerClass(String className, int pageSize, int pageNum) {
         return statisticsRepository.getPupilsMarksPerClass(className, pageSize, pageNum).stream()

@@ -10,12 +10,11 @@ import lombok.experimental.SuperBuilder;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder(toBuilder = true)
-public class StatsPupilAvgMarkRatedDAO extends AbstractStatsDAO {
+public class StatsPupilAvgMarkRatedDAO {
 
     @Column(name = "id")
     private Long id;

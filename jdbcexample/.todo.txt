@@ -87,9 +87,14 @@
     -- Add validation to statistics controller params                                                               --
     -- Create one config class for all datasources                                                                  --
     -- @Cleanup moving out of each method                                                                           --
+    -- Make possible to return deleted row id in repo                                                               --
 
     -- Create report download controller                                                                            --
     -- Create report service                                                                                        --
+
+    -- Create email/messaging service                                                                               --
+    -- Create emails with attachment[pdf] and letter itself as html                                                 --
+    -- create scheduler which controls if letter was or wasn't sent                                                 --
 
     -- Create pupils-relatives report template                                                                      OK
     -- Create email providers report template report template                                                       OK
@@ -111,6 +116,9 @@
     -- Create timeseries or stacked area chart for subjects and marks (getPupilsFullReviewByEmailReport)            --
 
     -- Use caching                                                                                                  --
+    -- Add aspect(maybe) to show incoming request data                                                              --
+    -- Add aspect(maybe) to show incoming request data                                                              --
+    -- Add logging                                                                                                  --
 
     -- Generate data and load into db                                                                               OK
     -- Create all repositories
@@ -136,6 +144,8 @@
 
 
 Bugs:
+
+    -- refactor DAO to escape from resultset repeat in list of dao's                                                --
 
     -- Fix update / set query routines                                                                              --
 

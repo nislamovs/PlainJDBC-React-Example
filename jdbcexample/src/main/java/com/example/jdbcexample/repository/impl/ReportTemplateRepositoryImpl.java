@@ -32,7 +32,7 @@ public class ReportTemplateRepositoryImpl implements ReportTemplateRepository {
 
     @Override
     @SneakyThrows
-    public List<ReportTemplateDAO> getTemplateByName(String templateName) {
+    public ReportTemplateDAO getTemplateByName(String templateName) {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup PreparedStatement stmt = conn.prepareStatement(REPORT_TEMPLATES_GET_BY_NAME_RETRIEVAL_QUERY);
 
@@ -41,7 +41,7 @@ public class ReportTemplateRepositoryImpl implements ReportTemplateRepository {
 
         System.out.println(">>>   " + stmt.toString());
 
-        return executeQuery(stmt);
+        return executeQuery(stmt).get(0);
     }
 
     @Override

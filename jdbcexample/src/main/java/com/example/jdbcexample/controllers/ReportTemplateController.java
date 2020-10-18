@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-import static javax.servlet.http.HttpServletResponse.SC_OK;
-
 @RestController
 @RequestMapping(value = "/api/v1")
 @RequiredArgsConstructor
@@ -34,9 +32,9 @@ public class ReportTemplateController {
 
     private final ReportTemplateService reportTemplateService;
 
-    @RequestMapping(value = "/report/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/report/template/all", method = RequestMethod.GET)
     @ApiMethod(
-            path = "/report/all",
+            path = "/report/template/all",
             verb = ApiVerb.GET,
             description = "Retrieve info about all report templates.",
             summary =  "Retrieve info about all report templates.",
@@ -51,9 +49,9 @@ public class ReportTemplateController {
         return reportTemplateService.getAllTemplates();
     }
 
-    @RequestMapping(value = "/report/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/report/template/{id}", method = RequestMethod.GET)
     @ApiMethod(
-            path = "/report/{id}}",
+            path = "/report/template/{id}}",
             verb = ApiVerb.GET,
             description = "Download template by id.",
             summary =  "Download template by id.",
@@ -72,12 +70,12 @@ public class ReportTemplateController {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Content-Disposition", "attachment; filename=" + template.getTemplateName());
 
-        return new ResponseEntity<byte[]>(template.getTemplate(), responseHeaders, HttpStatus.valueOf(SC_OK));
+        return new ResponseEntity<byte[]>(template.getTemplate(), responseHeaders, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/report", method = RequestMethod.GET)
+    @RequestMapping(value = "/report/template", method = RequestMethod.GET)
     @ApiMethod(
-            path = "/report}",
+            path = "/report/template}",
             verb = ApiVerb.GET,
             description = "Download template by name.",
             summary =  "Download template by name.",
@@ -96,12 +94,12 @@ public class ReportTemplateController {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Content-Disposition", "attachment; filename=" + template.getTemplateName());
 
-        return new ResponseEntity<byte[]>(template.getTemplate(), responseHeaders, HttpStatus.valueOf(SC_OK));
+        return new ResponseEntity<byte[]>(template.getTemplate(), responseHeaders, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/report", method = RequestMethod.POST)
+    @RequestMapping(value = "/report/template", method = RequestMethod.POST)
     @ApiMethod(
-            path = "/report",
+            path = "/report/template",
             verb = ApiVerb.POST,
             description = "Upload new report template.",
             summary =  "Upload new report template.",
@@ -116,9 +114,9 @@ public class ReportTemplateController {
         return reportTemplateService.addNewTemplate(template);
     }
 
-    @RequestMapping(value = "/report", method = RequestMethod.PUT)
+    @RequestMapping(value = "/report/template", method = RequestMethod.PUT)
     @ApiMethod(
-            path = "/report",
+            path = "/report/template",
             verb = ApiVerb.PUT,
             description = "Upload new report template.",
             summary =  "Upload new report template.",
@@ -134,9 +132,9 @@ public class ReportTemplateController {
     }
 
 
-    @RequestMapping(value = "/report/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/report/template/{id}", method = RequestMethod.DELETE)
     @ApiMethod(
-            path = "/report/{id}",
+            path = "/report/template/{id}",
             verb = ApiVerb.DELETE,
             description = "Delete report template.",
             summary =  "Delete report template.",

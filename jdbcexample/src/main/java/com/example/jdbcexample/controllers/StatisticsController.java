@@ -59,7 +59,7 @@ public class StatisticsController {
             responsestatuscode = "200 - OK"
     )
     @ApiResponseObject
-    public Map<Integer, Map<String, Integer>> retrieveEmailProvidersList(
+    public List<StatsEmailProvidersDTO> retrieveEmailProvidersList(
             @ApiQueryParam(name = "group", description = "Person group")
             @RequestParam(name = "group", defaultValue = "persons") String personsGroup) {
         return statisticsService.getEmailProvidersList(personsGroup);

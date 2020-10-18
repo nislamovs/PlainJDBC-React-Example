@@ -9,12 +9,11 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.Date;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder(toBuilder = true)
-public class StatsPupilsRelativesDAO extends AbstractStatsDAO {
+public class StatsPupilsRelativesDAO {
 
     @Column(name = "id")
     private Long id;

@@ -1,6 +1,7 @@
 package com.example.jdbcexample.repository;
 
 import com.example.jdbcexample.domain.dao.statistics.*;
+import com.example.jdbcexample.domain.dto.statistics.StatsEmailProvidersDTO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface StatisticsRepository {
 
     List<StatsPupilsRelativesDAO> getPupilsRelativesList();
 
-    Map<Integer, Map<String, Integer>> getEmailProvidersList(String personsGroup);
+    List<StatsEmailProvidersDAO> getEmailProvidersList(String personsGroup);
 
     List<StatsPupilMarkPerClassDAO> getPupilsMarksPerClass(String className, int pageSize, int pageNum);
 

@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface ReportTemplateRepository extends GenericRepository<ReportTemplateDAO> {
 
-    List<ReportTemplateDAO> getTemplateByName(String templateName);
+    ReportTemplateDAO getTemplateByName(String templateName);
 }

@@ -60,7 +60,7 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
 
     @Override
     @SneakyThrows
-    public Map<Integer, Map<String, Integer>> getEmailProvidersList(String personsGroup) {
+    public List<StatsEmailProvidersDAO> getEmailProvidersList(String personsGroup) {
         @Cleanup Connection conn = dataSource.getConnection();
         @Cleanup CallableStatement stmt = conn.prepareCall(GET_EMAIL_PROVIDERS_LIST_QUERY);
 
@@ -68,8 +68,9 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
         stmt.setString(i++, personsGroup);
 
         System.out.println(">>>   " + stmt.toString());
+        ResultSetMapper<StatsEmailProvidersDAO> mapper = new ResultSetMapper<>();
 
-        return executeQuery(new HashMap<>(), stmt);
+        return mapper.mapResultSetToObject(stmt.executeQuery(), StatsEmailProvidersDAO.class);
     }
 
     @Override
@@ -309,20 +310,20 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
 
     /////////////////////////////////////////////////////////////////////////////////////////
 
-    private Map<Integer, Map<String, Integer>> executeQuery(Map<Integer, Map<String, Integer>> emailProviders, CallableStatement stmt) {
-        try {
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                emailProviders.put(
-                    rs.getInt("id"),
-                    new HashMap<String, Integer>(){{ put(rs.getString("domain"), rs.getInt("count")); }}
-                );
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-
-        return emailProviders;
-    }
+//    private Map<Integer, Map<String, Integer>> executeQuery(Map<Integer, Map<String, Integer>> emailProviders, CallableStatement stmt) {
+//        try {
+//            ResultSet rs = stmt.executeQuery();
+//            while (rs.next()) {
+//                emailProviders.put(
+//                    rs.getInt("id"),
+//                    new HashMap<String, Integer>(){{ put(rs.getString("domain"), rs.getInt("count")); }}
+//                );
+//            }
+//        } catch (SQLException e) {
+//            System.out.println(e);
+//        }
+//
+//        return emailProviders;
+//    }
 
 }

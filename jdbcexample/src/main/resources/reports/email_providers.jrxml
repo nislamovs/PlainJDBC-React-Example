@@ -9,17 +9,11 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
-	<subDataset name="Dataset1" uuid="58427d45-859f-4dab-ba21-9e591d548413">
-		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="dbAdapter"/>
-		<queryString>
-			<![CDATA[]]>
-		</queryString>
-	</subDataset>
 	<parameter name="PERSON_CATEGORY" class="java.lang.String" evaluationTime="Early"/>
 	<queryString language="plsql">
 		<![CDATA[{call GET_EMAIL_PROVIDER_STATS($P{PERSON_CATEGORY})}]]>
 	</queryString>
-	<field name="id" class="java.lang.Integer">
+	<field name="id" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.name" value="id"/>
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="TempTable"/>

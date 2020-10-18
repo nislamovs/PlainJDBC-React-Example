@@ -6,6 +6,9 @@ MAINTAINER nizamiislamovs@gmail.com
 ENV JAVA_TOOL_OPTIONS -agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n
 EXPOSE 8000
 
+#Necessary specially for jasper reports
+RUN apk add ttf-dejavu
+
 VOLUME /tmp
 EXPOSE 8080
 #./jdbcexample/

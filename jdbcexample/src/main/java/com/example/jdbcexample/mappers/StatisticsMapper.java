@@ -31,4 +31,8 @@ public interface StatisticsMapper {
 
     @Mapping(source = "id", target = "id")
     StatsPupilsRelativesDTO toDTO(StatsPupilsRelativesDAO statsPupilsRelativesDAO);
+
+    @Mapping(source = "id", target = "id")
+    StatsEmailProvidersDTO toDTO(StatsEmailProvidersDAO statsEmailProvidersDAO);
+
 }

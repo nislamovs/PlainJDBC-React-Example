@@ -7,30 +7,20 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder(toBuilder = true)
-public class StatsPupilAvgMarkDAO {
+public class StatsEmailProvidersDAO {
 
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "pupil_id")
-    private Long pupilId;
+    @Column(name = "domain")
+    private String domain;
 
-    @Column(name = "pupil_firstname")
-    private String pupilFirstname;
-
-    @Column(name = "pupil_lastname")
-    private String pupilLastname;
-
-    @Column(name = "pupil_email")
-    private String pupilEmail;
-
-    @Column(name = "average_mark")
-    private BigDecimal avgMarkValue;
+    @Column(name = "count")
+    private Integer count;
 }
