@@ -1,7 +1,7 @@
 package com.example.jdbcexample.services;
 
 import com.example.jdbcexample.domain.dao.ReportTemplateDAO;
-import com.example.jdbcexample.domain.dao.statistics.StatsEmailProvidersDAO;
+import com.example.jdbcexample.domain.dao.statistics.*;
 import com.example.jdbcexample.domain.dto.statistics.*;
 import com.example.jdbcexample.mappers.StatisticsMapper;
 import com.example.jdbcexample.mappers.sqlMappers.ResultSetMapper;
@@ -44,7 +44,7 @@ public class ReportingService {
     private final String PUPILS_AVG_MARKS_PER_SUBJECT_TOP_5_TEMPLATE_NAME = "pupils_avg_marks_per_subject_top_5_report_template.jrxml";
     private final String PUPILS_AVG_MARKS_REVIEW_TEMPLATE_NAME = "pupils_avg_marks_review_report_template.jrxml";
     private final String PUPILS_AVG_MARKS_TOP_5_TEMPLATE_NAME = "pupils_avg_marks_top_5_report_template.jrxml";
-    private final String PUPILS_AVG_MARKS_PER_FORM_TEMPLATE_NAME = "pupils_marks_per_class_report_template.jrxml";
+    private final String PUPILS_MARKS_PER_FORM_TEMPLATE_NAME = "pupils_marks_per_class_report_template.jrxml";
     private final String PUPILS_RELATIVES_TEMPLATE_NAME = "pupils_relatives_report_template.jrxml";
 
     private final StatisticsRepository statisticsRepository;
@@ -57,13 +57,8 @@ public class ReportingService {
         List<StatsEmailProvidersDAO> emailProviderStats = statisticsRepository.getEmailProvidersList(personsGroup);
         JRDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(emailProviderStats);
 
-        //Retrieve report template from db
-        ReportTemplateDAO templateDAO = templateRepository.getTemplateByName(EMAIL_PROVIDERS_TEMPLATE_NAME);
-        byte[] templateByteArray = templateDAO.getTemplate();
-
-        //Compile it
-        InputStream reportAsStream = new ByteArrayInputStream(templateByteArray);
-        JasperReport jasperReport = JasperCompileManager.compileReport(reportAsStream);
+        //Retrieve report template from db and compile it
+        JasperReport jasperReport = precompileJasperReport(EMAIL_PROVIDERS_TEMPLATE_NAME);
 
         //Fill it with data
         HashMap<String, Object> parameters = new HashMap<String, Object>();
@@ -75,77 +70,149 @@ public class ReportingService {
         return JasperExportManager.exportReportToPdf(jasperPrint);
     }
 
+    @SneakyThrows
+    public byte[] getPupilsRelativesListReport() {
 
+        List<StatsPupilsRelativesDAO> pupilRelativesStats = statisticsRepository.getPupilsRelativesList();
+        JRDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(pupilRelativesStats);
 
+        JasperReport jasperReport = precompileJasperReport(PUPILS_RELATIVES_TEMPLATE_NAME);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap<>(), beanCollectionDataSource);
 
+        return JasperExportManager.exportReportToPdf(jasperPrint);
+    }
 
+    @SneakyThrows
+    public byte[] getPupilsMarksPerClassListReport(String formName) {
 
+        List<StatsPupilMarkPerClassDAO> pupilMarksStats = statisticsRepository.getPupilsMarksPerClass(formName);
+        JRDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(pupilMarksStats);
 
+        HashMap<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("CLASS_NAME", formName);
 
+        JasperReport jasperReport = precompileJasperReport(PUPILS_MARKS_PER_FORM_TEMPLATE_NAME);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, beanCollectionDataSource);
 
+        return JasperExportManager.exportReportToPdf(jasperPrint);
+    }
 
+    @SneakyThrows
+    public byte[] getAvgPupilsMarksByPupilIdIntervalReport(int idStart, int idEnd) {
 
+        List<StatsPupilAvgMarkDAO> pupilAvgMarks = statisticsRepository.getAvgPupilsMarksByPupilIdInterval(idStart, idEnd);
+        JRDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(pupilAvgMarks);
 
+        HashMap<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("PUPIL_ID_INTERVAL_START", idStart);
+        parameters.put("PUPIL_ID_INTERVAL_END", idEnd);
 
+        JasperReport jasperReport = precompileJasperReport(PUPILS_AVG_MARKS_PER_ID_INTERVAL_TEMPLATE_NAME);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, beanCollectionDataSource);
 
+        return JasperExportManager.exportReportToPdf(jasperPrint);
+    }
 
+    @SneakyThrows
+    public byte[] getAvgPupilsMarksTop5PerSchoolReport() {
 
+        List<StatsPupilAvgMarkRatedDAO> pupilAvgMarks = statisticsRepository.getAvgPupilsMarksTop5PerSchool();
+        JRDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(pupilAvgMarks);
 
+        JasperReport jasperReport = precompileJasperReport(PUPILS_AVG_MARKS_TOP_5_TEMPLATE_NAME);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap<>(), beanCollectionDataSource);
 
+        return JasperExportManager.exportReportToPdf(jasperPrint);
+    }
 
+    @SneakyThrows
+    public byte[] getAvgPupilsMarksAbove7PerSchoolReport() {
 
+        List<StatsPupilAvgMarkRatedDAO> pupilAvgMarks = statisticsRepository.getAvgPupilsMarksAbove7PerSchool();
+        JRDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(pupilAvgMarks);
 
+        JasperReport jasperReport = precompileJasperReport(PUPILS_AVG_MARKS_ABOVE_7_TEMPLATE_NAME);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap<>(), beanCollectionDataSource);
 
-//    public byte[] getPupilsRelativesListReport() {
-//        return statisticsRepository.getPupilsRelativesList().stream().map(mapper::toDTO).collect(Collectors.toList());
-//    }
-//
-//    public List<StatsPupilMarkPerClassDTO> getPupilsMarksPerClassReport(String className) {
-//        return statisticsRepository.getPupilsMarksPerClass(className).stream().map(mapper::toDTO).collect(Collectors.toList());
-//    }
-//
-//    public List<StatsPupilAvgMarkDTO> getAvgPupilsMarksByPupilIdIntervalReport(int idStart, int idEnd) {
-//        return statisticsRepository.getAvgPupilsMarksByPupilIdInterval(idStart, idEnd).stream()
-//                .map(mapper::toDTO).collect(Collectors.toList());
-//    }
-//
-//    public List<StatsPupilAvgMarkRatedDTO> getAvgPupilsMarksTop5PerSchoolReport() {
-//        return statisticsRepository.getAvgPupilsMarksTop5PerSchool().stream()
-//                .map(mapper::toDTO).collect(Collectors.toList());
-//    }
-//
-//    public List<StatsPupilAvgMarkRatedDTO> getAvgPupilsMarksAbove7PerSchoolReport() {
-//        return statisticsRepository.getAvgPupilsMarksAbove7PerSchool().stream()
-//                .map(mapper::toDTO).collect(Collectors.toList());
-//    }
-//
-//    public List<StatsPupilAvgMarkRatedDTO> getAvgPupilsMarksBySubjectReport(String subject) {
-//        return statisticsRepository.getAvgPupilsMarksBySubject(subject).stream()
-//                .map(mapper::toDTO).collect(Collectors.toList());
-//    }
-//
-//    public List<StatsPupilAvgMarkRatedDTO> getAvgPupilsMarksByClassReport(String className) {
-//        return statisticsRepository.getAvgPupilsMarksByClass(className).stream()
-//                .map(mapper::toDTO).collect(Collectors.toList());
-//    }
-//
-//    public List<StatsKidsParentsDTO> getParentsAndKidsListReport() {
-//        return statisticsRepository.getParentsAndKidsList().stream()
-//                .map(mapper::toDTO).collect(Collectors.toList());
-//    }
-//
-//    public List<StatsPupilReviewDTO> getPupilsReviewReport() {
-//        return statisticsRepository.getPupilsReview().stream()
-//                .map(mapper::toDTO).collect(Collectors.toList());
-//    }
-//
-//    public List<StatsPupilFullReviewDTO> getPupilsFullReviewReport() {
-//        return statisticsRepository.getPupilsFullReview().stream()
-//                .map(mapper::toDTO).collect(Collectors.toList());
-//    }
-//
-//    public List<StatsPupilFullReviewDTO> getPupilsFullReviewByEmailReport(String email) {
-//        return statisticsRepository.getPupilsFullReviewByEmail(email).stream()
-//                .map(mapper::toDTO).collect(Collectors.toList());
-//    }
+        return JasperExportManager.exportReportToPdf(jasperPrint);
+    }
+
+    @SneakyThrows
+    public byte[] getAvgPupilsMarksBySubjectReport(String subject) {
+
+        List<StatsPupilAvgMarkRatedDAO> pupilAvgMarks = statisticsRepository.getAvgPupilsMarksBySubject(subject);
+        JRDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(pupilAvgMarks);
+
+        HashMap<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("SUBJECT_NAME", subject);
+
+        JasperReport jasperReport = precompileJasperReport(PUPILS_AVG_MARKS_PER_SUBJECT_TOP_5_TEMPLATE_NAME);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, beanCollectionDataSource);
+
+        return JasperExportManager.exportReportToPdf(jasperPrint);
+    }
+
+    @SneakyThrows
+    public byte[] getAvgPupilsMarksByClassReport(String className) {
+
+        List<StatsPupilAvgMarkRatedDAO> pupilAvgMarks = statisticsRepository.getAvgPupilsMarksByClass(className);
+        JRDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(pupilAvgMarks);
+
+        HashMap<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("CLASS_NAME", className);
+
+        JasperReport jasperReport = precompileJasperReport(PUPILS_AVG_MARKS_BY_FORM_TEMPLATE_NAME);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, beanCollectionDataSource);
+
+        return JasperExportManager.exportReportToPdf(jasperPrint);
+    }
+
+    @SneakyThrows
+    public byte[] getPupilsReviewReport() {
+
+        List<StatsPupilReviewDAO> pupilReview = statisticsRepository.getPupilsReview();
+        JRDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(pupilReview);
+
+        JasperReport jasperReport = precompileJasperReport(PUPILS_AVG_MARKS_REVIEW_TEMPLATE_NAME);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap<>(), beanCollectionDataSource);
+
+        return JasperExportManager.exportReportToPdf(jasperPrint);
+    }
+
+    @SneakyThrows
+    public byte[] getPupilsFullReviewReport() {
+
+        List<StatsPupilFullReviewDAO> pupilReview = statisticsRepository.getPupilsFullReview();
+        JRDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(pupilReview);
+
+        JasperReport jasperReport = precompileJasperReport(PUPILS_AVG_MARKS_FULL_REVIEW_TEMPLATE_NAME);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap<>(), beanCollectionDataSource);
+
+        return JasperExportManager.exportReportToPdf(jasperPrint);
+    }
+
+    @SneakyThrows
+    public byte[] getPupilsFullReviewByEmailReport(String email) {
+
+        List<StatsPupilFullReviewDAO> pupilReview = statisticsRepository.getPupilsFullReviewByEmail(email);
+        JRDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(pupilReview);
+
+        HashMap<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("PUPIL_EMAIL", email);
+
+        JasperReport jasperReport = precompileJasperReport(PUPILS_AVG_MARKS_FULL_REVIEW_BY_EMAIL_TEMPLATE_NAME);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, beanCollectionDataSource);
+
+        return JasperExportManager.exportReportToPdf(jasperPrint);
+    }
+
+    private JasperReport precompileJasperReport(String templateName) throws JRException {
+        //Retrieve report template from db
+        ReportTemplateDAO templateDAO = templateRepository.getTemplateByName(templateName);
+        byte[] templateByteArray = templateDAO.getTemplate();
+
+        //Compile it
+        InputStream reportAsStream = new ByteArrayInputStream(templateByteArray);
+        return JasperCompileManager.compileReport(reportAsStream);
+    }
 }

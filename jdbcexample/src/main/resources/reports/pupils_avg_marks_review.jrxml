@@ -12,35 +12,35 @@
 	<queryString language="plsql">
 		<![CDATA[{call GET_PUPILS_REVIEW()}]]>
 	</queryString>
-	<field name="pupil_id" class="java.lang.Integer">
+	<field name="pupilId" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.name" value="pupil_id"/>
 		<property name="com.jaspersoft.studio.field.label" value="pupil_id"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="marks"/>
 	</field>
-	<field name="pupil_name" class="java.lang.String">
+	<field name="pupilName" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="pupil_name"/>
 		<property name="com.jaspersoft.studio.field.label" value="pupil_name"/>
 	</field>
-	<field name="pupil_email" class="java.lang.String">
+	<field name="pupilEmail" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="email"/>
 		<property name="com.jaspersoft.studio.field.label" value="pupil_email"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="pupils"/>
 	</field>
-	<field name="class_name" class="java.lang.String">
+	<field name="className" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="name"/>
 		<property name="com.jaspersoft.studio.field.label" value="class_name"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="classes"/>
 	</field>
-	<field name="class_head_name" class="java.lang.String">
+	<field name="classHeadName" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="class_head_name"/>
 		<property name="com.jaspersoft.studio.field.label" value="class_head_name"/>
 	</field>
-	<field name="teacher_email" class="java.lang.String">
+	<field name="teacherEmail" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="email"/>
 		<property name="com.jaspersoft.studio.field.label" value="teacher_email"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="teachers"/>
 	</field>
-	<field name="average_mark" class="java.math.BigDecimal">
+	<field name="avgMarkValue" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.name" value="average_mark"/>
 		<property name="com.jaspersoft.studio.field.label" value="average_mark"/>
 	</field>
@@ -53,9 +53,6 @@
 	</variable>
 	<variable name="PUPIL_SUCCESS" class="java.lang.Integer" calculation="Sum">
 		<variableExpression><![CDATA["PASSING".equals($F{status}) ? 1 : 0]]></variableExpression>
-	</variable>
-	<variable name="stats" class="java.util.Map" incrementType="Page">
-		<variableExpression><![CDATA[Map.of("Passed", $V{PUPIL_SUCCESS},"Failed", $V{PUPIL_FAILED});]]></variableExpression>
 	</variable>
 	<background>
 		<band/>
@@ -136,7 +133,7 @@
 				<textElement textAlignment="Left">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{pupil_name}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{pupilName}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight">
 				<reportElement style="Row" mode="Opaque" x="180" y="1" width="210" height="14" uuid="3e124460-a6e6-43e5-a155-0b825383e5ae">
@@ -146,7 +143,7 @@
 				<textElement textAlignment="Left">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{class_head_name}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{classHeadName}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight">
 				<reportElement style="Row" mode="Opaque" x="469" y="1" width="83" height="14" uuid="8a1d36d9-a1d9-4927-9d5a-1b00ce744976">
@@ -156,7 +153,7 @@
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{average_mark}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{avgMarkValue}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Row" mode="Opaque" x="390" y="1" width="79" height="14" uuid="b9741076-a7cb-4b35-804a-54f558f234c2">
@@ -175,7 +172,7 @@
 				<textElement textAlignment="Left">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Pupil id :  "+$F{pupil_id}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Pupil id :  "+$F{pupilId}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight">
 				<reportElement style="Row" mode="Opaque" x="1" y="15" width="178" height="14" uuid="97ea74a6-5611-40d4-8844-1af12ca79885">
@@ -185,7 +182,7 @@
 				<textElement textAlignment="Left">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{pupil_email}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{pupilEmail}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight">
 				<reportElement style="Row" mode="Opaque" x="1" y="43" width="178" height="14" uuid="639ab181-be25-4011-b6f0-1c0188177e36">
@@ -195,7 +192,7 @@
 				<textElement textAlignment="Left">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Form name : "+$F{class_name}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Form name : "+$F{className}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight">
 				<reportElement style="Row" mode="Opaque" x="180" y="15" width="210" height="14" uuid="22f708e8-fba2-4872-bead-f00e615e5490">
@@ -205,7 +202,7 @@
 				<textElement textAlignment="Left">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{teacher_email}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{teacherEmail}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Row" mode="Opaque" x="180" y="29" width="210" height="14" uuid="aeecfc11-d78f-46f9-a3a0-9817ac0571f7">

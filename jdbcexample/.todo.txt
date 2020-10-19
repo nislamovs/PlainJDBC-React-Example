@@ -305,6 +305,7 @@ Bugs:
 -- Update README                                                            --
 -- Mention profiles                                                         --
 -- Add build/test coverage icons in read.me                                 --
+-- Add travis.ci                                                            --
 
 -- Add CORS workaround                                                      OK
 -- Add redirect for jsonDoc                                                 OK

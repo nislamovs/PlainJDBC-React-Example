@@ -42,68 +42,68 @@
 	<queryString language="plsql">
 		<![CDATA[{call GET_PUPILS_MARKS_PER_CLASS($P{CLASS_NAME})}]]>
 	</queryString>
-	<field name="class_name" class="java.lang.String">
+	<field name="className" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="name"/>
 		<property name="com.jaspersoft.studio.field.label" value="class_name"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="classes"/>
 	</field>
-	<field name="pupil_id" class="java.lang.Integer">
+	<field name="pupilId" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.name" value="id"/>
 		<property name="com.jaspersoft.studio.field.label" value="pupil_id"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="pupils"/>
 	</field>
-	<field name="pupil_firstname" class="java.lang.String">
+	<field name="pupilFirstname" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="firstname"/>
 		<property name="com.jaspersoft.studio.field.label" value="pupil_firstname"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="pupils"/>
 	</field>
-	<field name="pupil_lastname" class="java.lang.String">
+	<field name="pupilLastname" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="lastname"/>
 		<property name="com.jaspersoft.studio.field.label" value="pupil_lastname"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="pupils"/>
 	</field>
-	<field name="pupil_email" class="java.lang.String">
+	<field name="pupilEmail" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="email"/>
 		<property name="com.jaspersoft.studio.field.label" value="pupil_email"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="pupils"/>
 	</field>
-	<field name="pupil_birthdate" class="java.sql.Date">
+	<field name="pupilBirthdate" class="java.util.Date">
 		<property name="com.jaspersoft.studio.field.name" value="birthdate"/>
 		<property name="com.jaspersoft.studio.field.label" value="pupil_birthdate"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="pupils"/>
 	</field>
-	<field name="subject_name" class="java.lang.String">
+	<field name="subjectname" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="name"/>
 		<property name="com.jaspersoft.studio.field.label" value="subject_name"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="subjects"/>
 	</field>
-	<field name="mark_value" class="java.lang.Integer">
+	<field name="markValue" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="value"/>
 		<property name="com.jaspersoft.studio.field.label" value="mark_value"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="marks"/>
 	</field>
-	<field name="mark_date" class="java.sql.Date">
+	<field name="markDate" class="java.util.Date">
 		<property name="com.jaspersoft.studio.field.name" value="date"/>
 		<property name="com.jaspersoft.studio.field.label" value="mark_date"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="marks"/>
 	</field>
-	<field name="class_head_firstname" class="java.lang.String">
+	<field name="classHeadFirstname" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="firstname"/>
 		<property name="com.jaspersoft.studio.field.label" value="class_head_firstname"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="teachers"/>
 	</field>
-	<field name="class_head_lastname" class="java.lang.String">
+	<field name="classHeadLastname" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="lastname"/>
 		<property name="com.jaspersoft.studio.field.label" value="class_head_lastname"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="teachers"/>
 	</field>
-	<field name="class_head_email" class="java.lang.String">
+	<field name="classHeadEmail" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="email"/>
 		<property name="com.jaspersoft.studio.field.label" value="class_head_email"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="teachers"/>
 	</field>
 	<group name="PupilDataGroup">
-		<groupExpression><![CDATA[$F{pupil_id}]]></groupExpression>
+		<groupExpression><![CDATA[$F{pupilId}]]></groupExpression>
 		<groupHeader>
 			<band height="60">
 				<textField textAdjust="StretchHeight">
@@ -114,7 +114,7 @@
 					<textElement textAlignment="Left">
 						<font size="11"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{pupil_firstname}+" "+$F{pupil_lastname}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{pupilFirstname}+" "+$F{pupilLastname}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
 					<reportElement style="Row" mode="Opaque" x="0" y="14" width="199" height="14" uuid="3e124460-a6e6-43e5-a155-0b825383e5ae">
@@ -124,7 +124,7 @@
 					<textElement textAlignment="Left">
 						<font size="11"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{pupil_email}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{pupilEmail}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
 					<reportElement style="Row" mode="Opaque" x="0" y="28" width="199" height="14" uuid="8a1d36d9-a1d9-4927-9d5a-1b00ce744976">
@@ -134,7 +134,7 @@
 					<textElement textAlignment="Left">
 						<font size="11"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Birthdate : " + $F{pupil_birthdate}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Birthdate : " + $F{pupilBirthdate}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
 					<reportElement style="Row" mode="Opaque" x="0" y="42" width="199" height="14" uuid="2d81d430-8540-4a98-abef-37ce69560e8a">
@@ -144,7 +144,7 @@
 					<textElement textAlignment="Left">
 						<font size="11"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Birthdate : " + $F{pupil_id}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Birthdate : " + $F{pupilId}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
@@ -177,9 +177,9 @@
 				<textField>
 					<reportElement x="216" y="139" width="358" height="40" forecolor="#FFFFFF" uuid="9a907574-70fd-4a76-a21e-2a4d27377b41"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA["Form-master :  " + $F{class_head_firstname} + " " + $F{class_head_lastname} + "\n" +
-"email :  " + $F{class_head_email} + "\n" +
-"Form name : "+$F{class_name}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Form-master :  " + $F{classHeadFirstname} + " " + $F{classHeadLastname} + "\n" +
+"email :  " + $F{classHeadEmail} + "\n" +
+"Form name : "+$F{className}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
@@ -241,7 +241,7 @@
 				<textElement textAlignment="Center">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{subject_name}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{subjectname}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight">
 				<reportElement style="Row" mode="Opaque" x="352" y="0" width="68" height="14" uuid="c3d5671e-1246-4712-99ad-c20247f5a3c5">
@@ -251,7 +251,7 @@
 				<textElement textAlignment="Center">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{mark_value}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{markValue}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" pattern="MM/dd/yyyy" isBlankWhenNull="true">
 				<reportElement style="Row" mode="Opaque" x="420" y="0" width="134" height="14" uuid="75e3f549-2661-4558-a14e-1b38b0c6be64">
@@ -261,7 +261,7 @@
 				<textElement textAlignment="Center">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{mark_date}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{markDate}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -38,32 +38,32 @@
 			<groupExpression><![CDATA[$F{pupil_lastname}]]></groupExpression>
 		</group>
 	</subDataset>
-	<parameter name="PUPIL_ID_INTERVAL_START" class="java.lang.String" evaluationTime="Early"/>
-	<parameter name="PUPIL_ID_INTERVAL_END" class="java.lang.String"/>
+	<parameter name="PUPIL_ID_INTERVAL_START" class="java.lang.Integer" evaluationTime="Early"/>
+	<parameter name="PUPIL_ID_INTERVAL_END" class="java.lang.Integer"/>
 	<queryString language="plsql">
 		<![CDATA[{call GET_AVG_PUPILS_MARKS_BY_PUPIL_ID_INTERVAL_ALL_SCHOOL($P{PUPIL_ID_INTERVAL_START}, $P{PUPIL_ID_INTERVAL_END})}]]>
 	</queryString>
-	<field name="pupil_id" class="java.lang.Integer">
+	<field name="pupilId" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.name" value="pupil_id"/>
 		<property name="com.jaspersoft.studio.field.label" value="pupil_id"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="marks"/>
 	</field>
-	<field name="pupil_firstname" class="java.lang.String">
+	<field name="pupilFirstname" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="firstname"/>
 		<property name="com.jaspersoft.studio.field.label" value="pupil_firstname"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="pupils"/>
 	</field>
-	<field name="pupil_lastname" class="java.lang.String">
+	<field name="pupilLastname" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="lastname"/>
 		<property name="com.jaspersoft.studio.field.label" value="pupil_lastname"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="pupils"/>
 	</field>
-	<field name="pupil_email" class="java.lang.String">
+	<field name="pupilEmail" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="email"/>
 		<property name="com.jaspersoft.studio.field.label" value="pupil_email"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="pupils"/>
 	</field>
-	<field name="average_mark" class="java.math.BigDecimal">
+	<field name="avgMarkValue" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.name" value="average_mark"/>
 		<property name="com.jaspersoft.studio.field.label" value="average_mark"/>
 	</field>
@@ -151,7 +151,7 @@
 				<textElement textAlignment="Left">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{pupil_firstname}+" "+$F{pupil_lastname}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{pupilFirstname}+" "+$F{pupilLastname}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight">
 				<reportElement style="Row" mode="Opaque" x="180" y="1" width="210" height="14" uuid="3e124460-a6e6-43e5-a155-0b825383e5ae">
@@ -161,7 +161,7 @@
 				<textElement textAlignment="Left">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{pupil_email}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{pupilEmail}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight">
 				<reportElement style="Row" mode="Opaque" x="469" y="1" width="83" height="14" uuid="8a1d36d9-a1d9-4927-9d5a-1b00ce744976">
@@ -171,7 +171,7 @@
 				<textElement textAlignment="Right">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{average_mark}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{avgMarkValue}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Row" mode="Opaque" x="390" y="1" width="79" height="14" uuid="b9741076-a7cb-4b35-804a-54f558f234c2">
