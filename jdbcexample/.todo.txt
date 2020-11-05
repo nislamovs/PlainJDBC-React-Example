@@ -75,10 +75,11 @@
         -- use jasper reports                                                                                       OK
             -- create jasper report templates                                                                       OK
             -- save the templates to db                                                                             OK
-            -- create csv                                                                                           --
-            -- create pdf                                                                                           --
+            -- create pdf                                                                                           OK
             -- send to email                                                                                        --
-        -- Create bash script for testing report template upload                                                    --
+        -- Create bash script for testing report template upload                                                    OK
+
+    -- Create some kind of functionality to download some stats data in csv format                                  --                                                                                          --
 
     -- Add endpoints/controller for uploading jasper templates                                                      OK
     -- Add services and repo for jasper templates                                                                   OK
@@ -89,8 +90,8 @@
     -- @Cleanup moving out of each method                                                                           --
     -- Make possible to return deleted row id in repo                                                               --
 
-    -- Create report download controller                                                                            --
-    -- Create report service                                                                                        --
+    -- Create report download controller                                                                            OK
+    -- Create report service                                                                                        OK
 
     -- Create email/messaging service                                                                               --
     -- Create emails with attachment[pdf] and letter itself as html                                                 --
@@ -116,9 +117,8 @@
     -- Create timeseries or stacked area chart for subjects and marks (getPupilsFullReviewByEmailReport)            --
 
     -- Use caching                                                                                                  --
-    -- Add aspect(maybe) to show incoming request data                                                              --
-    -- Add aspect(maybe) to show incoming request data                                                              --
-    -- Add logging                                                                                                  --
+    -- Add aspect(maybe) to show incoming request data                                                              OK
+    -- Add logging                                                                                                  OK
 
     -- Generate data and load into db                                                                               OK
     -- Create all repositories
