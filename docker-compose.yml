@@ -31,7 +31,7 @@ services:
       - "8080:8080"
       - "8000:8000"     # debugging
     volumes:
-      - "./volumes/jdbcexample/logs:/logs"
+      - "./jdbcexample/volumes/logs:/logs"
     depends_on:
       - db
 
