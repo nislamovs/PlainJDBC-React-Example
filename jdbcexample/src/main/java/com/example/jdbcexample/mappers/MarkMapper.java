@@ -23,12 +23,12 @@ public interface MarkMapper {
     SubjectMarkDAO toDAO(SubjectMarkDTO subjectMarkDTO);
 
     @Named("DateToLocalDate")
-    default LocalDate extractBigDecimalFromString(Date value) {
+    default LocalDate convertDateToLocalDate(Date value) {
         return Instant.ofEpochMilli(value.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
     @Named("LocalDateToDate")
-    default Date extractStringFromBigDecimal(LocalDate value) {
+    default Date convertLocalDateToDate(LocalDate value) {
         return Date.from(value.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 

@@ -117,6 +117,7 @@
     -- Create timeseries or stacked area chart for subjects and marks (getPupilsFullReviewByEmailReport)            --
 
     -- Use caching                                                                                                  --
+    -- Add rest request consumed time logging                                                                       OK
     -- Add aspect(maybe) to show incoming request data                                                              OK
     -- Add logging                                                                                                  OK
 
@@ -145,7 +146,7 @@
 
 Bugs:
 
-    -- refactor DAO to escape from resultset repeat in list of dao's                                                --
+    -- refactor DAO to escape from resultset repeat in list of dao's                                                OK
 
     -- Fix update / set query routines                                                                              --
 
